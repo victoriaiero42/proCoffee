@@ -1,11 +1,8 @@
 import express from 'express';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
-import passport from 'passport';
-
 import './misc/env.js';
 import './misc/db.js';
-
 import authRouter from './routes/authRouter.js';
 
 const app = express();
@@ -13,9 +10,8 @@ const FileStore = sessionFileStore(session);
 
 app.set('session cookie name', 'sid');
 
+app.use(express.static('public'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 app.use(session({
   name: app.get('session cookie name'),
   secret: process.env.SESSION_SECRET,
