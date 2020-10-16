@@ -9,8 +9,6 @@ import Authorization from '../Authorization'
 
 function App() {
   return (
-    <div>
-
     <div className="App">
       <Authorization />
       <Switch>
@@ -28,7 +26,6 @@ function App() {
         </Route>
       </Switch>
       <Menu />
-      {/* <Panel /> */}
     </div>
   );
 }
