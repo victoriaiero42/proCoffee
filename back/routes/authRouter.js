@@ -25,7 +25,7 @@ router.post('/registration', async (req, res) => {
     await newUser.save();
     req.session.user = newUser;
   } catch (error) {
-    return res.json({ err: 'Пользователь уже существует или данные не верны!' });
+    return res.json({ err: 'Пользователь уже существует или данные не верны!', error });
   }
   return res.json({
     id: newUser._id,
@@ -59,13 +59,13 @@ router.post('/login', async (req, res) => {
   });
 });
 
-  router.get('/logout', async (req, res) => {
-    if (req.session.user) {
-      await req.session.destroy();
-      res.clearCookie('user_sid');
-      return res.json('ok');
-    }
-    return res.json('ne ok');
-  });
+router.get('/logout', async (req, res) => {
+  if (req.session.user) {
+    await req.session.destroy();
+    res.clearCookie('user_sid');
+    return res.json('ok');
+  }
+  return res.json('ne ok');
+});
 
 export default router;
