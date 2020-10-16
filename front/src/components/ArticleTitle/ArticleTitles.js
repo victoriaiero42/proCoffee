@@ -1,9 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { makeStyles } from '@material-ui/core/styles';
-// import AppBar from '@material-ui/core/AppBar';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -64,10 +60,12 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    // color: theme.palette.text.secondary,
     backgroundColor: "#424242",
     textColor: "black",
-    margin: "10px"
+    marginTop: "10px",
+    marginLeft: "10px",
+    marginRight: "10px"
+
   },
 }));
 
@@ -78,7 +76,9 @@ export default function CenteredGrid() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>guides</Paper>
+          <Typography variant="body2" color="textSecondary" component="p">
+            <Paper className={classes.paper}> <span>guides</span></Paper>
+          </Typography>
         </Grid>
       </Grid>
     </div>

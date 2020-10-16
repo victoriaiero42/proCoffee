@@ -1,17 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import styles from "./Menu.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import SearchIcon from '@material-ui/icons/Search';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-// import ToggleButton from '@material-ui/lab/ToggleButton';
-// import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
-// import RestoreIcon from '@material-ui/icons/Restore';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import LocationOnIcon from '@material-ui/icons/LocationOn';
+import theImg from '../db/imgs/java.png'
+
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +22,7 @@ const useStyles = makeStyles({
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  console.log(theImg);
   return (
     <BottomNavigation
       style={{
