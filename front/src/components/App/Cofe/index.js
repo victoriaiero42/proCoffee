@@ -12,14 +12,18 @@ import styles from './cofe.module.css';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    display: ' block',
+    display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto',
-    width: '50',
-
+    // width: '50',
+  },
+  flex: {
+    display: 'flex',
   },
   media: {
-    height: 140,
+    height: 80,
+    width: 80,
+    borderRadius: 10,
 
   },
 });
@@ -33,7 +37,7 @@ export default function Cofe() {
       id: 2, img: 'https://static3.depositphotos.com/1001651/137/i/450/depositphotos_1376093-stock-photo-cofee-cup.jpg', name: 'Arabica', description: 'asfasfasd sdfhsdjfj dsfhsjdfhjsdhfj',
     },
     {
-      id: 3, img: 'https://static3.depositphotos.com/1001651/137/i/450/depositphotos_1376093-stock-photo-cofee-cup.jpg', name: 'Arabica', description: 'asfasfasd sdfhsdjfj dsfhsjdfhjsdhfj',
+      id: 3, img: 'https://static3.depositphotos.com/1001651/137/i/450/depositphotos_1376093-stock-photo-cofee-cup.jpg', name: 'Arabicaasd asdasdasddasdfsddsf', description: 'asfasfasd sdfhsdjfj dsfhsjdfhjsdhfj',
     },
     {
       id: 4, img: 'https://static3.depositphotos.com/1001651/137/i/450/depositphotos_1376093-stock-photo-cofee-cup.jpg', name: 'Arabica', description: 'asfasfasd sdfhsdjfj dsfhsjdfhjsdhfj',
@@ -45,7 +49,10 @@ export default function Cofe() {
       id: 6, img: 'https://us.123rf.com/450wm/foodandmore/foodandmore1710/foodandmore171000104/88449682-cup-of-double-espresso-coffee-with-piece-of-cake-on-wooden-table.jpg?ver=6', name: 'Jack', description: '40tko',
     },
     {
-      id: 7, img: 'https://us.123rf.com/450wm/foodandmore/foodandmore1710/foodandmore171000104/88449682-cup-of-double-espresso-coffee-with-piece-of-cake-on-wooden-table.jpg?ver=6', name: 'Jack', description: '40tko',
+      id: 7, img: 'https://ae01.alicdn.com/kf/HTB1ka9bSXXXXXX0XFXXq6xXFXXXy/diamond-painting-big-size-rhinestones-embroidery-coffe-decor-decorative-coffee-beans.jpg', name: 'Arabica', description: 'asfasfasd sdfhsdjfj dsfhsj',
+    },
+    {
+      id: 8, img: 'https://static3.depositphotos.com/1001651/137/i/450/depositphotos_1376093-stock-photo-cofee-cup.jpg', name: 'Arabica', description: 'asfasfasd sdfhsdjfj dsfhsjdfhjsdhfj',
     },
   ]);
   const classes = useStyles();
@@ -55,12 +62,14 @@ export default function Cofe() {
       {cofe && cofe.map((el, i) => (
         <div className={styles.margin}>
           <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia>
-                <img className={styles.effect} src={el.img} />
-              </CardMedia>
+            <CardActionArea className={classes.flex}>
+              <CardMedia
+                className={classes.media}
+                image={el.img}
+                title="Contemplative Reptile"
+              />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="body1" component="p">
                   Название кофе:
                   {el.name}
                 </Typography>
@@ -69,11 +78,8 @@ export default function Cofe() {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary">
-                Подробно
-              </Button>
-            </CardActions>
+            {/* <CardActions>
+            </CardActions> */}
           </Card>
         </div>
       ))}
