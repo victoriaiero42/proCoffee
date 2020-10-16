@@ -3,6 +3,7 @@ import Menu from '../Menu/Menu'
 import MediaCard from '../Guides/Guides'
 import { Switch, Route } from 'react-router-dom'
 import TabsWrappedLabel from '../ArticleTitle/ArticleTitles'
+import Panel from '../Panel'
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         </Route>
       </Switch>
       <Menu />
-
+      <Panel />
     </div>
   );
 }
