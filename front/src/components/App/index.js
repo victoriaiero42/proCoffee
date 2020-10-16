@@ -4,10 +4,12 @@ import MediaCard from '../Guides/Guides'
 import { Switch, Route } from 'react-router-dom'
 import TabsWrappedLabel from '../ArticleTitle/ArticleTitles'
 import Panel from '../Panel'
+import Authorization from '../Authorization'
 
 function App() {
   return (
     <div className="App">
+      <Authorization />
       <Switch>
         <Route exact path="/">
           {/* <Menu /> */}
