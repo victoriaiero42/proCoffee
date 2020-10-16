@@ -8,21 +8,21 @@ import Panel from '../Panel'
 function App() {
   return (
     <div>
-
-    <div className="App">
-      <Switch>
-        <Route exact path="/">
-          {/* <Menu /> */}
-        </Route>
-        <Route exact path="/guides">
-          <MediaCard />
-        </Route>
-        <Route exact path="/profile">
-          <TabsWrappedLabel />
-        </Route>
-      </Switch>
-      <Menu />
-      <Panel />
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            {/* <Menu /> */}
+          </Route>
+          <Route exact path="/guides">
+            <MediaCard />
+          </Route>
+          <Route exact path="/profile">
+            <TabsWrappedLabel />
+          </Route>
+        </Switch>
+        <Menu />
+        <Panel />
+      </div>
     </div>
   );
 }
