@@ -7,6 +7,8 @@ import Panel from '../Panel'
 
 function App() {
   return (
+    <div>
+
     <div className="App">
       <Switch>
         <Route exact path="/">
