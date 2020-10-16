@@ -19,6 +19,7 @@
     "url": "https://github.com/victoriaiero42/proCoffee/issues"
   },
   "homepage": "https://github.com/victoriaiero42/proCoffee#readme",
+  "dependencies": {
   "devDependencies": {
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.2.0",
