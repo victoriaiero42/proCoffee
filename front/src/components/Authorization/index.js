@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -30,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Authorization() {
+  const user = useSelector((state) => state.auth);
+  // console.log(user);
+  const dispatch = useDispatch();
   const [name, setName] = useState('name');
   const [mail, setMail] = useState('email');
   const [password, setPassword] = useState('password');
@@ -59,17 +65,7 @@ function Authorization() {
   }
 
   async function handleClick() {
-    const request = await fetch('/registration', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        formData,
-      }),
-    })
-    const response = await request.json();
-    console.log(response);
+    dispatch(startAuthenticateUserSaga(formData))
   }
   
 return (
