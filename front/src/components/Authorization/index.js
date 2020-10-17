@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     // width: "400px"
   }
 }))
+
 
 function Authorization() {
   const user = useSelector((state) => state.auth);
