@@ -13,38 +13,40 @@ import store from '../../redux/store';
 
 function App() {
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/">
-          {/* <Menu /> */}
-        </Route>
-        <Route exact path="/guides">
-          <MediaCard />
-        </Route>
-        <Route exact path="/profile">
-          {/* <CenteredGrid /> */}
-          <Authorization />
+    // <div className="App">
+    //   <Switch>
+    //     <Route exact path="/">
+    //       {/* <Menu /> */}
+    //     </Route>
+    //     <Route exact path="/guides">
+    //       <MediaCard />
+    //     </Route>
+    //     <Route exact path="/profile">
+    //       {/* <CenteredGrid /> */}
+    //       <Authorization />
 
-        </Route>
-        <Route exact path="/search">
-          <Panel />
-        </Route>
-        {/* <Route exact path="/auth">
-          <Authorization />
-        </Route> */}
-      </Switch>
-      <Menu />
+    //     </Route>
+    //     <Route exact path="/search">
+    //       <Panel />
+    //     </Route>
+    //     {/* <Route exact path="/auth">
+    //       <Authorization />
+    //     </Route> */}
+    //   </Switch>
+    //   <Menu />
+    <div className="App">
+
       <Provider store={store}>
-        <Authorization />
+        {/* <Authorization /> */}
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             {/* <Menu /> */}
-          </Route>
+          {/* </Route> */}
           <Route exact path="/guides">
             <MediaCard />
           </Route>
           <Route exact path="/profile">
-            <CenteredGrid />
+            <Authorization />
           </Route>
           <Route exact path="/search">
             <Panel />
