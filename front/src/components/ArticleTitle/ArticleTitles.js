@@ -55,13 +55,14 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+
     // flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     backgroundColor: "#424242",
-    textColor: "black",
+    // textColor: "black",
     marginTop: "10px",
     marginLeft: "10px",
     marginRight: "10px"
@@ -76,8 +77,8 @@ export default function CenteredGrid() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Typography variant="body2" color="textSecondary" component="p">
-            <Paper className={classes.paper}> <span>guides</span></Paper>
+          <Typography variant="body2">
+            <Paper className={classes.paper}> guides</Paper>
           </Typography>
         </Grid>
       </Grid>
