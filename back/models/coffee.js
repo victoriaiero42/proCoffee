@@ -7,11 +7,9 @@ const coffeeSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    require: true,
   },
   tags: {
     type: String,
-    require: true,
   },
   region: {
     type: String,
@@ -23,9 +21,10 @@ const coffeeSchema = new mongoose.Schema({
   },
   acidity: {
     type: String,
-    require: true,
   },
-  
+  image: {
+    type: String,  
+  }
 });
 
 export default mongoose.model('Coffee', coffeeSchema);
