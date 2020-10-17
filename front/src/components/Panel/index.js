@@ -6,7 +6,7 @@ export default function Panel() {
   const [input, setInput] = useState([]);
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState("");
-  const styleLi = { background: "#ede", width: "16em"}
+  const styleLi = { background: "#ede", width: "16em" }
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -45,7 +45,7 @@ export default function Panel() {
           size="large"
         />
       </div>
-      <ul style={{listStyleType: "none"}} {...getMenuProps()}>
+      <ul style={{ listStyleType: "none" }} {...getMenuProps()}>
         {isOpen &&
           input.map((item, index) => (
             <span
@@ -54,7 +54,7 @@ export default function Panel() {
               onClick={() => setUser(item.name)}
             >
               <li style={highlightedIndex === index ? styleLi : {}}>
-              <h3>{item.name}</h3>
+                <h3>{item.name}</h3>
               </li>
             </span>
           ))}
@@ -62,3 +62,9 @@ export default function Panel() {
     </div>
   );
 }
+
+
+
+
+
+
