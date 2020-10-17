@@ -7,6 +7,8 @@ import CenteredGrid from '../ArticleTitle/ArticleTitles'
 import Panel from '../Panel'
 import Authorization from '../Authorization'
 
+
+
 function App() {
   return (
     <div className="App">
