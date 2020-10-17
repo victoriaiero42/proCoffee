@@ -35,7 +35,6 @@ function Authorization() {
   const [password, setPassword] = useState('password');
   const [formData, setFormData] = useState({});
   const classes = useStyles();
-  console.log('formdata', formData);
 
   const handleChange = e => {
     e.persist();
@@ -60,7 +59,6 @@ function Authorization() {
   }
 
   async function handleClick() {
-    console.log('predfetch');
     const request = await fetch('/registration', {
       method: 'POST',
       headers: {

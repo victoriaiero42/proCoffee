@@ -8,12 +8,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import regPhoto from "./reg.png"
+import CenteredGrid from '../ArticleTitle/ArticleTitles'
 
 const useStyles = makeStyles({
   root: {
     // maxWidth: 345,
     backgroundColor: "#424242",
-    margin: "30px"
+    margin: "10px"
 
   },
   media: {
@@ -25,29 +26,31 @@ export default function MediaCard() {
   const classes = useStyles();
   console.log(regPhoto);
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={regPhoto}
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Regions
+    <>
+      <CenteredGrid />
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={regPhoto}
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              Regions
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            <Typography variant="body2" color="textSecondary" component="p">
+              Lizards are a widespread group of squamate
           </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="dark">
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          {/* <Button size="small" color="dark">
           Learn More
-        </Button>
-      </CardActions>
-    </Card>
+        </Button> */}
+        </CardActions>
+      </Card>
+    </>
   );
 }
 

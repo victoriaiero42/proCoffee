@@ -1,12 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/user.js';
-import initializePassport from '../passport-config';
-
-initializePassport(
-  passport,
-  email => User
-  );
 
 const router = express.Router();
 
@@ -19,7 +13,7 @@ router.post('/registration', async (req, res) => {
     userName,
     userEmail,
     userPassword,
-  } = req.body;
+  } = req.body.formData;
   let newUser;
   try {
     const hashedPassword = await bcrypt.hash(userPassword, 10);
@@ -31,7 +25,7 @@ router.post('/registration', async (req, res) => {
     await newUser.save();
     req.session.user = newUser;
   } catch (error) {
-    return res.json({ err: 'Пользователь уже существует или данные не верны!' });
+    return res.json({ err: 'Пользователь уже существует или данные не верны!', error });
   }
   return res.json({
     id: newUser._id,
@@ -39,8 +33,8 @@ router.post('/registration', async (req, res) => {
     email: newUser.userEmail,
     status: 'ok',
   });
-  console.log(123, req.body);
-  res.json({status: 'ok'});
+  // console.log(req.body.formData);
+  // res.json({status: 'ok'});
 });
 
 router.post('/login', async (req, res) => {
@@ -65,13 +59,13 @@ router.post('/login', async (req, res) => {
   });
 });
 
-  router.get('/logout', async (req, res) => {
-    if (req.session.user) {
-      await req.session.destroy();
-      res.clearCookie('user_sid');
-      return res.json('ok');
-    }
-    return res.json('ne ok');
-  });
+router.get('/logout', async (req, res) => {
+  if (req.session.user) {
+    await req.session.destroy();
+    res.clearCookie('user_sid');
+    return res.json('ok');
+  }
+  return res.json('ne ok');
+});
 
 export default router;

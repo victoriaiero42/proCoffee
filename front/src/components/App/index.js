@@ -2,8 +2,11 @@ import React from 'react';
 import Menu from '../Menu/Menu'
 import MediaCard from '../Guides/Guides'
 import { Switch, Route } from 'react-router-dom'
-import TabsWrappedLabel from '../ArticleTitle/ArticleTitles'
+// import TabsWrappedLabel from '../ArticleTitle/ArticleTitles'
+import CenteredGrid from '../ArticleTitle/ArticleTitles'
 import Panel from '../Panel'
+import Authorization from '../Authorization'
+
 
 function App() {
   return (
@@ -11,7 +14,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            {/* <Menu /> */}
+            <Menu />
           </Route>
           <Route exact path="/guides">
             <MediaCard />
