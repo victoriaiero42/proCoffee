@@ -33,8 +33,6 @@ router.post('/registration', async (req, res) => {
     email: newUser.userEmail,
     status: 'ok',
   });
-  // console.log(req.body.formData);
-  // res.json({status: 'ok'});
 });
 
 router.post('/login', async (req, res) => {
