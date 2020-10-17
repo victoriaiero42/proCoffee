@@ -10,7 +10,6 @@ import Authorization from '../Authorization'
 function App() {
   return (
     <div className="App">
-      <Authorization />
       <Switch>
         <Route exact path="/">
           {/* <Menu /> */}
@@ -19,11 +18,16 @@ function App() {
           <MediaCard />
         </Route>
         <Route exact path="/profile">
-          <CenteredGrid />
+          {/* <CenteredGrid /> */}
+          <Authorization />
+
         </Route>
         <Route exact path="/search">
           <Panel />
         </Route>
+        {/* <Route exact path="/auth">
+          <Authorization />
+        </Route> */}
       </Switch>
       <Menu />
     </div>
