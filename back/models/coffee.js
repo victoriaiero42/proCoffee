@@ -15,6 +15,9 @@ const coffeeSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  process: {
+    type: String,
+  },
   type: {
     type: String,
     require: true,
