@@ -1,6 +1,5 @@
 import Coffee from "../models/coffee.js";
-
-const db = require("./db");
+import db from "./db";
 
 export default function coffeeSeeder() {
   db.then(async ({connection, disconnect }) => {
