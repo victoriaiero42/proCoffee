@@ -4,7 +4,7 @@ import sessionFileStore from 'session-file-store';
 import './misc/env.js';
 import './misc/db.js';
 import authRouter from './routes/authRouter.js';
-
+import readTextRouter from './routes/readRouter.js';
 const app = express();
 const FileStore = sessionFileStore(session);
 
@@ -30,7 +30,7 @@ app.use(session({
 }));
 
 app.use(authRouter);
-
+app.use(readTextRouter);
 
 const port = process.env.PORT ?? 3001;
-app.listen(port, () => {console.log('Server started at http://localhost:%s/', port)});
+app.listen(port, () => { console.log('Server started at http://localhost:%s/', port) });

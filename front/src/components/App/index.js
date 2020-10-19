@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
 // import App from '.'
-import ReadText from '../ReadText'
 function App() {
   return (
     // <div className="App">
