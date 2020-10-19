@@ -9,6 +9,7 @@ import Panel from '../Panel';
 import { Provider } from 'react-redux';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
+import LoginForm from '../LoginForm';
 
 
 

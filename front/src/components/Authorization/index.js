@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
-
 import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
 
 // import styles from './style.module.css';
 
@@ -40,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
   formPositioning: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    backgroundColor: "#424242",
-    margin: "0px 10px",
+    backgroundColor: '#424242',
+    margin: '0px 10px',
     // width: "50%"
     // marginTop: "0px",
     // marginLeft: "10px",
@@ -50,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    backgroundColor: "#424242",
-    marginTop: "10px",
-    marginLeft: "10px",
-    marginRight: "10px"
+    backgroundColor: '#424242',
+    marginTop: '10px',
+    marginLeft: '10px',
+    marginRight: '10px',
 
   },
   input: {
@@ -61,13 +60,11 @@ const useStyles = makeStyles((theme) => ({
       color: '#A9A9A9',
     },
     // width: "400px"
-  }
-}))
-
+  },
+}));
 
 function Authorization() {
   const user = useSelector((state) => state.auth);
-  // console.log(user);
   const dispatch = useDispatch();
   const [name, setName] = useState('name');
   const [mail, setMail] = useState('email');
@@ -75,15 +72,13 @@ function Authorization() {
   const [formData, setFormData] = useState({});
   const classes = useStyles();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     e.persist();
-    setFormData((state) => {
-      return {
-        ...state,
-        [e.target.name]: e.target.value,
-      }
-    })
-  }
+    setFormData((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   function nameClick() {
     setName('enter your username');
@@ -98,11 +93,11 @@ function Authorization() {
   }
 
   async function handleClick() {
-    dispatch(startAuthenticateUserSaga(formData))
+    dispatch(startAuthenticateUserSaga(formData));
   }
   // className={classes.textBlock}
   // className={classes.button}
-  // className={classes.root} 
+  // className={classes.root}
   return (
     <>
 
@@ -123,13 +118,13 @@ function Authorization() {
               <Paper className={classes.paper}> register </Paper>
             </Typography>
           </Grid>
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <Typography variant="body1">
               <Paper className={classes.formPositioning}>
                 <form onChange={(e) => handleChange(e)} noValidate autoComplete="off">
-                  <TextField color="gray" fullWidth={true} name="userName" onClick={nameClick} id="filled-size-normal" label={name} variant="filled" required />
-                  <TextField fullWidth={true} name="userEmail" onClick={mailClick} id="filled-size-normal" label={mail} variant="filled" required />
-                  <TextField fullWidth={true} name="userPassword" onClick={passwordClick} label={password} variant="filled" required />
+                  <TextField color="gray" fullWidth name="userName" onClick={nameClick} id="filled-size-normal" label={name} variant="filled" required />
+                  <TextField fullWidth name="userEmail" onClick={mailClick} id="filled-size-normal" label={mail} variant="filled" required />
+                  <TextField fullWidth name="userPassword" onClick={passwordClick} label={password} variant="filled" required />
                   <Button onClick={handleClick} variant="outlined">Default</Button>
                 </form>
               </Paper>
@@ -139,7 +134,7 @@ function Authorization() {
       </div>
       {/* </div> */}
     </>
-  )
+  );
 }
 
 export default Authorization;
