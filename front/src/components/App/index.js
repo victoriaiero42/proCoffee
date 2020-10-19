@@ -8,12 +8,34 @@ import Panel from '../Panel';
 import { Provider } from 'react-redux';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
-
-
+// import App from '.'
+import ReadText from '../ReadText'
 function App() {
   return (
-    <div>
-      <div className="App">
+    // <div className="App">
+    //   <Switch>
+    //     <Route exact path="/">
+    //       {/* <Menu /> */}
+    //     </Route>
+    //     <Route exact path="/guides">
+    //       <MediaCard />
+    //     </Route>
+    //     <Route exact path="/profile">
+    //       {/* <CenteredGrid /> */}
+    //       <Authorization />
+
+    //     </Route>
+    //     <Route exact path="/search">
+    //       <Panel />
+    //     </Route>
+    //     {/* <Route exact path="/auth">
+    //       <Authorization />
+    //     </Route> */}
+    //   </Switch>
+    //   <Menu />
+    <div className="App">
+      <Provider store={store}>
+        <Authorization />
         <Switch>
           <Route exact path="/">
             <Menu />
@@ -22,12 +44,15 @@ function App() {
             <MediaCard />
           </Route>
           <Route exact path="/profile">
-            <TabsWrappedLabel />
+            <Authorization />
+          </Route>
+          <Route exact path="/search">
+            <Panel />
           </Route>
         </Switch>
         <Menu />
         <Panel />
-      </div>
+      </Provider>
     </div>
   );
 }
