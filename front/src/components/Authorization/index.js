@@ -8,37 +8,15 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
+import ErrorHandler from '../ErrorHandler/ErrorHandler';
+import User from '../User/User';
 
-// import styles from './style.module.css';
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     '& .MuiTextField-root': {
-//       margin: theme.spacing(1),
-//       width: 250,
-//       display: 'block',
-//       marginRight: 'auto',
-//       marginLeft: 'auto',
-//       marginTop: 20
-//       // width: '50',
-//     },
-//   },
-//   textBlock: {
-//     margin: "40 auto",
-//     // display: "flex",
-//     // alignAtems: "center"
-//   },
-//   button: {
-//     fontSize: 20,
-//     fontWeight: '1000',
-//     color: '#fff',
-//     backgroundColor: '#424242;'
-//   },
-// }));
 const useStyles = makeStyles((theme) => ({
   formPositioning: {
     padding: theme.spacing(2),
     textAlign: 'center',
+    backgroundColor: '#d7d0c3',
+    margin: '0px 10px',
     backgroundColor: '#424242',
     margin: '0px 10px',
     // width: "50%"
@@ -49,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    backgroundColor: '#424242',
+    backgroundColor: '#d7d0c3',
+
     marginTop: '10px',
     marginLeft: '10px',
     marginRight: '10px',
@@ -59,7 +38,10 @@ const useStyles = makeStyles((theme) => ({
     '& label.Mui-focused': {
       color: '#A9A9A9',
     },
-    // width: "400px"
+    button: {
+      margin: '20px',
+    },
+
   },
 }));
 
@@ -95,46 +77,41 @@ function Authorization() {
   async function handleClick() {
     dispatch(startAuthenticateUserSaga(formData));
   }
-  // className={classes.textBlock}
-  // className={classes.button}
-  // className={classes.root}
+
   return (
     <>
+      { user
+        ? <User />
+        : (
+          <div className={classes.root}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <Typography variant="body1">
 
-      <div className={classes.root}>
-        <Grid container spacing={1}>
+                  <Paper className={classes.paper}> sign up </Paper>
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="body1">
+                  <Paper className={classes.formPositioning}>
+                    <form onChange={(e) => handleChange(e)} noValidate autoComplete="off">
+                      <ErrorHandler />
 
-          {/* <div className={classes.inputStyles}> */}
-          {/* <form onChange={(e) => handleChange(e)} noValidate autoComplete="off">
-            <h3>Registration</h3>
-            <TextField name="userName" onClick={nameClick} autoFocus id="filled-size-normal" label={name} variant="filled" required />
-            <TextField name="userEmail" onClick={mailClick} id="filled-size-normal" label={mail} variant="filled" required />
-            <TextField name="userPassword" onClick={passwordClick} id="filled-size-normal" label={password} variant="filled" required />
-            <Button onClick={handleClick} variant="outlined">Default</Button>
-          </form> */}
-          {/* InputProps={{ className: classes.input }}  */}
-          <Grid item xs={12}>
-            <Typography variant="body1">
-              <Paper className={classes.paper}> register </Paper>
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="body1">
-              <Paper className={classes.formPositioning}>
-                <form onChange={(e) => handleChange(e)} noValidate autoComplete="off">
-                  <TextField color="gray" fullWidth name="userName" onClick={nameClick} id="filled-size-normal" label={name} variant="filled" required />
-                  <TextField fullWidth name="userEmail" onClick={mailClick} id="filled-size-normal" label={mail} variant="filled" required />
-                  <TextField fullWidth name="userPassword" onClick={passwordClick} label={password} variant="filled" required />
-                  <Button onClick={handleClick} variant="outlined">Default</Button>
-                </form>
-              </Paper>
-            </Typography>
-          </Grid>
-        </Grid>
-      </div>
-      {/* </div> */}
+                      <TextField fullWidth name="userName" onClick={nameClick} id="filled-size-normal" label={name} required />
+                      <TextField fullWidth name="userEmail" onClick={mailClick} id="filled-size-normal" label={mail} required />
+                      <TextField fullWidth name="userPassword" onClick={passwordClick} label={password} required />
+                      <Button style={{ marginTop: '12px' }} onClick={handleClick} variant="outlined">sign up</Button>
+                    </form>
+                  </Paper>
+                </Typography>
+              </Grid>
+            </Grid>
+          </div>
+        )}
+
     </>
   );
 }
+// variant="filled"
 
 export default Authorization;

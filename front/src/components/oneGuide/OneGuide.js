@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
 import CenteredGrid from '../ArticleTitle/ArticleTitles';
-
+import { useParams } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -21,8 +21,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard({ id }) {
-  const { title, preview, img } = useSelector((state) => {
+export default function MediaCard() {
+  const { id } = useParams();
+  const articles = useSelector((state) => state.articles.articles);
+  const actualArticle = articles.find((a) => a._id === id);
+  console.log(actualArticle);
+  const { title, preview, img, body } = useSelector((state) => {
     return state.articles.articles.find((x) => x._id === id);
   });
 
@@ -41,8 +45,8 @@ export default function MediaCard({ id }) {
             <Typography gutterBottom variant="h6" component="h2">
               {title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {preview}
+            <Typography dangerouslySetInnerHTML={{ __html: body }} variant="body2" color="textSecondary" component="p">
+              {/* {body} */}
             </Typography>
           </CardContent>
         </CardActionArea>

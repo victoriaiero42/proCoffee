@@ -1,5 +1,9 @@
 body {
-  background-color: #333333;
+  background-color: #f4e9d7;
+}
+
+a {
+  text-decoration: none;
 }
 /* #333333 */
 .card  {

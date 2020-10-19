@@ -8,34 +8,32 @@ export default function SearchPage(props) {
   const [searchListDefault, setSearchListDefault] = useState();
   const [searchList, setSearchList] = useState();
 
-  const fetchData = async () => {
-    return await fetch('https://restcountries.eu/rest/v2/all')
-      .then(response => response.json())
-      .then(data => {
-         setSearchList(data) 
-         setSearchListDefault(data)
-       });}
+  const fetchData = async () => fetch('https://restcountries.eu/rest/v2/all')
+    .then((response) => response.json())
+    .then((data) => {
+      setSearchList(data);
+      setSearchListDefault(data);
+    });
 
   const updateInput = async (input) => {
-     const filtered = searchListDefault.filter(search => {
-      return search.name.toLowerCase().includes(input.toLowerCase())
-     })
-     setInput(input);
-     setSearchList(filtered);
-  }
+    // eslint-disable-next-line max-len
+    const filtered = searchListDefault.filter((search) => search.name.toLowerCase().includes(input.toLowerCase()));
+    setInput(input);
+    setSearchList(filtered);
+  };
 
-  useEffect( () => {
-    fetchData()
-  },[]);
-	
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <h1>Search List</h1>
-      <SearchPanel 
-       keyword={input} 
-       setKeyword={updateInput}
+      <SearchPanel
+        keyword={input}
+        setKeyword={updateInput}
       />
-      <SearchList searchList={searchList}/>
+      <SearchList searchList={searchList} />
     </>
-   );
+  );
 }

@@ -9,6 +9,7 @@ import './misc/db.js';
 import './passportJs/passport-setup.js';
 
 import authRouter from './routes/authRouter.js';
+import userRouter from './routes/userRouts.js'
 
 const app = express();
 const FileStore = sessionFileStore(session);
@@ -34,11 +35,12 @@ app.use(session({
   },
 }));
 
+app.use(authRouter);
+app.use(userRouter)
 app.use((req, res, next) => {
   // console.log(req.session, '+++++++++++++++++++');
   next();
 });
-
 
 
 app.get('/google',
@@ -79,4 +81,5 @@ app.get('/googleLogout', async (req, res) => {
 app.use(authRouter);
 
 const port = process.env.PORT ?? 3001;
+
 app.listen(port, () => { console.log('Server started at http://localhost:%s/', port); });

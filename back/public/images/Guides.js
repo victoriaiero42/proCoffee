@@ -5,15 +5,18 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { useSelector } from 'react-redux';
-import CenteredGrid from '../ArticleTitle/ArticleTitles';
-
+import regPhoto from "./reg.png"
+import newPhoto from "./newone.png"
+import fullPhoto from "./full.png"
+import CenteredGrid from '../ArticleTitle/ArticleTitles'
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#d7d0c3',
-    margin: '10px',
+    // maxWidth: 345,
+    backgroundColor: "#d7d0c3",
+    margin: "10px"
 
   },
   media: {
@@ -21,12 +24,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard({ id }) {
-  const { title, preview, img } = useSelector((state) => {
-    return state.articles.articles.find((x) => x._id === id);
-  });
-
+export default function MediaCard() {
   const classes = useStyles();
+  // console.log(regPhoto);
   return (
     <>
       <CenteredGrid />
@@ -34,20 +34,22 @@ export default function MediaCard({ id }) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={`http://localhost:3001/images/${img}`}
+            image={newPhoto}
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h2">
-              {title}
-            </Typography>
+            <Typography gutterBottom variant="h5" component="h2">
+              Regions
+          </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {preview}
-            </Typography>
+              Lizards are a widespread group of squamate
+          </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions />
+        <CardActions>
+        </CardActions>
       </Card>
     </>
   );
 }
+

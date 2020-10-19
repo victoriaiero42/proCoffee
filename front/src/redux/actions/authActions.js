@@ -1,3 +1,4 @@
+
 import { AUTHENTICATE, LOGOUT, SIGNUP, START_AUTH, START_GOOGLE } from '../actionTypes';
 
 export function signUpUser(id, login, email) {
@@ -7,8 +8,8 @@ export function signUpUser(id, login, email) {
       id,
       login,
       email,
-    }
-  }
+    },
+  };
 }
 
 export function logoutUser() {
