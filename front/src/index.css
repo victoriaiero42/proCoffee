@@ -13,3 +13,12 @@ body {
   margin: 20px;
   cursor: grab;
 }
+
+input[type="radio"] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
