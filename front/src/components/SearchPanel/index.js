@@ -1,11 +1,11 @@
-import React from "react";
-import { Input } from '@material-ui/core'
+import React from 'react';
+import { Input } from '@material-ui/core';
 
 export default function SearchPanel({ keyword, setKeyword }) {
   const panelStyle = {
-    width: "100%",
+    width: '100%',
     // background: "#F2F1F9",
-    border: "none",
+    border: 'none',
     // padding: "0.5rem",
   };
   return (
@@ -18,5 +18,5 @@ export default function SearchPanel({ keyword, setKeyword }) {
         onChange={(e) => setKeyword(e.target.value)}
       /> */}
     </>
-  )
+  );
 }
