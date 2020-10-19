@@ -1,4 +1,6 @@
-import { AUTHENTICATE, LOGOUT, SIGNUP, START_AUTH } from '../actionTypes';
+import {
+  AUTHENTICATE, LOGOUT, SIGNUP, START_AUTH,
+} from '../actionTypes';
 
 export function signUpUser(id, login, email) {
   return {
@@ -7,8 +9,8 @@ export function signUpUser(id, login, email) {
       id,
       login,
       email,
-    }
-  }
+    },
+  };
 }
 
 export function logoutUser() {

@@ -5,16 +5,15 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import regPhoto from "./reg.png"
-import CenteredGrid from '../ArticleTitle/ArticleTitles'
+import { useSelector } from 'react-redux';
+import CenteredGrid from '../ArticleTitle/ArticleTitles';
+
 
 const useStyles = makeStyles({
   root: {
-    // maxWidth: 345,
-    backgroundColor: "#424242",
-    margin: "10px"
+    backgroundColor: '#d7d0c3',
+    margin: '10px',
 
   },
   media: {
@@ -22,9 +21,12 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard() {
+export default function MediaCard({ id }) {
+  const { title, preview, img } = useSelector((state) => {
+    return state.articles.articles.find((x) => x._id === id);
+  });
+
   const classes = useStyles();
-  console.log(regPhoto);
   return (
     <>
       <CenteredGrid />
@@ -32,22 +34,20 @@ export default function MediaCard() {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={regPhoto}
+            image={`http://localhost:3001/images/${img}`}
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Regions
-          </Typography>
+            <Typography gutterBottom variant="h6" component="h2">
+              {title}
+            </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate
-          </Typography>
+              {preview}
+            </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-        </CardActions>
+        <CardActions />
       </Card>
     </>
   );
 }
-
