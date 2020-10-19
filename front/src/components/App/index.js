@@ -1,4 +1,8 @@
 import React from 'react';
+
+import Menu from '../Menu/Menu';
+import MediaCard from '../Guides/Guides';
+// import DragAndDrop from '../DragAndDrop';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Menu from '../Menu/Menu';
@@ -7,6 +11,9 @@ import Panel from '../Panel';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
 import OneGuide from '../oneGuide/OneGuide';
+import LoginForm from '../LoginForm';
+
+
 
 function App() {
   return (
@@ -27,6 +34,7 @@ function App() {
             <Panel />
           </Route>
         </Switch>
+        {/* <DragAndDrop /> */}
         <Menu />
       </Provider>
     </div>
