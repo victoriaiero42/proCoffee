@@ -8,11 +8,13 @@ import Panel from '../Panel';
 import { Provider } from 'react-redux';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
+import LoginForm from '../LoginForm';
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
+        <LoginForm />
         <Authorization />
         <Switch>
           <Route exact path="/">

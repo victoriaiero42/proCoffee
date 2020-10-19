@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Authorization() {
   const user = useSelector((state) => state.auth);
-  // console.log(user);
   const dispatch = useDispatch();
   const [name, setName] = useState('name');
   const [mail, setMail] = useState('email');
@@ -73,9 +72,9 @@ return (
     <div className={classes.textBlock}>
       <form onChange={(e) => handleChange(e)} className={classes.root} noValidate autoComplete="off">
         <h3>Registration</h3>
-        <TextField name="userName" onClick={nameClick} autoFocus id="filled-size-normal" label={name} variant="filled" required />
-        <TextField name="userEmail" onClick={mailClick} id="filled-size-normal" label={mail} variant="filled" required />
-        <TextField name="userPassword" onClick={passwordClick} id="filled-size-normal" label={password} variant="filled" required />
+        <TextField name="username" onClick={nameClick} autoFocus id="filled-size-normal" label={name} variant="filled" required />
+        <TextField name="email" onClick={mailClick} id="filled-size-normal" label={mail} variant="filled" required />
+        <TextField name="password" onClick={passwordClick} id="filled-size-normal" label={password} variant="filled" required />
         <Button className={classes.button} onClick={handleClick} variant="outlined">Default</Button>
       </form>
     </div>
