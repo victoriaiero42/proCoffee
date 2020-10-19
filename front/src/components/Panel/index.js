@@ -53,7 +53,7 @@ export default function Panel() {
   });
 
   return (
-    <div>
+    <>
       <h1>{user}</h1>
       <div {...getComboboxProps()}>
         <Grid container spacing={3}>
@@ -86,6 +86,6 @@ export default function Panel() {
             </span>
           ))}
       </ul>
-    </div>
+    </>
   );
 }

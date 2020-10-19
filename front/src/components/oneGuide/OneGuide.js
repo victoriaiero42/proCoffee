@@ -23,10 +23,9 @@ const useStyles = makeStyles({
 
 export default function MediaCard() {
   const { id } = useParams();
-  const articles = useSelector((state) => state.articles.articles);
-  const actualArticle = articles.find((a) => a._id === id);
-  console.log(actualArticle);
-  const { title, preview, img, body } = useSelector((state) => {
+  // const articles = useSelector((state) => state.articles.articles);
+  // const actualArticle = articles.find((a) => a._id === id);
+  const { title, img, body } = useSelector((state) => {
     return state.articles.articles.find((x) => x._id === id);
   });
 

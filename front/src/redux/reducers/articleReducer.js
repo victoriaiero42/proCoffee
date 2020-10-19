@@ -1,11 +1,5 @@
 import { SET_ARTICLES, LOADING_ARTICLES, ERROR_ARTICLES } from '../actionTypes';
 
-const initialState = {
-  articles: [],
-  loading: false,
-  error: '',
-};
-
 export default function articlereducer(state = '', action) {
   switch (action.type) {
     case SET_ARTICLES:
