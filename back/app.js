@@ -11,6 +11,8 @@ import './passportJs/passport-setup.js';
 import authRouter from './routes/authRouter.js';
 import readTextRouter from './routes/readRouter.js';
 import userRouter from './routes/userRouts.js'
+import searchRouter from './routes/searchRouter.js';
+import restoreRouter from './routes/restoreRouter.js';
 
 const app = express();
 const FileStore = sessionFileStore(session);
@@ -38,8 +40,10 @@ app.use(session({
 
 app.use(authRouter);
 app.use(readTextRouter);
+app.use(searchRouter);
+app.use(userRouter);
+app.use(restoreRouter);
 
-app.use(userRouter)
 app.use((req, res, next) => {
   // console.log(req.session, '+++++++++++++++++++');
   next();

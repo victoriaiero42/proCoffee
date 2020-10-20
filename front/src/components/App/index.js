@@ -15,7 +15,8 @@ import OneGuide from '../oneGuide/OneGuide';
 import SignIn from '../SignIn/Signin'
 import Profile from '../Username/Username'
 import ListItem from '../CoffeeList/CoffeeList';
-import Item from '../Item/Item'
+import Item from '../Item/Item';
+import Forgot from '../Forgot';
 // import List from '../'
 
 
@@ -50,6 +51,9 @@ function App() {
             <Item />
             {/* <Panel />
             <ListItem /> */}
+          </Route>
+          <Route exact path="/restore">
+            <Forgot />
           </Route>
         </Switch>
         {/* <DragAndDrop /> */}
