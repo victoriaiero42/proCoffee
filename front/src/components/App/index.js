@@ -11,7 +11,6 @@ import GuideList from '../GuideList/GuideList';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
 import OneGuide from '../oneGuide/OneGuide';
-import LoginForm from '../LoginForm';
 import LogoutButton from '../LogoutButton';
 
 import SignIn from '../SignIn/Signin'
@@ -26,8 +25,7 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        {/* <LoginForm />
-        <LogoutButton /> */}
+
         <Switch>
           {/* <Panel /> */}
           <Route exact path="/guides">
@@ -38,13 +36,14 @@ function App() {
             <Panel />
             <OneGuide />
           </Route>
+
+          <Route exact path="/register">
+            <Authorization />
+          </Route>
           <Route exact path="/signin">
             <Panel />
 
-            {/* <Authorization /> */}
             <SignIn />
-
-            {/* <Profile /> */}
           </Route>
           <Route exact path="/search">
             <Panel />

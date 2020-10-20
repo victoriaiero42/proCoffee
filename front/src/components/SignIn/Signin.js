@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { startLoginSaga } from '../../redux/actions/authActions';
+
+import GoogleAuth from '../GoogleAuth';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -36,7 +43,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({});
   const classes = useStyles();
+
+  async function handleClick(e) {
+    e.preventDefault();
+    dispatch(startLoginSaga(formData));
+  }
+
+  const handleChange = (e) => {
+    e.persist();
+    setFormData((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -48,7 +70,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onChange={(e) => handleChange(e)} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -76,6 +98,7 @@ export default function SignIn() {
             label="Remember me"
           />
           <Button
+            onClick={(e) => handleClick(e)}
             type="submit"
             fullWidth
             variant="contained"
@@ -86,21 +109,21 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="/restore" variant="body2">
+              <Link to={"/restore"}>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link to={"/register"}>
+                Don't have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
         </form>
+        <GoogleAuth />
       </div>
       <Box mt={8}>
-        {/* <Copyright /> */}
       </Box>
-    </Container>
+    </Container >
   );
 }
