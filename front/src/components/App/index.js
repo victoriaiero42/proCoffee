@@ -1,13 +1,17 @@
 import React from 'react';
+
+import { Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
 import Menu from '../Menu/Menu';
 // import DragAndDrop from '../DragAndDrop';
-import { Switch, Route } from 'react-router-dom';
 import Panel from '../Panel';
-import { Provider } from 'react-redux';
+
 import GuideList from '../GuideList/GuideList';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
 import OneGuide from '../oneGuide/OneGuide';
+
 import SignIn from '../SignIn/Signin'
 import Profile from '../Username/Username'
 import ListItem from '../CoffeeList/CoffeeList';
