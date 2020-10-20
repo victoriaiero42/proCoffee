@@ -38,8 +38,6 @@ export default function Panel() {
       .then((json) => setUsers(json));
   }, []);
 
-  // console.log(users);
-
   const {
     isOpen,
     getMenuProps,
