@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Authorization() {
+  console.log('Authorization');
   const user = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [name, setName] = useState('name');
