@@ -1,9 +1,9 @@
-// import React from 'react';
+import React from 'react';
 
-// function User() {
-//   return (
+function User() {
+  return (
+    '123'
+  );
+}
 
-//   );
-// }
-
-// export default User;
+export default User;

@@ -9,17 +9,16 @@ const UserSchema = new mongoose.Schema({
     // minlength: 4,
     // match: /[A-Za-z]\w+/,
   },
-  // Мы не храним пароль, а только его хэш
+  email: {
+    type: String,
+    // required: true,
+    // unique: true,
+    // match: /[A-Za-z]\w+/,
+  },
   password: {
     type: String,
     // required: true,
     // minlength: 8,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    // match: /[A-Za-z]\w+/,
   },
   googleId: {
     type: Number,

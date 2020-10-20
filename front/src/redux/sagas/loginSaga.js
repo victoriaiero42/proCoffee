@@ -1,17 +1,19 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 
-import { START_AUTH } from '../actionTypes';
+import { START_LOGIN } from '../actionTypes';
 
-import { authenticateUser } from '../actions/authActions';
+import { loginUser } from '../actions/authActions';
 
 async function fetchRegistration(formData) {
-  const request = await fetch('/registration', {
+  const { email, password } = formData;
+  const request = await fetch('/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      formData,
+      email,
+      password,
     }),
   });
   const response = await request.json();
@@ -21,11 +23,11 @@ async function fetchRegistration(formData) {
 
 function* worker(action) {
   const resp = yield call(fetchRegistration, action.payload);
-  yield put(authenticateUser(resp));
+  yield put(loginUser(resp));
 }
 
 function* watcher() {
-  yield takeEvery(START_AUTH, worker);
+  yield takeEvery(START_LOGIN, worker);
 }
 
 export default watcher;

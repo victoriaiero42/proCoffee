@@ -39,12 +39,11 @@ app.use(session({
 app.use(authRouter);
 app.use(readTextRouter);
 
-app.use(userRouter)
+app.use(userRouter);
 app.use((req, res, next) => {
   // console.log(req.session, '+++++++++++++++++++');
   next();
 });
-
 
 app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -68,6 +67,7 @@ app.get('/google/callback',
     if (req.user) {
       req.session.user = req.user;
     }
+    console.log('гугл колбэк')
     res.redirect('http://localhost:3000/');
   });
 

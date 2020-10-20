@@ -11,11 +11,13 @@ import GuideList from '../GuideList/GuideList';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
 import OneGuide from '../oneGuide/OneGuide';
+import LoginForm from '../LoginForm';
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
+        <LoginForm />
         <Switch>
           <Route exact path="/guides">
             <GuideList />
@@ -32,7 +34,7 @@ function App() {
         </Switch>
         {/* <DragAndDrop /> */}
         <Menu />
-        <Panel />
+        {/* <Panel /> */}
       </Provider>
     </div>
   );
