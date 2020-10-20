@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import GoogleAuth from '../GoogleAuth';
+import { startLoginSaga } from '../../redux/actions/authActions';
 
 function LoginForm() {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
-
+  
   async function handleClick(e) {
     e.preventDefault();
-    const { username, password } = formData;
-    const request = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
-    const response = await request.json();
-    console.log(response);
-    return response;
+    dispatch(startLoginSaga(formData));
   }
 
   const handleChange = (e) => {
@@ -35,7 +26,7 @@ function LoginForm() {
       <form method="post" onChange={(e) => handleChange(e)}>
         <div>
           <label>Почта:</label>
-          <input name="username" type="text" />
+          <input name="email" type="text" />
         </div>
         <div>
           <label>Пароль:</label>

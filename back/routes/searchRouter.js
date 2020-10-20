@@ -3,21 +3,20 @@ import Coffee from '../models/coffee.js';
 
 const router = express.Router();
 
-router.post('/readText', async (req, res) => {
+router.post('/search', async (req, res) => {
   const { text } = req.body;
-
-  const splitText = text.replace(/[^a-zA-ZА-Яа-я0-9\s]/ig, '\n');
-  const newText = splitText.split('\n');
+  const newText = text.trim().split('');
   const newArray = [];
   const base = await Coffee.find();
   const newBase = base.map((el) => {
     newText.map((elem) => {
-      if (elem.includes(el.uniq)) {
-        newArray.push(el);
+      for (let i = 0; i < newText.length; i++) {
+        if (elem[i] == el.title[i]) {
+          newArray.push(el);
+        }
       }
     });
   });
-
   res.json({ newArray });
 });
 

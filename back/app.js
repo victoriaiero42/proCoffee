@@ -11,6 +11,8 @@ import './passportJs/passport-setup.js';
 import authRouter from './routes/authRouter.js';
 import readTextRouter from './routes/readRouter.js';
 import userRouter from './routes/userRouts.js'
+import searchRouter from './routes/searchRouter.js';
+import restoreRouter from './routes/restoreRouter.js';
 
 const app = express();
 const FileStore = sessionFileStore(session);
@@ -38,13 +40,14 @@ app.use(session({
 
 app.use(authRouter);
 app.use(readTextRouter);
+app.use(searchRouter);
+app.use(userRouter);
+app.use(restoreRouter);
 
-app.use(userRouter)
 app.use((req, res, next) => {
   // console.log(req.session, '+++++++++++++++++++');
   next();
 });
-
 
 app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -68,6 +71,7 @@ app.get('/google/callback',
     if (req.user) {
       req.session.user = req.user;
     }
+    console.log('гугл колбэк')
     res.redirect('http://localhost:3000/');
   });
 

@@ -11,11 +11,14 @@ import GuideList from '../GuideList/GuideList';
 import Authorization from '../Authorization';
 import store from '../../redux/store';
 import OneGuide from '../oneGuide/OneGuide';
+import LoginForm from '../LoginForm';
+import LogoutButton from '../LogoutButton';
 
 import SignIn from '../SignIn/Signin'
 import Profile from '../Username/Username'
 import ListItem from '../CoffeeList/CoffeeList';
-import Item from '../Item/Item'
+import Item from '../Item/Item';
+import Forgot from '../Forgot';
 // import List from '../'
 
 
@@ -23,6 +26,8 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
+        {/* <LoginForm />
+        <LogoutButton /> */}
         <Switch>
           {/* <Panel /> */}
           <Route exact path="/guides">
@@ -33,7 +38,7 @@ function App() {
             <Panel />
             <OneGuide />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/signin">
             <Panel />
 
             {/* <Authorization /> */}
@@ -50,6 +55,9 @@ function App() {
             <Item />
             {/* <Panel />
             <ListItem /> */}
+          </Route>
+          <Route exact path="/restore">
+            <Forgot />
           </Route>
         </Switch>
         {/* <DragAndDrop /> */}

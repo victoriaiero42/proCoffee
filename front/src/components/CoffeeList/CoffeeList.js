@@ -60,7 +60,7 @@ function CoffeeList() {
   const dispatch = useDispatch();
 
   const top = useSelector((state) => state.top.top)
-  console.log(top);
+  // console.log(top);
   useEffect(() => {
 
 
