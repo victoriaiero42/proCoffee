@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import express from 'express';
 import bcrypt from 'bcrypt';
 
@@ -17,12 +18,11 @@ router.post('/registration', async (req, res) => {
   } = req.body.formData;
   let newUser;
   try {
-    // const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     newUser = new User({
       username,
       email,
-      password,
-      // password: hashedPassword,
+      password: hashedPassword,
     });
     await newUser.save();
     // .exact()
@@ -38,37 +38,35 @@ router.post('/registration', async (req, res) => {
   });
 });
 
-
-
-// router.post('/login', async (req, res) => {
-//   let findUser;
-//   const {
-//     userEmail,
-//     userPassword,
-//   } = req.body;
-//   try {
-//     findUser = await User.findOne({ userEmail });
-//     if (findUser && await bcrypt.compare(userPassword, findUser.userPassword)) {
-//       req.session.user = findUser;
-//     }
-//   } catch (error) {
-//     return res.json(error);
-//   }
-//   return res.json({
-//     id: findUser._id,
-//     login: findUser.userName,
-//     email: findUser.userEmail,
-//     status: 'ok',
-//   });
-// });
+router.post('/login', async (req, res) => {
+  let findUser;
+  const {
+    email,
+    password,
+  } = req.body;
+  try {
+    findUser = await User.findOne({ email });
+    if (findUser && await bcrypt.compare(password, findUser.password)) {
+      req.session.user = findUser;
+    }
+  } catch (error) {
+    return res.json(error);
+  }
+  return res.json({
+    id: findUser._id,
+    login: findUser.username,
+    email: findUser.email,
+    status: 'ok',
+  });
+});
 
 router.get('/logout', async (req, res) => {
   if (req.session.user) {
     await req.session.destroy();
     res.clearCookie('user_sid');
-    return res.json('ok');
+    return res.json({ message: 'ok' });
   }
-  return res.json('ne ok');
+  return res.json({ message: 'ne ok, не разлогинился' });
 });
 
 export default router;

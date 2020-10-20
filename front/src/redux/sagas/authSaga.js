@@ -15,6 +15,7 @@ async function fetchRegistration(formData) {
     }),
   });
   const response = await request.json();
+  console.log(response);
   return response;
 }
 

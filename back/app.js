@@ -49,7 +49,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -72,6 +71,7 @@ app.get('/google/callback',
     if (req.user) {
       req.session.user = req.user;
     }
+    console.log('гугл колбэк')
     res.redirect('http://localhost:3000/');
   });
 
