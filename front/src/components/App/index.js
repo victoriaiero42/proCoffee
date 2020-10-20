@@ -41,8 +41,8 @@ function App() {
           <Route exact path="/profile">
             <Panel />
 
-            {/* <Authorization /> */}
-            <SignIn />
+            <Authorization />
+            {/* <SignIn /> */}
 
             {/* <Profile /> */}
           </Route>
