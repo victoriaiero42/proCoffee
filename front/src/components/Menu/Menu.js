@@ -14,7 +14,6 @@ const useStyles = makeStyles({
     bottom: '0px',
     // backgroundColor: "#424242",
     backgroundColor: '#d7d0c3',
-    // textColor: "black",#d2c19f   #e1dcd0
   },
 });
 
@@ -27,10 +26,6 @@ export default function SimpleBottomNavigation() {
         marginBottom: '0px',
         boxShadow: '3px 3px 5px 6px rgba(0, 0, 0, 0.2)',
       }}
-      // value={value}
-      // onChange={(event, newValue) => {
-      //   setValue(newValue);
-      // }}
       showLabels
       className={classes.root}
     >
@@ -42,20 +37,3 @@ export default function SimpleBottomNavigation() {
   );
 }
 
-// function Menu() {
-
-//   console.log(styles);
-//   return (
-//     <>
-//       <span className={styles.links}>
-//         <div className={styles.justify}>
-//           <Link className={styles.links} to='guides'>guides</Link>
-//           <Link className={styles.links} to='search'>search</Link>
-//           <Link className={styles.links} to='profile'>profile</Link>
-//         </div>
-//       </span>
-//     </>
-//   )
-// }
-
-// export default Menu

@@ -5,7 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import ErrorHandler from '../ErrorHandler/ErrorHandler'
+import SearchIcon from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -15,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
-    marginTop: '10px',
-    marginLeft: '10px',
-    marginRight: '10px',
+    // marginTop: '10px',
+    // marginLeft: '10px',
+    // marginRight: '10px',
 
   },
 }));
@@ -66,11 +68,13 @@ export default function Panel() {
                   enterbutton="Search"
                   size="large"
                 />
+                <IconButton>
+                  <SearchIcon />
+                </IconButton>
               </Paper>
             </Typography>
           </Grid>
         </Grid>
-
       </div>
       <ul style={{ listStyleType: 'none' }} {...getMenuProps()}>
         {isOpen
