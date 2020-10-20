@@ -26,10 +26,6 @@ export default function SimpleBottomNavigation() {
         marginBottom: '0px',
         boxShadow: '3px 3px 5px 6px rgba(0, 0, 0, 0.2)',
       }}
-      // value={value}
-      // onChange={(event, newValue) => {
-      //   setValue(newValue);
-      // }}
       showLabels
       className={classes.root}
     >
