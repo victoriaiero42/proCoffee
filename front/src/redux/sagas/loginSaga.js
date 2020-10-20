@@ -4,7 +4,7 @@ import { START_LOGIN } from '../actionTypes';
 
 import { loginUser } from '../actions/authActions';
 
-async function fetchRegistration(formData) {
+async function fetchLogin(formData) {
   const { email, password } = formData;
   const request = await fetch('/login', {
     method: 'POST',
@@ -17,12 +17,11 @@ async function fetchRegistration(formData) {
     }),
   });
   const response = await request.json();
-  console.log(response);
   return response;
 }
 
 function* worker(action) {
-  const resp = yield call(fetchRegistration, action.payload);
+  const resp = yield call(fetchLogin, action.payload);
   yield put(loginUser(resp));
 }
 

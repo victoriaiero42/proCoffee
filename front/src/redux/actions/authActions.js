@@ -1,10 +1,20 @@
 import {
-  AUTHENTICATE, LOGOUT, LOGIN, START_AUTH, START_GOOGLE, START_LOGIN, AUTHENTICATE_GOOGLE,
+  AUTHENTICATE, LOGOUT, LOGIN, START_AUTH, START_GOOGLE, START_LOGIN, AUTHENTICATE_GOOGLE, START_LOGOUT,
 } from '../actionTypes';
 
-export function logoutUser() {
+export function logoutUser(message) {
   return {
     type: LOGOUT,
+    payload: {
+      message,
+    },
+  };
+}
+
+export function startLogoutUserSaga(payload) {
+  return {
+    type: START_LOGOUT,
+    payload,
   };
 }
 

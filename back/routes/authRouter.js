@@ -64,9 +64,9 @@ router.get('/logout', async (req, res) => {
   if (req.session.user) {
     await req.session.destroy();
     res.clearCookie('user_sid');
-    return res.json('ok');
+    return res.json({ message: 'ok' });
   }
-  return res.json('ne ok');
+  return res.json({ message: 'ne ok, не разлогинился' });
 });
 
 export default router;

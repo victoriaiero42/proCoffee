@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
 import ErrorHandler from '../ErrorHandler/ErrorHandler';
-import User from '../User/User';
+import User from '../SignIn/Signin';
 
 const useStyles = makeStyles((theme) => ({
   formPositioning: {
