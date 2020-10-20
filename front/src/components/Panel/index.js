@@ -25,18 +25,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Panel() {
+  const [result, setResult] = useState('');
   const [input, setInput] = useState([]);
   const [users, setUsers] = useState([]);
+
   const [user, setUser] = useState('');
+
   const classes = useStyles();
 
   const styleLi = { background: '#ede', width: '16em' };
 
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((resp) => resp.json())
-      .then((json) => setUsers(json));
-  }, []);
+  // useEffect(() => {
+  //   fetch('/search')
+  //     .then((resp) => resp.json())
+  //     .then((json) => setUsers(json));
+  // }, []);
+
+  // console.log(users);
+
+  async function inputPost(event) {
+    const text = event.target.value;
+    const resp = await fetch('/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text,
+      }),
+    });
+    const response = await resp.json();
+    // console.log(response);
+    return setResult(response.newArray);
+  }
+
+  console.log(result);
 
   const {
     isOpen,
@@ -63,7 +84,8 @@ export default function Panel() {
             <Typography variant="body2">
               <Paper className={classes.paper}>
                 <Input
-                  {...getInputProps()}
+                  // {...getInputProps()}
+                  onChange={inputPost}
                   placeholder="Search"
                   enterbutton="Search"
                   size="large"
