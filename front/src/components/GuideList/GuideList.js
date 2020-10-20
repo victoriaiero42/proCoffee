@@ -10,13 +10,13 @@ function GuideList() {
   const articles = useSelector((state) => state.articles.articles);
   useEffect(() => {
     dispatch(startArticlesSaga());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
 
       {articles ? articles.map((el) => (
-        <Link to={`/guides/${el._id}`}>
+        <Link key={el._id} to={`/guides/${el._id}`}>
           <MediaCard key={el.id} id={el._id} />
           {' '}
         </Link>

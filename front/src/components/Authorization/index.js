@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
@@ -17,12 +17,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
     margin: '0px 10px',
-    backgroundColor: '#424242',
-    margin: '0px 10px',
-    // width: "50%"
-    // marginTop: "0px",
-    // marginLeft: "10px",
-    // marginRight: "10px"
+    // backgroundColor: '#424242',
   },
   paper: {
     padding: theme.spacing(2),

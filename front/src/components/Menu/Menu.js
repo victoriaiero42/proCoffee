@@ -6,7 +6,6 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import theImg from '../db/imgs/java.png';
 
 const useStyles = makeStyles({
   root: {
@@ -21,8 +20,7 @@ const useStyles = makeStyles({
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  console.log(theImg);
+  // const [value, setValue] = React.useState(0);
   return (
     <BottomNavigation
       style={{
@@ -30,9 +28,9 @@ export default function SimpleBottomNavigation() {
         boxShadow: '3px 3px 5px 6px rgba(0, 0, 0, 0.2)',
       }}
       // value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
+      // onChange={(event, newValue) => {
+      //   setValue(newValue);
+      // }}
       showLabels
       className={classes.root}
     >

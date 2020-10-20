@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { createWorker } from 'tesseract.js';
 
 export default function ReadText() {
-  const [text, setText] = useState('');
   const [resultFetch, setResultFetch] = useState('');
 
   const worker = createWorker({
@@ -14,7 +13,6 @@ export default function ReadText() {
     await worker.loadLanguage(lang);
     await worker.initialize(lang);
     const { data: { text } } = await worker.recognize(file);
-    setText(text);
     console.log(text);
     await worker.terminate();
     const resp = await fetch('/readText', {
