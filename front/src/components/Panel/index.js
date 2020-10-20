@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -89,7 +90,9 @@ export default function Panel() {
                   enterbutton="Search"
                   size="large"
                 />
-                <Button style={{ margin: '8px' }}> find</Button>
+                <IconButton>
+                  <SearchIcon />
+                </IconButton>
               </Paper>
             </Typography>
           </Grid>

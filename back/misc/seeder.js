@@ -15,6 +15,7 @@ export default function coffeeSeeder() {
         acidity: 'высокая',
         process: 'Натуральный, лакто-анаэробная ферментация',
         image: 'yava_zolotaya_1_kg_min.png',
+        raiting: [],
       },
       {
         title: 'Уганда Бузи Черри',

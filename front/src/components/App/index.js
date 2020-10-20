@@ -12,9 +12,13 @@ import Authorization from '../Authorization';
 import store from '../../redux/store';
 import OneGuide from '../oneGuide/OneGuide';
 
-import SignIn from '../SignIn/Signin';
-import Profile from '../Username/Username';
+import SignIn from '../SignIn/Signin'
+import Profile from '../Username/Username'
+import ListItem from '../CoffeeList/CoffeeList';
+import Item from '../Item/Item';
 import Forgot from '../Forgot';
+// import List from '../'
+
 
 function App() {
   return (
@@ -28,7 +32,6 @@ function App() {
           </Route>
           <Route exact path="/guides/:id">
             <Panel />
-
             <OneGuide />
           </Route>
           <Route exact path="/profile">
@@ -41,6 +44,13 @@ function App() {
           </Route>
           <Route exact path="/search">
             <Panel />
+            <ListItem />
+          </Route>
+          <Route exact path="/item">
+            <Panel />
+            <Item />
+            {/* <Panel />
+            <ListItem /> */}
           </Route>
           <Route exact path="/restore">
             <Forgot />
