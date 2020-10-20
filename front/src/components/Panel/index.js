@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '',
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
     // marginTop: '10px',
@@ -86,8 +86,8 @@ export default function Panel() {
                 <Input
                   // {...getInputProps()}
                   onChange={inputPost}
-                  placeholder="Search"
-                  enterbutton="Search"
+                  placeholder="Найти пачку кофе"
+                  // enterbutton="Search"
                   size="large"
                 />
                 <IconButton>

@@ -29,7 +29,7 @@ export default function MediaCard({ id }) {
   const classes = useStyles();
   return (
     <>
-      <CenteredGrid />
+      {/* <CenteredGrid /> */}
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia

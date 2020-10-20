@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        {/* <LogoutButton /> */}
+
         <Switch>
           {/* <Panel /> */}
           <Route exact path="/guides">
@@ -36,15 +36,14 @@ function App() {
             <Panel />
             <OneGuide />
           </Route>
+
           <Route exact path="/register">
             <Authorization />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/signin">
             <Panel />
 
             <SignIn />
-
-            {/* <Profile /> */}
           </Route>
           <Route exact path="/search">
             <Panel />

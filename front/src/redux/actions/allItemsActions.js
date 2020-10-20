@@ -7,11 +7,11 @@ export function startCoffeeItemsSaga(payload) {
   };
 }
 
-export function setCoffeeItems(articles) {
+export function setCoffeeItems(top) {
   return {
     type: SET_ITEMS,
     payload: {
-      articles,
+      top,
     },
   };
 }

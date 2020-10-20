@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MediaCard from '../Guides/Guides';
 import { startArticlesSaga } from '../../redux/actions/articleActions';
+import CenteredGrid from '../ArticleTitle/ArticleTitles';
 
 function GuideList() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function GuideList() {
 
   return (
     <>
-
+      <CenteredGrid />
       {articles ? articles.map((el) => (
         <Link key={el._id} to={`/guides/${el._id}`}>
           <MediaCard key={el.id} id={el._id} />
