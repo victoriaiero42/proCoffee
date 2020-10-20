@@ -1,4 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Menu from '../Menu/Menu';
