@@ -10,6 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
+import Item from '../Item/Item'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +59,8 @@ const useStyles = makeStyles((theme) => ({
 function CoffeeList() {
   const dispatch = useDispatch();
 
+  const top = useSelector((state) => state.top.top)
+  console.log(top);
   useEffect(() => {
 
 
@@ -67,7 +70,12 @@ function CoffeeList() {
   return (
     <>
 
-      {'n'}
+      {top ? top.map((el) => {
+        return <Item key={el._id} id={el._id} />
+        // return <Link key={el._id} to={`/item/${el._id}`}>
+        //   <Item key={el.id} id={el._id} />
+        // </Link>
+      }) : null}
     </>
 
   )

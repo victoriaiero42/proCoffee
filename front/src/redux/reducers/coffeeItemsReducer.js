@@ -5,7 +5,7 @@ export default function allItemsReducer(state = '', action) {
     case SET_ITEMS:
       return {
         ...state,
-        articles: action.payload.articles,
+        top: action.payload.top,
         loading: false,
         error: '',
       };

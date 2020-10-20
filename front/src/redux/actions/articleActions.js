@@ -18,16 +18,16 @@ export function setArticles(articles) {
   };
 }
 
-export function loadingArticles() {
-  return {
-    type: LOADING_ARTICLES,
-  };
-}
+// export function loadingArticles() {
+//   return {
+//     type: LOADING_ARTICLES,
+//   };
+// }
 
-export function errorArticles(error) {
-  return {
-    type: ERROR_ARTICLES,
-    payload: error,
-    error: true,
-  };
-}
+// export function errorArticles(error) {
+//   return {
+//     type: ERROR_ARTICLES,
+//     payload: error,
+//     error: true,
+//   };
+// }
