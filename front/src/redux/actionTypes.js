@@ -7,3 +7,5 @@ export const LOADING_ARTICLES = 'LOADING_ARTICLES';
 export const ERROR_ARTICLES = 'ERROR_ARTICLES';
 export const SET_ARTICLES = 'SET_ARTICLES';
 export const START_GOOGLE = 'START_GOOGLE';
+export const START_ITEMS = 'START_ITEMS';
+export const SET_ITEMS = 'SET_ITEMS';

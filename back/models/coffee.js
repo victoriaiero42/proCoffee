@@ -30,7 +30,8 @@ const coffeeSchema = new mongoose.Schema({
   },
   uniq: {
     type: String,
-  }
+  },
+  raiting: Array,
 });
 
 export default mongoose.model('Coffee', coffeeSchema);

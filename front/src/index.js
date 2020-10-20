@@ -5,14 +5,6 @@ import App from './components/App';
 import './index.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       main: '#A9A9A9',
-//     },
-//   },
-// });
-
 
 const theme = createMuiTheme({
   palette: {
