@@ -11,7 +11,7 @@ function GoogleAuth() {
   const dispatch = useDispatch();
 
   async function handleClick() {
-    window.open('http://localhost:3001/google', '_self');
+    window.open('https://cocoffee.herokuapp.com/google', '_self');
     dispatch(startGoogleAuthenticateSaga());
   }
 

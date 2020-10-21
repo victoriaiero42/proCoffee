@@ -75,7 +75,7 @@ app.get('/google/callback',
       req.session.user = req.user;
     }
     console.log('гугл колбэк')
-    res.redirect('http://localhost:3000/');
+    res.redirect('https://cocoffee.herokuapp.com/');
   });
 
 app.get('/googleLogout', async (req, res) => {
@@ -96,4 +96,4 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, () => { console.log('Server started at http://localhost:%s/', port); });
+app.listen(port);

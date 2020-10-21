@@ -46,7 +46,7 @@ export default function Panel() {
 
   async function inputPost(event) {
     const text = event.target.value;
-    const resp = await fetch('/search', {
+    const resp = await fetch('/searchCoffee', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
