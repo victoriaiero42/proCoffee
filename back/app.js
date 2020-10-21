@@ -57,11 +57,15 @@ app.get('/failedGoogle', (req, res) => {
 });
 
 app.get('/goodGoogle', (req, res) => {
+  // console.log(req.session.user);
   res.json({
     id: req.session.user._id,
     login: req.session.user.username,
     email: req.session.user.email,
     status: 'ok',
+    favorites: req.session.user.favorites,
+    raited: req.session.user.raited,
+    wishlist: req.session.user.wishlist,
   });
 });
 

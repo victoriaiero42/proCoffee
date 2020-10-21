@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -41,8 +41,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Authorization() {
-  console.log('Authorization');
+  // console.log('Authorization');
   const user = useSelector((state) => state.auth);
+  console.log(user);
+  const history = useHistory();
+
+  if (user) {
+    history.push('/top');
+  }
   const dispatch = useDispatch();
   const [name, setName] = useState('name');
   const [mail, setMail] = useState('email');
@@ -72,6 +78,7 @@ function Authorization() {
 
   async function handleClick() {
     dispatch(startAuthenticateUserSaga(formData));
+    history.push()
   }
 
   return (

@@ -9,20 +9,20 @@ async function fetchItems(payload) {
   const numrate = Number(rating);
   console.log(numrate);
 
-  const response = await fetch("/raiting", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id,
-      numrate,
-    })
-  });
-  const rate = await response.json()
-  console.log(rate, '<<<');
-  // console.log(res);
-  return rate
+  // const response = await fetch("/raiting", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     id,
+  //     numrate,
+  //   })
+  // });
+  // const rate = await response.json()
+  // console.log(rate, '<<<');
+  // // console.log(res);
+  // return rate
 }
 function* worker(action) {
   const items = yield call(fetchItems, action.payload);

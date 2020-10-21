@@ -12,12 +12,16 @@ router.get('/articles', async (req, res) => {
 
 router.get('/top', async (req, res) => {
   const top = await Coffee.find();
-  res.status(200).json(top);
+  const sorted = top.sort((a, b) => b.av - a.av);
+  const spliced = sorted.splice(0, 10);
+  // console.log(spliced);
+  res.status(200).json(spliced);
 });
 
 router.post('/favorite', async (req, res) => {
   const { id } = req.body;
   const userID = req.session.user._id;
+  // console.log(userID, id);
   const itemToAdd = await Coffee.findById(id);
   const user = await User.findById(userID);
   user.favorites.push(itemToAdd);
@@ -26,21 +30,35 @@ router.post('/favorite', async (req, res) => {
 });
 
 router.post('/raiting', async (req, res) => {
-  const { id, numrate } = req.body;
-  // console.log(raiting);
+  const { id, rate } = req.body;
+  const numrate = Number(rate);
   const userID = req.session.user._id;
   const item = await Coffee.findById(id);
-  // console.log(item);
+  const newU = await User.findById(userID);
+  newU.raited.push(item);
   item.raiting.push({ userID, numrate });
   const av = item.raiting.reduce((a, c) => a + c.numrate, 0);
-  // console.log(av);
-  // console.log(av / item.raiting.length);
   const sr = av / item.raiting.length;
   item.av = sr.toFixed(1);
-  // console.log(item);
   await item.save();
-  console.log(item);
+  await newU.save();
   res.status(200).json(item);
+});
+
+router.get('/user', async (req, res) => {
+  const curUser = req.session.user;
+  const newU = await User.findById(curUser._id);
+  res.status(200).json(newU);
+});
+
+router.post('/wishlist', async (req, res) => {
+  const { id } = req.body;
+  const curUser = req.session.user;
+  const newU2 = await User.findById(curUser._id);
+  const item = await Coffee.findById(id);
+  newU2.wishlist.push(item);
+  await newU2.save();
+  res.status(200).json({ res: 'ok' });
 });
 
 export default router;
