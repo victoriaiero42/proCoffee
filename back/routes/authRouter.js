@@ -6,10 +6,6 @@ import User from '../models/userModel.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('Privet');
-});
-
 router.post('/registration', async (req, res) => {
   const {
     username,

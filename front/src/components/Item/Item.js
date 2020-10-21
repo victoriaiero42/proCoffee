@@ -66,7 +66,7 @@ export default function RecipeReviewCard({ id }) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={`http://localhost:3001/img/${image}`}
+        image={`https://cocoffee.herokuapp.com/img/${image}`}
         title="Paella dish"
       />
       <CardContent>

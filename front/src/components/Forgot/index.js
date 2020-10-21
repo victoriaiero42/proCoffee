@@ -30,7 +30,7 @@ export default function Forgot() {
     event.preventDefault();
     const targetText = event.target.input.value;
     console.log(targetText);
-    const resp = await fetch('/restore', {
+    const resp = await fetch('/restoreApi', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
