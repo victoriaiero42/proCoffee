@@ -31,6 +31,9 @@ router.post('/registration', async (req, res) => {
     login: newUser.username,
     email: newUser.email,
     status: 'ok',
+    favorites: newUser.favorites,
+    raited: newUser.raited,
+    whishlist: newUser.whishlist,
   });
 });
 
@@ -53,6 +56,9 @@ router.post('/login', async (req, res) => {
     login: findUser.username,
     email: findUser.email,
     status: 'ok',
+    favorites: findUser.favorites,
+    raited: findUser.raited,
+    whishlist: findUser.whishlist,
   });
 });
 

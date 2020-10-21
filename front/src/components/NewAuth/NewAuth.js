@@ -82,6 +82,17 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
+            id="username"
+            label="User name"
+            name="username"
+            autoComplete="username"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             name="password"
             label="Password"
             type="password"
@@ -100,9 +111,9 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
-          <Grid container>
+          {/* <Grid container>
             <Grid item xs>
               <Link to={"/restore"}>
                 Forgot password?
@@ -113,9 +124,9 @@ export default function SignIn() {
                 Don't have an account? Sign Up
               </Link>
             </Grid>
-          </Grid>
+          </Grid> */}
         </form>
-        <GoogleAuth />
+        {/* <GoogleAuth /> */}
       </div>
       <Box mt={8}>
       </Box>

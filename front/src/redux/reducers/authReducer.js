@@ -1,5 +1,5 @@
 import {
-  AUTHENTICATE, LOGOUT, LOGIN, AUTHENTICATE_GOOGLE,
+  AUTHENTICATE, LOGOUT, LOGIN, AUTHENTICATE_GOOGLE, REWRITE_USER
 } from '../actionTypes';
 
 const initialState = null;
@@ -13,19 +13,37 @@ export default function authReducer(state = initialState, {
         id: payload.id,
         login: payload.login,
         email: payload.email,
+        favorites: payload.favorites,
+        raited: payload.raited,
+        wishlist: payload.wishlist,
       };
     case AUTHENTICATE_GOOGLE:
       return {
         id: payload.id,
         login: payload.login,
         email: payload.email,
+        favorites: payload.favorites,
+        raited: payload.raited,
+        wishlist: payload.wishlist,
       };
     case LOGIN:
       return {
         id: payload.id,
         login: payload.login,
         email: payload.email,
+        favorites: payload.favorites,
+        raited: payload.raited,
+        wishlist: payload.wishlist,
       };
+    case REWRITE_USER:
+      return {
+        id: payload.id,
+        login: payload.login,
+        email: payload.email,
+        favorites: payload.favorites,
+        raited: payload.raited,
+        wishlist: payload.wishlist,
+      }
     case LOGOUT:
       return null;
     default:

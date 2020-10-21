@@ -4,6 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import './index.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 
 const theme = createMuiTheme({
@@ -22,12 +24,15 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+    <Provider store={store}>
+
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode >,
   document.getElementById('root'),
 );
 

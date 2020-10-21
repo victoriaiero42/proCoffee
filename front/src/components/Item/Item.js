@@ -2,21 +2,23 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
+// import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
+// import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+// import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { useSelector } from 'react-redux';
-import Raiting from '../Rating/Rating'
+// import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { useDispatch, useSelector } from 'react-redux';
+import Raiting from '../Rating/Rating';
+import { startRewriteUser } from '../../redux/actions/authActions';
+import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +46,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecipeReviewCard({ id }) {
-  const { title, image, description, process, region, av } = useSelector((state) => {
+  const dispatch = useDispatch()
+
+  const { title, image, description, process, region, av, raiting } = useSelector((state) => {
     return state.top.top.find((x) => x._id === id);
   });
   const classes = useStyles();
@@ -64,7 +68,32 @@ export default function RecipeReviewCard({ id }) {
         id,
       }),
     });
+
+    const resave = await fetch('/user');
+    const res1 = await resave.json();
+    console.log(res1);
+    dispatch(startRewriteUser(res1))
   }
+
+  const addToWishList = async () => {
+    const response = await fetch("/wishlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+    const resave = await fetch('/user');
+    const res1 = await resave.json();
+    console.log(res1);
+    dispatch(startRewriteUser(res1))
+    // const ggg = await response.json();
+    // console.log(ggg);
+  }
+
+
 
   return (
     <Card className={classes.root}>
@@ -80,12 +109,20 @@ export default function RecipeReviewCard({ id }) {
         <Typography variant="body1" component="p">
           {av}
         </Typography>
+        <Typography style={{ color: 'gray' }} variant="body2" component="p">
+          Оценки: {raiting.length}
+        </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon onClick={handleClick} />
         </IconButton>
+        <IconButton >
+          <FreeBreakfastIcon onClick={addToWishList} />
+        </IconButton>
+        {/* <IconButton > */}
         <Raiting id={id} />
+        {/* </IconButton> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -109,6 +146,16 @@ export default function RecipeReviewCard({ id }) {
             Описание: {description}
           </Typography>
         </CardContent>
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
       </Collapse>
     </Card>
   );

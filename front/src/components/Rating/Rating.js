@@ -1,22 +1,43 @@
 import React, { useState, useEffect, memo } from 'react'
 import { FaStar } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
-import { startRatingSaga } from '../../redux/actions/ratingActions';
+// import { startRatingSaga } from '../../redux/actions/ratingActions';
+import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
+import { startRewriteUser } from '../../redux/actions/authActions';
 
 function Raiting({ id }) {
   const [rating, setRaiting] = useState('');
   const dispatch = useDispatch()
   const [input] = useState({ id, rating });
-  console.log(input);
 
-  function handleRaiting(e) {
-    console.log(e.target.value);
+  async function handleRaiting(e) {
+    const numrate = Number(rating);
+    // console.log(e.target.value);
     setRaiting(e.target.value)
-
-    dispatch(startRatingSaga({ id, rating: e.target.value }))
+    const response = await fetch("/raiting", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+        rate: e.target.value
+      })
+    });
+    const rate = await response.json()
+    // console.log(rate);
+    dispatch(startCoffeeItemsSaga())
+    // dispatch(startRatingSaga({ id, rating: e.target.value }))
 
   }
   // setRaiting(rate)
+
+  async function handleRate() {
+    const resave1 = await fetch('/user');
+    const res11 = await resave1.json();
+    console.log(res11, 'tut');
+    dispatch(startRewriteUser(res11))
+  }
 
   return (
     <div>
@@ -25,8 +46,8 @@ function Raiting({ id }) {
 
         return (
           <label>
-            <input type='radio' name='rating' value={raitingValue} onClick={(e) => { handleRaiting(e) }} />
-            <FaStar className='star' color={raitingValue <= rating ? 'darkgray' : 'gray'} />
+            <input type='radio' name='rating' value={raitingValue} onClick={(e) => { { handleRaiting(e); handleRate() } }} />
+            <FaStar style={{ marginLeft: '10px' }} className='star' color={raitingValue <= rating ? 'darkgray' : 'gray'} />
           </label>)
       })}
 

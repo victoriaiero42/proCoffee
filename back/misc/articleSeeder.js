@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+zimport mongoose from 'mongoose';
 import ArticleModel from '../models/article.js';
 
 mongoose.connect('mongodb://localhost:27017/coffeBeans', {
