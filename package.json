@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd back && yarn && yarn start",
-    "build": "cd front && yarn && yarn build"
+    "build": "cd front && yarn && yarn build",
+    "start": "cd back && yarn && yarn start"
   },
   "repository": {
     "type": "git",

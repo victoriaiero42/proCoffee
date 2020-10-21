@@ -2,6 +2,7 @@
 import express from 'express';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
+import path from 'path';
 import passport from 'passport';
 
 import './misc/env.js';
@@ -23,6 +24,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static('public'));
+app.use(express.static(path.resolve('../front/build/')));
+
 app.use(express.json());
 
 app.use(session({
@@ -86,6 +89,10 @@ app.get('/googleLogout', async (req, res) => {
 });
 
 app.use(authRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('../front/build/index.html'));
+});
 
 const port = process.env.PORT ?? 3001;
 
