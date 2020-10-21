@@ -10,13 +10,14 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
-  search: {
-    padding: '',
-  },
+  // search: {
+  //   padding: '',
+  // },
   paper: {
     padding: theme.spacing(1),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
+    // height: '32px'
     // marginTop: '10px',
     // marginLeft: '10px',
     // marginRight: '10px',
@@ -33,7 +34,7 @@ export default function Panel() {
 
   const classes = useStyles();
 
-  const styleLi = { background: '#ede', width: '16em' };
+  // const styleLi = { background: '#ede', width: '16em' };
 
   // useEffect(() => {
   //   fetch('/search')
@@ -79,7 +80,7 @@ export default function Panel() {
     <>
       <h1>{user}</h1>
       <div {...getComboboxProps()}>
-        <Grid container spacing={3}>
+        <Grid container justify="center" alignItems="center" spacing={3}>
           <Grid item xs={12}>
             <Typography variant="body2">
               <Paper className={classes.paper}>
@@ -89,6 +90,7 @@ export default function Panel() {
                   placeholder="Найти пачку кофе"
                   // enterbutton="Search"
                   size="large"
+                // style={{ height: '10px' }}
                 />
                 <IconButton>
                   <SearchIcon />
@@ -98,7 +100,7 @@ export default function Panel() {
           </Grid>
         </Grid>
       </div>
-      <ul style={{ listStyleType: 'none' }} {...getMenuProps()}>
+      {/* <ul style={{ listStyleType: 'none' }} {...getMenuProps()}>
         {isOpen
           && input.map((item, index) => (
             <span
@@ -111,7 +113,7 @@ export default function Panel() {
               </li>
             </span>
           ))}
-      </ul>
+      </ul> */}
     </>
   );
 }

@@ -12,3 +12,5 @@ export const AUTHENTICATE_GOOGLE = 'AUTHENTICATE_GOOGLE';
 export const START_LOGOUT = 'START_LOGOUT';
 export const START_ITEMS = 'START_ITEMS';
 export const SET_ITEMS = 'SET_ITEMS';
+export const START_RATING = 'START_RATING';
+export const SET_RATING = 'SET_RATING';

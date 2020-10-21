@@ -16,10 +16,10 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useSelector } from 'react-redux';
+import Raiting from '../Rating/Rating'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // maxWidth: 345,
     margin: '10px',
     backgroundColor: '#d7d0c3',
 
@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    // maxWidth: '300px',
-    // maxHeight: '300px'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -43,24 +41,30 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
-  // sizeImg: {
-  //   maxWidth: '300px',
-  //   maxHeight: '300px'
-  // }
 }));
 
 export default function RecipeReviewCard({ id }) {
-  // console.log(id);
-  const { title, image, description } = useSelector((state) => {
+  const { title, image, description, process, region, av } = useSelector((state) => {
     return state.top.top.find((x) => x._id === id);
   });
-  // console.log(img);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const handleClick = async () => {
+    const response = await fetch("/favorite", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    });
+  }
 
   return (
     <Card className={classes.root}>
@@ -70,14 +74,18 @@ export default function RecipeReviewCard({ id }) {
         title="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body1" component="p">
           {title}
+        </Typography>
+        <Typography variant="body1" component="p">
+          {av}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon onClick={handleClick} />
         </IconButton>
+        <Raiting id={id} />
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -92,7 +100,13 @@ export default function RecipeReviewCard({ id }) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            {description}
+            Регион: {region}
+          </Typography>
+          <Typography paragraph>
+            Обработка: {process}
+          </Typography>
+          <Typography paragraph>
+            Описание: {description}
           </Typography>
         </CardContent>
       </Collapse>

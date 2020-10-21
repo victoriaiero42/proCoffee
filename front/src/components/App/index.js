@@ -41,11 +41,11 @@ function App() {
             <Authorization />
           </Route>
           <Route exact path="/signin">
-            <Panel />
-
+            {/* <Panel /> */}
+            {/* <Profile /> */}
             <SignIn />
           </Route>
-          <Route exact path="/search">
+          <Route exact path="/top">
             <Panel />
             <ListItem />
           </Route>

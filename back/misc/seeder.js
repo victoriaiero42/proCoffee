@@ -376,4 +376,4 @@ export default function coffeeSeeder() {
   });
 }
 
-// coffeeSeeder();
+coffeeSeeder();

@@ -5,7 +5,7 @@ import { setCoffeeItems } from '../actions/allItemsActions';
 async function fetchItems() {
   const respon = await fetch('/top');
   const res = await respon.json();
-  console.log(res);
+  // console.log(res);
   return res
 }
 function* worker(action) {
