@@ -24,7 +24,7 @@ import MyCoffee from '../MyCoffee/MyCoffee';
 import Wishlist from '../WishList/Wishlist'
 
 function App() {
-  const user = useSelector((state) => state.auth)
+  const user = useSelector((state) => state.auth);
   return (
     <div className="App">
       <>
