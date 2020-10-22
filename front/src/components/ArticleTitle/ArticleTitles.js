@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
-    marginTop: '10px',
+    // marginTop: '10px',
     marginLeft: '10px',
     marginRight: '10px',
     fontSize: '1rem',
@@ -26,7 +26,7 @@ export default function CenteredGrid() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="body2">
-            <Paper className={classes.paper}> guides</Paper>
+            <Paper className={classes.paper}> Читать</Paper>
           </Typography>
         </Grid>
       </Grid>

@@ -19,13 +19,13 @@ import ListItem from '../CoffeeList/CoffeeList';
 import Item from '../Item/Item';
 import Forgot from '../Forgot';
 // import List from '../'
-
+import ReadText from '../ReadText';
 
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        {/* <LogoutButton /> */}
+
         <Switch>
           {/* <Panel /> */}
           <Route exact path="/guides">
@@ -39,12 +39,9 @@ function App() {
           <Route exact path="/register">
             <Authorization />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/signin">
             <Panel />
-
             <SignIn />
-
-            {/* <Profile /> */}
           </Route>
           <Route exact path="/search">
             <Panel />
@@ -58,6 +55,9 @@ function App() {
           </Route>
           <Route exact path="/restore">
             <Forgot />
+          </Route>
+          <Route exact path="/read">
+            <ReadText />
           </Route>
         </Switch>
         {/* <DragAndDrop /> */}

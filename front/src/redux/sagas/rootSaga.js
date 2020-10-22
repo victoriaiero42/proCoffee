@@ -7,6 +7,7 @@ import loginSaga from './loginSaga';
 import logoutSaga from './logoutSaga';
 import allItemsSaga from './coffeeItemsSaga';
 
+
 export default function* () {
   yield all([
     authSaga(),
@@ -14,6 +15,6 @@ export default function* () {
     googleSaga(),
     loginSaga(),
     logoutSaga(),
-    allItemsSaga()
+    allItemsSaga(),
   ]);
 }

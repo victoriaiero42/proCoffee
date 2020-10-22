@@ -7,6 +7,7 @@ import authReducer from './reducers/authReducer';
 import articlereducer from './reducers/articleReducer';
 import coffeeItemsReducer from './reducers/coffeeItemsReducer';
 
+
 const sagaMiddleware = creareSagaMiddleware();
 const preloadedState = window.localStorage.getItem('redux') ?? '{}';
 
@@ -15,6 +16,7 @@ const store = createStore(
     auth: authReducer,
     articles: articlereducer,
     top: coffeeItemsReducer,
+   
   }),
   JSON.parse(preloadedState),
   composeWithDevTools(
