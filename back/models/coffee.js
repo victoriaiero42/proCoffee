@@ -36,6 +36,10 @@ const coffeeSchema = new mongoose.Schema({
     default: [],
   },
   av: Number,
+  like: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model('Coffee', coffeeSchema);

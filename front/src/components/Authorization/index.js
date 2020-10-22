@@ -102,7 +102,7 @@ function Authorization() {
 
                       <TextField fullWidth name="username" onClick={nameClick} id="filled-size-normal" label={name} required />
                       <TextField fullWidth name="email" onClick={mailClick} id="filled-size-normal" label={mail} required />
-                      <TextField fullWidth name="password" onClick={passwordClick} label={password} required />
+                      <TextField fullWidth type="password" name="password" onClick={passwordClick} label={password} required />
                       <Button style={{ marginTop: '12px' }} onClick={handleClick} variant="outlined">sign up</Button>
                     </form>
                   </Paper>

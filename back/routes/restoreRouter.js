@@ -8,7 +8,7 @@ import User from '../models/userModel.js';
 
 const router = express.Router();
 
-router.post('/restore', async (req, res) => {
+router.post('/restoreApi', async (req, res) => {
   const newPassword = generator.generate({
     length: process.env.LENGTH_GENERATED_PASSWORD,
     numbers: true,

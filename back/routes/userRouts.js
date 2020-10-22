@@ -23,6 +23,9 @@ router.post('/favorite', async (req, res) => {
   const userID = req.session.user._id;
   // console.log(userID, id);
   const itemToAdd = await Coffee.findById(id);
+  itemToAdd.like = !itemToAdd.like;
+  await itemToAdd.save();
+  console.log(itemToAdd);
   const user = await User.findById(userID);
   user.favorites.push(itemToAdd);
   await user.save();

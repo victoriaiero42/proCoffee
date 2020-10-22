@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-// import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import Raiting from '../Rating/Rating';
 import { startRewriteUser } from '../../redux/actions/authActions';
-import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,19 +39,16 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
-  undone: {
-    color: 'tomato',
-  }
 }));
 
-export default function RecipeReviewCard({ id }) {
-  // const [undone, setUndone] = useState(false);
-
+export default function OneCoffeeForSearch({ id }) {
   const dispatch = useDispatch();
-  const { like } = useSelector((state) => state.top.top.find((x) => x._id === id))
+
+  const searchArr = useSelector((state) => state.search);
   const {
     title, image, description, process, region, av, raiting,
-  } = useSelector((state) => state.top.top.find((x) => x._id === id));
+  } = searchArr.newArray.find((x) => x._id === id);
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -79,7 +71,6 @@ export default function RecipeReviewCard({ id }) {
     const res1 = await resave.json();
     console.log(res1);
     dispatch(startRewriteUser(res1));
-    dispatch(startCoffeeItemsSaga())
   };
 
   const addToWishList = async () => {
@@ -96,8 +87,6 @@ export default function RecipeReviewCard({ id }) {
     const res1 = await resave.json();
     console.log(res1);
     dispatch(startRewriteUser(res1));
-    // const ggg = await response.json();
-    // console.log(ggg);
   };
 
   return (
@@ -122,15 +111,7 @@ export default function RecipeReviewCard({ id }) {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-
-          <FavoriteIcon
-            onClick={() => {
-              handleClick();
-              // setUndone((state) => !state);
-              console.log('g');
-            }}
-            className={`${classes.done} ${like ? classes.undone : ""}`}
-          />
+          <FavoriteIcon onClick={handleClick} />
         </IconButton>
         <IconButton>
           <FreeBreakfastIcon onClick={addToWishList} />
@@ -181,4 +162,3 @@ export default function RecipeReviewCard({ id }) {
     </Card>
   );
 }
-

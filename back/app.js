@@ -2,6 +2,7 @@
 import express from 'express';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
+import path from 'path';
 import passport from 'passport';
 
 import './misc/env.js';
@@ -10,7 +11,7 @@ import './passportJs/passport-setup.js';
 
 import authRouter from './routes/authRouter.js';
 import readTextRouter from './routes/readRouter.js';
-import userRouter from './routes/userRouts.js'
+import userRouter from './routes/userRouts.js';
 import searchRouter from './routes/searchRouter.js';
 import restoreRouter from './routes/restoreRouter.js';
 
@@ -23,6 +24,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static('public'));
+app.use(express.static(path.resolve('../front/build/')));
+
 app.use(express.json());
 
 app.use(session({
@@ -45,7 +48,6 @@ app.use(userRouter);
 app.use(restoreRouter);
 
 app.use((req, res, next) => {
-  // console.log(req.session, '+++++++++++++++++++');
   next();
 });
 
@@ -57,7 +59,6 @@ app.get('/failedGoogle', (req, res) => {
 });
 
 app.get('/goodGoogle', (req, res) => {
-  // console.log(req.session.user);
   res.json({
     id: req.session.user._id,
     login: req.session.user.username,
@@ -75,8 +76,8 @@ app.get('/google/callback',
     if (req.user) {
       req.session.user = req.user;
     }
-    console.log('гугл колбэк')
-    res.redirect('http://localhost:3000/');
+    console.log('гугл колбэк');
+    res.redirect('https://cocoffee.herokuapp.com/');
   });
 
 app.get('/googleLogout', async (req, res) => {
@@ -91,6 +92,10 @@ app.get('/googleLogout', async (req, res) => {
 
 app.use(authRouter);
 
-const port = process.env.PORT ?? 3001;
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('../front/build/index.html'));
+});
 
-app.listen(port, () => { console.log('Server started at http://localhost:%s/', port); });
+const port = process.env.PORT || 3001;
+
+app.listen(port, () => { console.log(port); });
