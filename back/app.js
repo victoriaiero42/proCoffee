@@ -48,7 +48,6 @@ app.use(userRouter);
 app.use(restoreRouter);
 
 app.use((req, res, next) => {
-  // console.log(req.session, '+++++++++++++++++++');
   next();
 });
 
@@ -60,7 +59,6 @@ app.get('/failedGoogle', (req, res) => {
 });
 
 app.get('/goodGoogle', (req, res) => {
-  // console.log(req.session.user);
   res.json({
     id: req.session.user._id,
     login: req.session.user.username,
