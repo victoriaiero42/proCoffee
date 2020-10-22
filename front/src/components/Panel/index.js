@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { searchCoffee } from '../../redux/actions/searchAction';
-import OneCoffeeForSearch from '../OneCoffeeForSearch';
-
 import { useCombobox } from 'downshift';
 import { Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,6 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+import OneCoffeeForSearch from '../OneCoffeeForSearch';
+import { searchCoffee } from '../../redux/actions/searchAction';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,7 +38,6 @@ export default function Panel() {
       }),
     });
     const response = await request.json();
-    console.log(response);
     setCoffeeArr(response);
     dispatch(searchCoffee(response));
   }

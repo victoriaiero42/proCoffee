@@ -13,6 +13,7 @@ router.post('/searchCoffee', async (req, res) => {
       newArray.push(el);
     }
   });
+  console.log(newArray);
   res.json(newArray);
 });
 
