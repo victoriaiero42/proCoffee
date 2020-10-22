@@ -16,8 +16,10 @@ const useStyles = makeStyles({
     width: '100%',
     position: 'fixed',
     bottom: '0px',
+    // padding: '10px 50px',
     // backgroundColor: "#424242",
     backgroundColor: '#d7d0c3',
+    boxSizing: 'content-box',
   },
 });
 
@@ -30,18 +32,19 @@ export default function SimpleBottomNavigation() {
     <BottomNavigation
       style={{
         marginBottom: '0px',
+        marginLeft: '-10px',
         boxShadow: '3px 3px 5px 6px rgba(0, 0, 0, 0.2)',
       }}
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction component={Link} to="/guides" label="guides" icon={<LibraryBooksIcon />} />
-      <BottomNavigationAction component={Link} to="/search" label="search" icon={<SearchIcon />} />
-      <BottomNavigationAction component={Link} to="/read" label="camera" icon={<CameraAltIcon />} />
-      <BottomNavigationAction component={Link} to="/top" label="top" icon={<BarChartIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/guides" label="guides" icon={<LibraryBooksIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/search" label="search" icon={<SearchIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/read" label="camera" icon={<CameraAltIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/top" label="top" icon={<BarChartIcon />} />
 
-      { user ? <BottomNavigationAction component={Link} to="/profile" label="profile" icon={<PersonOutlineIcon />} />
-        : <BottomNavigationAction component={Link} to="/signin" label="sign in" icon={<MeetingRoomIcon />} />}
+      { user ? <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/profile" label="profile" icon={<PersonOutlineIcon />} />
+        : <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/signin" label="sign in" icon={<MeetingRoomIcon />} />}
 
     </BottomNavigation>
   );

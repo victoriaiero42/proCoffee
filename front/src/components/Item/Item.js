@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import Raiting from '../Rating/Rating';
 import { startRewriteUser } from '../../redux/actions/authActions';
+import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,11 +44,16 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
+  undone: {
+    color: 'tomato',
+  }
 }));
 
 export default function RecipeReviewCard({ id }) {
-  const dispatch = useDispatch();
+  // const [undone, setUndone] = useState(false);
 
+  const dispatch = useDispatch();
+  const { like } = useSelector((state) => state.top.top.find((x) => x._id === id))
   const {
     title, image, description, process, region, av, raiting,
   } = useSelector((state) => state.top.top.find((x) => x._id === id));
@@ -73,6 +79,7 @@ export default function RecipeReviewCard({ id }) {
     const res1 = await resave.json();
     console.log(res1);
     dispatch(startRewriteUser(res1));
+    dispatch(startCoffeeItemsSaga())
   };
 
   const addToWishList = async () => {
@@ -115,7 +122,15 @@ export default function RecipeReviewCard({ id }) {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={handleClick} />
+
+          <FavoriteIcon
+            onClick={() => {
+              handleClick();
+              // setUndone((state) => !state);
+              console.log('g');
+            }}
+            className={`${classes.done} ${like ? classes.undone : ""}`}
+          />
         </IconButton>
         <IconButton>
           <FreeBreakfastIcon onClick={addToWishList} />

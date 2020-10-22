@@ -92,7 +92,7 @@ export default function coffeeSeeder() {
         type: 'Фильтр',
         acidity: 'средняя',
         process: 'Натуральная, экспериментальная ферментация',
-        image: 'braziliyanatalyagarsiya-228x228.png',
+        image: 'natalyagarsiya.png',
       },
       {
         title: 'Бразилия Ягуара',
