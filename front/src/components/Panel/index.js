@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { searchCoffee } from '../../redux/actions/searchAction';
+import OneCoffeeForSearch from '../OneCoffeeForSearch';
+
 import { useCombobox } from 'downshift';
 import { Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +12,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
-import Item from '../Item/Item'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -19,58 +23,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Panel() {
-  const [result, setResult] = useState('');
-  const [input, setInput] = useState([]);
-  const [users, setUsers] = useState([]);
-
-
+  const dispatch = useDispatch();
+  const [input, setInput] = useState('');
+  const [coffeeArr, setCoffeeArr] = useState('');
+  // console.log(coffeeArr);
   const classes = useStyles();
 
-
-  async function inputPost(event) {
-    const text = event.target.value;
-    const resp = await fetch('/searchCoffee', {
+  async function handleClick() {
+    const request = await fetch('/searchCoffee', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
-        text,
+        input,
       }),
     });
-    const response = await resp.json();
-    return setResult(response.newArray);
+    const response = await request.json();
+    console.log(response);
+    setCoffeeArr(response);
+    dispatch(searchCoffee(response));
   }
-
-  console.log(result);
-
-  const {
-    isOpen,
-    getMenuProps,
-    getInputProps,
-    getComboboxProps,
-    highlightedIndex,
-    getItemProps,
-  } = useCombobox({
-    items: input,
-    onInputValueChange: ({ inputValue }) => {
-      setInput(
-        users.filter((item) => item.name.toLowerCase().startsWith(inputValue.toLowerCase())),
-      );
-    },
-  });
 
   return (
     <>
-      <div {...getComboboxProps()}>
+      <div>
         <Grid container justify="center" alignItems="center" spacing={3}>
           <Grid item xs={12}>
             <Typography variant="body2">
               <Paper className={classes.paper}>
                 <Input
-                  onChange={inputPost}
-                  placeholder="Найти пачку кофе"
+                  onChange={(e) => { setInput(e.target.value); }}
+                  placeholder="Найти кофе"
                   size="large"
                 />
-                <IconButton>
+                <IconButton onClick={handleClick}>
                   <SearchIcon />
                 </IconButton>
               </Paper>
@@ -79,9 +66,11 @@ export default function Panel() {
         </Grid>
       </div>
 
-      { result ? result.map((el) => {
-        return <Item key={el._id} id={el._id} />
-      }) : null}
+      {
+        coffeeArr.length
+          ? coffeeArr.map((el) => <OneCoffeeForSearch key={el._id} id={el._id} />)
+          : null
+      }
     </>
   );
 }
