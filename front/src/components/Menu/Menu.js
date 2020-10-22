@@ -8,6 +8,7 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import { useSelector } from 'react-redux';
+import BarChartIcon from '@material-ui/icons/BarChart';
 
 const useStyles = makeStyles({
   root: {
@@ -34,6 +35,7 @@ export default function SimpleBottomNavigation() {
     >
       <BottomNavigationAction component={Link} to="/guides" label="guides" icon={<LibraryBooksIcon />} />
       <BottomNavigationAction component={Link} to="/search" label="search" icon={<SearchIcon />} />
+      <BottomNavigationAction component={Link} to="/top" label="top" icon={<BarChartIcon />} />
 
       { user ? <BottomNavigationAction component={Link} to="/profile" label="profile" icon={<PersonOutlineIcon />} />
         : <BottomNavigationAction component={Link} to="/signin" label="sign in" icon={<MeetingRoomIcon />} />}

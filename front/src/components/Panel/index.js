@@ -6,20 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Item from '../Item/Item'
 
 const useStyles = makeStyles((theme) => ({
-  search: {
-    padding: '',
-  },
   paper: {
     padding: theme.spacing(1),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
-    // marginTop: '10px',
-    // marginLeft: '10px',
-    // marginRight: '10px',
 
   },
 }));
@@ -29,19 +23,9 @@ export default function Panel() {
   const [input, setInput] = useState([]);
   const [users, setUsers] = useState([]);
 
-  const [user, setUser] = useState('');
 
   const classes = useStyles();
 
-  const styleLi = { background: '#ede', width: '16em' };
-
-  // useEffect(() => {
-  //   fetch('/search')
-  //     .then((resp) => resp.json())
-  //     .then((json) => setUsers(json));
-  // }, []);
-
-  // console.log(users);
 
   async function inputPost(event) {
     const text = event.target.value;
@@ -53,7 +37,6 @@ export default function Panel() {
       }),
     });
     const response = await resp.json();
-    // console.log(response);
     return setResult(response.newArray);
   }
 
@@ -77,17 +60,14 @@ export default function Panel() {
 
   return (
     <>
-      <h1>{user}</h1>
       <div {...getComboboxProps()}>
-        <Grid container spacing={3}>
+        <Grid container justify="center" alignItems="center" spacing={3}>
           <Grid item xs={12}>
             <Typography variant="body2">
               <Paper className={classes.paper}>
                 <Input
-                  // {...getInputProps()}
                   onChange={inputPost}
                   placeholder="Найти пачку кофе"
-                  // enterbutton="Search"
                   size="large"
                 />
                 <IconButton>
@@ -98,20 +78,10 @@ export default function Panel() {
           </Grid>
         </Grid>
       </div>
-      <ul style={{ listStyleType: 'none' }} {...getMenuProps()}>
-        {isOpen
-          && input.map((item, index) => (
-            <span
-              key={item.id}
-              {...getItemProps({ item, index })}
-              onClick={() => setUser(item.name)}
-            >
-              <li style={highlightedIndex === index ? styleLi : {}}>
-                <h3>{item.name}</h3>
-              </li>
-            </span>
-          ))}
-      </ul>
+
+      { result ? result.map((el) => {
+        return <Item key={el._id} id={el._id} />
+      }) : null}
     </>
   );
 }

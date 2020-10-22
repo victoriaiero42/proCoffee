@@ -3,7 +3,7 @@ import db from './db.js';
 
 export default function coffeeSeeder() {
   db.then(async ({ connection, disconnect }) => {
-    await connection.db.dropDatabase();
+    // await connection.db.dropDatabase();
     await Coffee.insertMany([
       {
         title: 'Ява Золотая',

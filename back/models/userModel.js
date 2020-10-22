@@ -24,6 +24,19 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     // unique: true,
   },
+  favorites: {
+    type: Array,
+    default: [],
+  },
+  raited: {
+    type: Array,
+    default: [],
+  },
+  wishlist: {
+    type: Array,
+    default: [],
+  },
+
 });
 
 UserSchema.statics.findOrCreate = function findOrCreate(condition, callback) {

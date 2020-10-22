@@ -5,17 +5,18 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+// import Collapse from '@material-ui/core/Collapse';
+// import InboxIcon from '@material-ui/icons/MoveToInbox';
+// import DraftsIcon from '@material-ui/icons/Drafts';
+// import SendIcon from '@material-ui/icons/Send';
+// import ExpandLess from '@material-ui/icons/ExpandLess';
+// import ExpandMore from '@material-ui/icons/ExpandMore';
+// import StarBorder from '@material-ui/icons/StarBorder';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +38,9 @@ export default function NestedList() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  // const handleClick = () => {
+  //   setOpen(!open);
+  // };
 
   return (
     <Paper className={classes.paper}>
@@ -53,19 +54,19 @@ export default function NestedList() {
         // }
         className={classes.root}
       >
-        <ListItem button>
+        <ListItem component={Link} to="/favorites" button>
           <ListItemIcon>
             <FavoriteBorderIcon />
           </ListItemIcon>
           <ListItemText primary="Favorites" />
         </ListItem>
-        <ListItem button>
+        <ListItem component={Link} to="/mycoffee" button>
           <ListItemIcon>
             <StarRateIcon />
           </ListItemIcon>
           <ListItemText primary="My Coffee" />
         </ListItem>
-        <ListItem button onClick={handleClick}>
+        <ListItem component={Link} to="/wishlist" button>
           <ListItemIcon>
             <FreeBreakfastIcon />
           </ListItemIcon>

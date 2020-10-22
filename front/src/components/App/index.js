@@ -1,8 +1,6 @@
 import React from 'react';
-
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
 import Menu from '../Menu/Menu';
 // import DragAndDrop from '../DragAndDrop';
 import Panel from '../Panel';
@@ -12,57 +10,64 @@ import Authorization from '../Authorization';
 import store from '../../redux/store';
 import OneGuide from '../oneGuide/OneGuide';
 import LogoutButton from '../LogoutButton';
-
+import NewAuth from '../NewAuth/NewAuth'
 import SignIn from '../SignIn/Signin'
 import Profile from '../Username/Username'
 import ListItem from '../CoffeeList/CoffeeList';
 import Item from '../Item/Item';
 import Forgot from '../Forgot';
-// import List from '../'
-
+import { useDispatch, useSelector } from 'react-redux';
+import Home from '../Home/Home'
+import Favorites from '../Favorites/Favorites';
 
 function App() {
+  const user = useSelector((state) => state.auth)
   return (
     <div className="App">
-      <Provider store={store}>
-
+      <>
         <Switch>
-          {/* <Panel /> */}
           <Route exact path="/guides">
-            <Panel />
+            {/* <Panel /> */}
             <GuideList />
           </Route>
           <Route exact path="/guides/:id">
-            <Panel />
+            {/* <Panel /> */}
             <OneGuide />
+          </Route>
+          <Route exact path="/favorites">
+            <Favorites />
+            {/* <OneGuide /> */}
           </Route>
 
           <Route exact path="/register">
             <Authorization />
           </Route>
           <Route exact path="/signin">
-            <Panel />
-
             <SignIn />
+          </Route>
+          <Route exact path="/top">
+            {/* <Panel /> */}
+            <ListItem />
           </Route>
           <Route exact path="/search">
             <Panel />
-            <ListItem />
           </Route>
-          <Route exact path="/item">
-            <Panel />
-            <Item />
-            {/* <Panel />
-            <ListItem /> */}
+          <Route exact path="/profile">
+            {/* {user ? */}
+            <Profile />
+            <LogoutButton />
+            {/* //  : null} */}
           </Route>
           <Route exact path="/restore">
             <Forgot />
           </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
         </Switch>
         {/* <DragAndDrop /> */}
         <Menu />
-        {/* <Panel /> */}
-      </Provider>
+      </>
     </div>
   );
 }
