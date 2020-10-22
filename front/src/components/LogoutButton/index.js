@@ -20,7 +20,7 @@ function LogoutButton() {
 
   return (
     <>
-      <Button onClick={handleClick}>Разлогиниться</Button>
+      <Button onClick={handleClick}>Выйти</Button>
     </>
   );
 }
