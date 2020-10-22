@@ -11,7 +11,7 @@ import './passportJs/passport-setup.js';
 
 import authRouter from './routes/authRouter.js';
 import readTextRouter from './routes/readRouter.js';
-import userRouter from './routes/userRouts.js'
+import userRouter from './routes/userRouts.js';
 import searchRouter from './routes/searchRouter.js';
 import restoreRouter from './routes/restoreRouter.js';
 
@@ -74,7 +74,7 @@ app.get('/google/callback',
     if (req.user) {
       req.session.user = req.user;
     }
-    console.log('гугл колбэк')
+    console.log('гугл колбэк');
     res.redirect('https://cocoffee.herokuapp.com/');
   });
 
@@ -96,4 +96,4 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port);
+app.listen(port, () => { console.log(port); });
