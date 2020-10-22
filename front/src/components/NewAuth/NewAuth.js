@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { startLoginSaga } from '../../redux/actions/authActions';
+import GoogleAuth from '../GoogleAuth';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +15,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import GoogleAuth from '../GoogleAuth';
-import { startLoginSaga } from '../../redux/actions/authActions';
 import Forgot from '../Forgot';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,15 +38,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
-  const history = useHistory();
-
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
   const classes = useStyles();
 
   async function handleClick(e) {
     e.preventDefault();
-    history.push('/top');
     dispatch(startLoginSaga(formData));
   }
 
@@ -86,6 +82,17 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
+            id="username"
+            label="User name"
+            name="username"
+            autoComplete="username"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
             name="password"
             label="Password"
             type="password"
@@ -104,24 +111,25 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
-          <Grid container>
+          {/* <Grid container>
             <Grid item xs>
-              <Link to="/restore">
+              <Link to={"/restore"}>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link to="/register">
+              <Link to={"/register"}>
                 Don't have an account? Sign Up
               </Link>
             </Grid>
-          </Grid>
+          </Grid> */}
         </form>
-        <GoogleAuth />
+        {/* <GoogleAuth /> */}
       </div>
-      <Box mt={8} />
-    </Container>
+      <Box mt={8}>
+      </Box>
+    </Container >
   );
 }

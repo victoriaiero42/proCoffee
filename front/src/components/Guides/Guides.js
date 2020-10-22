@@ -34,7 +34,7 @@ export default function MediaCard({ id }) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={`http://localhost:3001/images/${img}`}
+            image={`https://cocoffee.herokuapp.com/images/${img}`}
             title="Contemplative Reptile"
           />
           <CardContent>

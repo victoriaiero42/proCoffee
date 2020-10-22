@@ -29,7 +29,7 @@
     "eslint-plugin-import": "^2.22.1"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "dev": "npx nodemon app.js --ignore sessions",
     "debug": "node --no-lazy --inspect-brk index.js"
   },

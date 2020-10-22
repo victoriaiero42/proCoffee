@@ -31,7 +31,11 @@ const coffeeSchema = new mongoose.Schema({
   uniq: {
     type: String,
   },
-  raiting: Array,
+  raiting: {
+    type: Array,
+    default: [],
+  },
+  av: Number,
 });
 
 export default mongoose.model('Coffee', coffeeSchema);

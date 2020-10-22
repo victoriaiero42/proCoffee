@@ -9,6 +9,7 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import { useSelector } from 'react-redux';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import BarChartIcon from '@material-ui/icons/BarChart';
 
 const useStyles = makeStyles({
   root: {
@@ -24,6 +25,7 @@ export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const user = useSelector((state) => state.auth);
   // const [value, setValue] = React.useState(0);
+
   return (
     <BottomNavigation
       style={{
@@ -36,6 +38,7 @@ export default function SimpleBottomNavigation() {
       <BottomNavigationAction component={Link} to="/guides" label="guides" icon={<LibraryBooksIcon />} />
       <BottomNavigationAction component={Link} to="/search" label="search" icon={<SearchIcon />} />
       <BottomNavigationAction component={Link} to="/read" label="camera" icon={<CameraAltIcon />} />
+      <BottomNavigationAction component={Link} to="/top" label="top" icon={<BarChartIcon />} />
 
       { user ? <BottomNavigationAction component={Link} to="/profile" label="profile" icon={<PersonOutlineIcon />} />
         : <BottomNavigationAction component={Link} to="/signin" label="sign in" icon={<MeetingRoomIcon />} />}
@@ -43,4 +46,3 @@ export default function SimpleBottomNavigation() {
     </BottomNavigation>
   );
 }
-

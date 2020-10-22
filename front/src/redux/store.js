@@ -6,6 +6,7 @@ import rootSaga from './sagas/rootSaga';
 import authReducer from './reducers/authReducer';
 import articlereducer from './reducers/articleReducer';
 import coffeeItemsReducer from './reducers/coffeeItemsReducer';
+import ratingReducer from './reducers/ratingReducer';
 
 
 const sagaMiddleware = creareSagaMiddleware();
@@ -16,7 +17,7 @@ const store = createStore(
     auth: authReducer,
     articles: articlereducer,
     top: coffeeItemsReducer,
-   
+    rating: ratingReducer,
   }),
   JSON.parse(preloadedState),
   composeWithDevTools(

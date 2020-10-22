@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ProfileOptions from '../ProfileOprions/ProfileOptions';
 import Avatar from '@material-ui/core/Avatar';
+import { useDispatch, useSelector } from 'react-redux';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '13px',
   },
   paper: {
+    textAlign: 'center',
     padding: theme.spacing(2),
     // textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -28,13 +31,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CenteredGrid() {
   const classes = useStyles();
+  const user = useSelector((state) => state.auth)
 
   return (
     <div className={classes.root}>
       <Grid container justify="center" spacing={3}>
         <Grid item xs={12}>
 
-          <Paper className={classes.paper}>username</Paper>
+          <Paper className={classes.paper}>
+            {user ? <Typography variant="body1" component="p">
+              Привет, {user.id.login} ☕
+        </Typography> : ''}
+          </Paper>
         </Grid>
       </Grid>
       <ProfileOptions />

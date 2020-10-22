@@ -3,7 +3,7 @@ import Coffee from '../models/coffee.js';
 
 const router = express.Router();
 
-router.post('/search', async (req, res) => {
+router.post('/searchCoffee', async (req, res) => {
   const { text } = req.body;
   const newText = text.trim().split('');
   const newArray = [];

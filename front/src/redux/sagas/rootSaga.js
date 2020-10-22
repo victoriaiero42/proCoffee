@@ -6,6 +6,7 @@ import googleSaga from './googleSaga';
 import loginSaga from './loginSaga';
 import logoutSaga from './logoutSaga';
 import allItemsSaga from './coffeeItemsSaga';
+import ratingSaga from './ratingSaga';
 
 
 export default function* () {
@@ -16,5 +17,6 @@ export default function* () {
     loginSaga(),
     logoutSaga(),
     allItemsSaga(),
+    ratingSaga(),
   ]);
 }
