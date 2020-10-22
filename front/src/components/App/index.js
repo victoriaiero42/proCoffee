@@ -16,12 +16,15 @@ import Profile from '../Username/Username'
 import ListItem from '../CoffeeList/CoffeeList';
 import Item from '../Item/Item';
 import Forgot from '../Forgot';
+import ReadText from '../ReadText';
 import { useDispatch, useSelector } from 'react-redux';
 import Home from '../Home/Home'
 import Favorites from '../Favorites/Favorites';
+import MyCoffee from '../MyCoffee/MyCoffee';
+import Wishlist from '../WishList/Wishlist'
 
 function App() {
-  const user = useSelector((state) => state.auth)
+  const user = useSelector((state) => state.auth);
   return (
     <div className="App">
       <>
@@ -38,6 +41,10 @@ function App() {
             <Favorites />
             {/* <OneGuide /> */}
           </Route>
+          <Route exact path="/wishlist">
+            <Wishlist />
+            {/* <OneGuide /> */}
+          </Route>
 
           <Route exact path="/register">
             <Authorization />
@@ -52,14 +59,20 @@ function App() {
           <Route exact path="/search">
             <Panel />
           </Route>
+          <Route exact path="/mycoffee">
+            <MyCoffee />
+          </Route>
           <Route exact path="/profile">
             {/* {user ? */}
             <Profile />
-            <LogoutButton />
+            {/* <LogoutButton /> */}
             {/* //  : null} */}
           </Route>
           <Route exact path="/restore">
             <Forgot />
+          </Route>
+          <Route exact path="/read">
+            <ReadText />
           </Route>
           <Route exact path="/">
             <Home />
