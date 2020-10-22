@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -11,11 +11,10 @@ function Home() {
     history.push('/signin');
   } else {
     history.push('/top');
-
   }
   return (
     <div style={{ display: 'none' }}>home</div>
-  )
+  );
 }
 
-export default Home
+export default Home;

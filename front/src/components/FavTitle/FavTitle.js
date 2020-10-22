@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
-    // marginTop: '10px',
     marginLeft: '10px',
     marginRight: '10px',
     fontSize: '1rem',
