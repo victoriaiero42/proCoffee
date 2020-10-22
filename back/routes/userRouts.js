@@ -10,7 +10,7 @@ router.get('/articles', async (req, res) => {
   res.status(200).json(imgs);
 });
 
-router.get('/top', async (req, res) => {
+router.get('/topApi', async (req, res) => {
   const top = await Coffee.find();
   const sorted = top.sort((a, b) => b.av - a.av);
   const spliced = sorted.splice(0, 10);
@@ -18,7 +18,7 @@ router.get('/top', async (req, res) => {
   res.status(200).json(spliced);
 });
 
-router.post('/favorite', async (req, res) => {
+router.post('/favoriteApi', async (req, res) => {
   const { id } = req.body;
   const userID = req.session.user._id;
   // console.log(userID, id);
@@ -54,7 +54,7 @@ router.get('/user', async (req, res) => {
   res.status(200).json(newU);
 });
 
-router.post('/wishlist', async (req, res) => {
+router.post('/wishlistApi', async (req, res) => {
   const { id } = req.body;
   const curUser = req.session.user;
   const newU2 = await User.findById(curUser._id);

@@ -77,7 +77,7 @@ export default function OneCoffeeForSearch({ id }) {
   };
 
   const addToWishList = async () => {
-    const response = await fetch('/wishlist', {
+    const response = await fetch('/wishlistApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

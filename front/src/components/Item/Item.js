@@ -65,7 +65,7 @@ export default function RecipeReviewCard({ id }) {
   };
 
   const handleClick = async () => {
-    const response = await fetch('/favorite', {
+    const response = await fetch('/favoriteApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ export default function RecipeReviewCard({ id }) {
   };
 
   const addToWishList = async () => {
-    const response = await fetch('/wishlist', {
+    const response = await fetch('/wishlistApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
