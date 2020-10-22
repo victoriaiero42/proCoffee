@@ -42,7 +42,7 @@ router.post('/raiting', async (req, res) => {
   item.av = sr.toFixed(1);
   await item.save();
   await newU.save();
-  res.status(200).json(item);
+  res.status(200).json(newU);
 });
 
 router.get('/user', async (req, res) => {

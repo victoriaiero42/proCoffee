@@ -25,19 +25,22 @@ function Raiting({ id }) {
       })
     });
     const rate = await response.json()
-    // console.log(rate);
+    console.log(rate);
     dispatch(startCoffeeItemsSaga())
     // dispatch(startRatingSaga({ id, rating: e.target.value }))
-
-  }
-  // setRaiting(rate)
-
-  async function handleRate() {
     const resave1 = await fetch('/user');
     const res11 = await resave1.json();
     console.log(res11, 'tut');
     dispatch(startRewriteUser(res11))
   }
+  // setRaiting(rate)
+
+  // async function handleRate() {
+  //   const resave1 = await fetch('/user');
+  //   const res11 = await resave1.json();
+  //   console.log(res11, 'tut');
+  //   dispatch(startRewriteUser(res11))
+  // }
 
   return (
     <div>
@@ -46,7 +49,7 @@ function Raiting({ id }) {
 
         return (
           <label>
-            <input type='radio' name='rating' value={raitingValue} onClick={(e) => { { handleRaiting(e); handleRate() } }} />
+            <input type='radio' name='rating' value={raitingValue} onClick={(e) => { handleRaiting(e) }} />
             <FaStar style={{ marginLeft: '10px' }} className='star' color={raitingValue <= rating ? 'darkgray' : 'gray'} />
           </label>)
       })}
