@@ -6,6 +6,7 @@ import ProfileOptions from '../ProfileOprions/ProfileOptions';
 import Avatar from '@material-ui/core/Avatar';
 import { useDispatch, useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
+import Logout from '../LogoutButton/index'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,18 +16,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '13px',
   },
   paper: {
-    textAlign: 'center',
     padding: theme.spacing(2),
-    // textAlign: 'center',
+    textAlign: 'center',
     color: theme.palette.text.secondary,
     backgroundColor: '#d7d0c3',
   },
-  // avatar: {
-  //   display: 'flex',
-  //   '& > *': {
-  //     margin: theme.spacing(1),
-  //   },
-  // },
 }));
 
 export default function CenteredGrid() {
@@ -39,6 +33,7 @@ export default function CenteredGrid() {
         <Grid item xs={12}>
 
           <Paper className={classes.paper}>
+            {/* <Logout /> */}
             {user ? <Typography variant="body1" component="p">
               Привет, {user.id.login} ☕
         </Typography> : ''}
@@ -46,6 +41,10 @@ export default function CenteredGrid() {
         </Grid>
       </Grid>
       <ProfileOptions />
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Logout />
+      </div>
+
     </div>
   );
 }
