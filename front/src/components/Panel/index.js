@@ -26,7 +26,6 @@ export default function Panel() {
   const dispatch = useDispatch();
   const [input, setInput] = useState('');
   const [coffeeArr, setCoffeeArr] = useState('');
-  // console.log(coffeeArr);
   const classes = useStyles();
 
   async function handleClick() {
