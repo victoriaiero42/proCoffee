@@ -1,5 +1,8 @@
 body {
   background-color: #f4e9d7;
+  /* background-image: url(/proCoffee/front/public/images/coffee-bean-drawing-latte-cafe-coffee-bean-drawing-11562917383ykbbnfkedp.png); */
+  /* background-image: url("https://images.app.goo.gl/quVcTvbZZiC7TQBY8"); */
+  background-size: contain;
 }
 
 a {

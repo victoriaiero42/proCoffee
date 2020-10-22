@@ -19,6 +19,8 @@ import Forgot from '../Forgot';
 import { useDispatch, useSelector } from 'react-redux';
 import Home from '../Home/Home'
 import Favorites from '../Favorites/Favorites';
+import MyCoffee from '../MyCoffee/MyCoffee';
+import Wishlist from '../WishList/Wishlist'
 
 function App() {
   const user = useSelector((state) => state.auth)
@@ -38,6 +40,10 @@ function App() {
             <Favorites />
             {/* <OneGuide /> */}
           </Route>
+          <Route exact path="/wishlist">
+            <Wishlist />
+            {/* <OneGuide /> */}
+          </Route>
 
           <Route exact path="/register">
             <Authorization />
@@ -52,10 +58,13 @@ function App() {
           <Route exact path="/search">
             <Panel />
           </Route>
+          <Route exact path="/mycoffee">
+            <MyCoffee />
+          </Route>
           <Route exact path="/profile">
             {/* {user ? */}
             <Profile />
-            <LogoutButton />
+            {/* <LogoutButton /> */}
             {/* //  : null} */}
           </Route>
           <Route exact path="/restore">
