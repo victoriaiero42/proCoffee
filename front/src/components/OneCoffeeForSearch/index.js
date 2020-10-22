@@ -45,9 +45,12 @@ export default function OneCoffeeForSearch({ id }) {
   const dispatch = useDispatch();
 
   const searchArr = useSelector((state) => state.search);
+
+  const picArr = searchArr.newArray.find((x) => x._id === id);
+
   const {
     title, image, description, process, region, av, raiting,
-  } = searchArr.newArray.find((x) => x._id === id);
+  } = picArr;
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -90,75 +93,83 @@ export default function OneCoffeeForSearch({ id }) {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={`https://cocoffee.herokuapp.com/img/${image}`}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body1" component="p">
-          {title}
-        </Typography>
-        <Typography variant="body1" component="p">
-          {av}
-        </Typography>
-        <Typography style={{ color: 'gray' }} variant="body2" component="p">
-          Оценки:
-          {' '}
-          {raiting.length}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={handleClick} />
-        </IconButton>
-        <IconButton>
-          <FreeBreakfastIcon onClick={addToWishList} />
-        </IconButton>
-        {/* <IconButton > */}
-        <Raiting id={id} />
-        {/* </IconButton> */}
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-            Регион:
-            {' '}
-            {region}
-          </Typography>
-          <Typography paragraph>
-            Обработка:
-            {' '}
-            {process}
-          </Typography>
-          <Typography paragraph>
-            Описание:
-            {' '}
-            {description}
-          </Typography>
-        </CardContent>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </Collapse>
-    </Card>
+    <>
+      {
+      picArr
+        ? (
+          <Card className={classes.root}>
+            <CardMedia
+              className={classes.media}
+              image={`https://cocoffee.herokuapp.com/img/${image}`}
+              title="Paella dish"
+            />
+            <CardContent>
+              <Typography variant="body1" component="p">
+                {title}
+              </Typography>
+              <Typography variant="body1" component="p">
+                {av}
+              </Typography>
+              <Typography style={{ color: 'gray' }} variant="body2" component="p">
+                Оценки:
+                {' '}
+                {raiting.length}
+              </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon onClick={handleClick} />
+              </IconButton>
+              <IconButton>
+                <FreeBreakfastIcon onClick={addToWishList} />
+              </IconButton>
+              {/* <IconButton > */}
+              <Raiting id={id} />
+              {/* </IconButton> */}
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </CardActions>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Typography paragraph>
+                  Регион:
+                  {' '}
+                  {region}
+                </Typography>
+                <Typography paragraph>
+                  Обработка:
+                  {' '}
+                  {process}
+                </Typography>
+                <Typography paragraph>
+                  Описание:
+                  {' '}
+                  {description}
+                </Typography>
+              </CardContent>
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </Collapse>
+          </Card>
+        )
+        : ''
+}
+    </>
   );
 }
