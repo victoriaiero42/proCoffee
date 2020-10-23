@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import OneCoffeeForSearch from '../OneCoffeeForSearch';
-import { searchCoffee } from '../../redux/actions/searchAction';
+import { searchCoffeeForUs } from '../../redux/actions/searchAction';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,8 +38,10 @@ export default function Panel() {
       }),
     });
     const response = await request.json();
-    setCoffeeArr(response);
-    dispatch(searchCoffee(response));
+    const needCoffee = response.coffeeArr;
+    console.log(needCoffee);
+    setCoffeeArr(needCoffee);
+    dispatch(searchCoffeeForUs(needCoffee));
   }
 
   return (

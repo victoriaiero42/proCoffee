@@ -1,47 +1,44 @@
 import React, { useState } from 'react';
+
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
-import ErrorHandler from '../ErrorHandler/ErrorHandler';
 import User from '../SignIn/Signin';
 
 const useStyles = makeStyles((theme) => ({
-  formPositioning: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    backgroundColor: '#d7d0c3',
-    margin: '0px 10px',
-    // backgroundColor: '#424242',
-  },
   paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    backgroundColor: '#d7d0c3',
-
-    marginTop: '10px',
-    marginLeft: '10px',
-    marginRight: '10px',
-
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-  input: {
-    '& label.Mui-focused': {
-      color: '#A9A9A9',
-    },
-    button: {
-      margin: '20px',
-    },
-
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
 function Authorization() {
-  // console.log('Authorization');
+  const classes = useStyles();
+
   const user = useSelector((state) => state.auth);
   console.log(user);
   const history = useHistory();
@@ -50,11 +47,7 @@ function Authorization() {
     history.push('/top');
   }
   const dispatch = useDispatch();
-  const [name, setName] = useState('name');
-  const [mail, setMail] = useState('email');
-  const [password, setPassword] = useState('password');
   const [formData, setFormData] = useState({});
-  const classes = useStyles();
 
   const handleChange = (e) => {
     e.persist();
@@ -64,21 +57,9 @@ function Authorization() {
     }));
   };
 
-  function nameClick() {
-    setName('enter your username');
-  }
-
-  function mailClick() {
-    setMail('enter your email');
-  }
-
-  function passwordClick() {
-    setPassword('enter your password');
-  }
-
   async function handleClick() {
     dispatch(startAuthenticateUserSaga(formData));
-    history.push()
+    history.push('/top');
   }
 
   return (
@@ -86,34 +67,69 @@ function Authorization() {
       { user
         ? <User />
         : (
-          <div className={classes.root}>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <Typography variant="body1">
 
-                  <Paper className={classes.paper}> sign up </Paper>
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="body1">
-                  <Paper className={classes.formPositioning}>
-                    <form onChange={(e) => handleChange(e)} noValidate autoComplete="off">
-                      <ErrorHandler />
-
-                      <TextField fullWidth name="username" onClick={nameClick} id="filled-size-normal" label={name} required />
-                      <TextField fullWidth name="email" onClick={mailClick} id="filled-size-normal" label={mail} required />
-                      <TextField fullWidth type="password" name="password" onClick={passwordClick} label={password} required />
-                      <Button style={{ marginTop: '12px' }} onClick={handleClick} variant="outlined">sign up</Button>
-                    </form>
-                  </Paper>
-                </Typography>
-              </Grid>
-            </Grid>
-          </div>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <form onChange={(e) => handleChange(e)} className={classes.form} noValidate>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="username"
+                  label="login"
+                  id="username"
+                  autoComplete="current-password"
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  onClick={handleClick}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Sign In
+                </Button>
+              </form>
+            </div>
+          </Container>
         )}
     </>
   );
 }
-// variant="filled"
 
 export default Authorization;

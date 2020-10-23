@@ -53,19 +53,19 @@ export default function NestedList() {
           <ListItemIcon>
             <FavoriteBorderIcon />
           </ListItemIcon>
-          <ListItemText primary="Favorites" />
+          <ListItemText primary="Избранное" />
         </ListItem>
         <ListItem component={Link} to="/mycoffee" button>
           <ListItemIcon>
             <StarRateIcon />
           </ListItemIcon>
-          <ListItemText primary="My Coffee" />
+          <ListItemText primary="Оценки" />
         </ListItem>
         <ListItem component={Link} to="/wishlist" button>
           <ListItemIcon>
             <FreeBreakfastIcon />
           </ListItemIcon>
-          <ListItemText primary="Wish List" />
+          <ListItemText primary="Список желаний" />
           {/* {open ? <ExpandLess /> : <ExpandMore />} */}
         </ListItem>
       </List>

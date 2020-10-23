@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import Raiting from '../Rating/Rating';
 import { startRewriteUser } from '../../redux/actions/authActions';
+import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,8 +47,8 @@ export default function OneCoffeeForSearch({ id }) {
 
   const searchArr = useSelector((state) => state.search);
 
-  const picArr = searchArr.newArray.find((x) => {
-    console.log(123);
+  console.log(searchArr);
+  const picArr = searchArr.needCoffee.find((x) => {
     return x._id === id;
   });
   console.log(picArr);
@@ -60,7 +61,7 @@ export default function OneCoffeeForSearch({ id }) {
   };
 
   const handleClick = async () => {
-    const response = await fetch('/favorite', {
+    const response = await fetch('/favoriteApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,6 +75,7 @@ export default function OneCoffeeForSearch({ id }) {
     const res1 = await resave.json();
     console.log(res1);
     dispatch(startRewriteUser(res1));
+    dispatch(startCoffeeItemsSaga())
   };
 
   const addToWishList = async () => {
