@@ -38,13 +38,13 @@ export default function SimpleBottomNavigation() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/guides" label="guides" icon={<LibraryBooksIcon />} />
-      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/search" label="search" icon={<SearchIcon />} />
-      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/read" label="camera" icon={<CameraAltIcon />} />
-      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/top" label="top" icon={<BarChartIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/guides" label="Статьи" icon={<LibraryBooksIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/search" label="Поиск" icon={<SearchIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/read" label="Камера" icon={<CameraAltIcon />} />
+      <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/top" label="Лучшее" icon={<BarChartIcon />} />
 
-      { user ? <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/profile" label="profile" icon={<PersonOutlineIcon />} />
-        : <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/signin" label="sign in" icon={<MeetingRoomIcon />} />}
+      { user ? <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/profile" label="Профиль" icon={<PersonOutlineIcon />} />
+        : <BottomNavigationAction style={{ margin: '-12px' }} component={Link} to="/signin" label="Войти" icon={<MeetingRoomIcon />} />}
 
     </BottomNavigation>
   );

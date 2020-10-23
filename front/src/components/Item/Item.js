@@ -50,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecipeReviewCard({ id }) {
-  // const [undone, setUndone] = useState(false);
 
   const dispatch = useDispatch();
   const { like } = useSelector((state) => state.top.top.find((x) => x._id === id))
@@ -77,7 +76,7 @@ export default function RecipeReviewCard({ id }) {
 
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    console.log(res1);
+    // console.log(res1);
     dispatch(startRewriteUser(res1));
     dispatch(startCoffeeItemsSaga())
   };
@@ -96,8 +95,6 @@ export default function RecipeReviewCard({ id }) {
     const res1 = await resave.json();
     console.log(res1);
     dispatch(startRewriteUser(res1));
-    // const ggg = await response.json();
-    // console.log(ggg);
   };
 
   return (
@@ -129,7 +126,7 @@ export default function RecipeReviewCard({ id }) {
               // setUndone((state) => !state);
               console.log('g');
             }}
-            className={`${classes.done} ${like ? classes.undone : ""}`}
+            className={` ${like ? classes.undone : ""}`}
           />
         </IconButton>
         <IconButton>

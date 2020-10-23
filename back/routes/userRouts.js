@@ -19,6 +19,18 @@ router.get('/top', async (req, res) => {
 });
 
 router.post('/favorite', async (req, res) => {
+  // const { id } = req.body;
+  // const userID = req.session.user._id;
+  // const itemToAdd = await Coffee.findById(id);
+  // const user = await User.findById(userID);
+  // user.favorites.push(itemToAdd);
+  // const itemOfUser = user.favorites.map((el, i) => {
+  //   if (el._id === itemToAdd._id) {
+  //     user.favorites[i].like = !user.favorites[i].like;
+  //   }
+  // });
+  // await user.save();
+  // console.log(user);
   const { id } = req.body;
   const userID = req.session.user._id;
   // console.log(userID, id);
