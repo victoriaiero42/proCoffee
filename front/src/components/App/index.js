@@ -50,9 +50,6 @@ function App() {
           <Route exact path="/register">
             <Authorization />
           </Route>
-          <Route exact path="/authtest">
-            <NewAuth />
-          </Route>
           <Route exact path="/signin">
             <SignIn />
           </Route>
