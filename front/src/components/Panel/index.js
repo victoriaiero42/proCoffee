@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useCombobox } from 'downshift';
 import { Input } from '@material-ui/core';
@@ -24,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Panel() {
   const dispatch = useDispatch();
   const [input, setInput] = useState('');
-  const [coffeeArr, setCoffeeArr] = useState('');
   const classes = useStyles();
+
+  const cofArr = useSelector((state) => state.search.needCoffee);
 
   async function handleClick() {
     const request = await fetch('/searchCoffee', {
@@ -40,7 +42,6 @@ export default function Panel() {
     const response = await request.json();
     const needCoffee = response.coffeeArr;
     console.log(needCoffee);
-    setCoffeeArr(needCoffee);
     dispatch(searchCoffeeForUs(needCoffee));
   }
 
@@ -66,8 +67,8 @@ export default function Panel() {
       </div>
 
       {
-        coffeeArr.length
-          ? coffeeArr.map((el) => <OneCoffeeForSearch key={el._id} id={el._id} />)
+        cofArr.length
+          ? cofArr.map((el) => <OneCoffeeForSearch key={el._id} id={el._id} />)
           : null
       }
     </>

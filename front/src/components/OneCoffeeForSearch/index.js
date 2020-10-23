@@ -51,7 +51,6 @@ export default function OneCoffeeForSearch({ id }) {
   const picArr = searchArr.needCoffee.find((x) => {
     return x._id === id;
   });
-  console.log(picArr);
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
