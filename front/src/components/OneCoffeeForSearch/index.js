@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import Raiting from '../Rating/Rating';
 import { startRewriteUser } from '../../redux/actions/authActions';
+import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,9 +46,11 @@ export default function OneCoffeeForSearch({ id }) {
   const dispatch = useDispatch();
 
   const searchArr = useSelector((state) => state.search);
-  const {
-    title, image, description, process, region, av, raiting,
-  } = searchArr.newArray.find((x) => x._id === id);
+
+  console.log(searchArr);
+  const picArr = searchArr.needCoffee.find((x) => {
+    return x._id === id;
+  });
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -57,7 +60,7 @@ export default function OneCoffeeForSearch({ id }) {
   };
 
   const handleClick = async () => {
-    const response = await fetch('/favorite', {
+    const response = await fetch('/favoriteApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -71,10 +74,11 @@ export default function OneCoffeeForSearch({ id }) {
     const res1 = await resave.json();
     console.log(res1);
     dispatch(startRewriteUser(res1));
+    dispatch(startCoffeeItemsSaga())
   };
 
   const addToWishList = async () => {
-    const response = await fetch('/wishlist', {
+    const response = await fetch('/wishlistApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,75 +94,83 @@ export default function OneCoffeeForSearch({ id }) {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={`https://cocoffee.herokuapp.com/img/${image}`}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body1" component="p">
-          {title}
-        </Typography>
-        <Typography variant="body1" component="p">
-          {av}
-        </Typography>
-        <Typography style={{ color: 'gray' }} variant="body2" component="p">
-          Оценки:
-          {' '}
-          {raiting.length}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={handleClick} />
-        </IconButton>
-        <IconButton>
-          <FreeBreakfastIcon onClick={addToWishList} />
-        </IconButton>
-        {/* <IconButton > */}
-        <Raiting id={id} />
-        {/* </IconButton> */}
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-            Регион:
-            {' '}
-            {region}
-          </Typography>
-          <Typography paragraph>
-            Обработка:
-            {' '}
-            {process}
-          </Typography>
-          <Typography paragraph>
-            Описание:
-            {' '}
-            {description}
-          </Typography>
-        </CardContent>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </Collapse>
-    </Card>
+      <>
+        {
+        picArr
+          ? (
+            <Card className={classes.root}>
+              <CardMedia
+                className={classes.media}
+                image={`https://cocoffee.herokuapp.com/img/${picArr.image}`}
+                title="Paella dish"
+              />
+              <CardContent>
+                <Typography variant="body1" component="p">
+                  {picArr.title}
+                </Typography>
+                <Typography variant="body1" component="p">
+                  {picArr.av}
+                </Typography>
+                <Typography style={{ color: 'gray' }} variant="body2" component="p">
+                  Оценки:
+                  {' '}
+                  {picArr.raiting.length}
+                </Typography>
+              </CardContent>
+              <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites">
+                  <FavoriteIcon onClick={handleClick} />
+                </IconButton>
+                <IconButton>
+                  <FreeBreakfastIcon onClick={addToWishList} />
+                </IconButton>
+                {/* <IconButton > */}
+                <Raiting id={id} />
+                {/* </IconButton> */}
+                <IconButton
+                  className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                  })}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </IconButton>
+              </CardActions>
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <Typography paragraph>
+                    Регион:
+                    {' '}
+                    {picArr.region}
+                  </Typography>
+                  <Typography paragraph>
+                    Обработка:
+                    {' '}
+                    {picArr.process}
+                  </Typography>
+                  <Typography paragraph>
+                    Описание:
+                    {' '}
+                    {picArr.description}
+                  </Typography>
+                </CardContent>
+                <IconButton
+                  className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                  })}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon />
+                </IconButton>
+              </Collapse>
+            </Card>
+          )
+          : ''
+  }
+      </>
   );
 }

@@ -56,6 +56,7 @@ export default function RecipeReviewCard({ id }) {
   const {
     title, image, description, process, region, av, raiting,
   } = useSelector((state) => state.top.top.find((x) => x._id === id));
+  console.log(av, raiting);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -64,7 +65,7 @@ export default function RecipeReviewCard({ id }) {
   };
 
   const handleClick = async () => {
-    const response = await fetch('/favorite', {
+    const response = await fetch('/favoriteApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,13 +77,13 @@ export default function RecipeReviewCard({ id }) {
 
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    // console.log(res1);
+    console.log(res1, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     dispatch(startRewriteUser(res1));
     dispatch(startCoffeeItemsSaga())
   };
 
   const addToWishList = async () => {
-    const response = await fetch('/wishlist', {
+    const response = await fetch('/wishlistApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ export default function RecipeReviewCard({ id }) {
     });
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    console.log(res1);
+    console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
     dispatch(startRewriteUser(res1));
   };
 

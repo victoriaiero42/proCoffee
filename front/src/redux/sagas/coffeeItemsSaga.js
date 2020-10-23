@@ -3,7 +3,7 @@ import { START_ITEMS } from '../actionTypes';
 import { setCoffeeItems } from '../actions/allItemsActions';
 
 async function fetchItems() {
-  const respon = await fetch('/top');
+  const respon = await fetch('/topApi');
   const res = await respon.json();
   // console.log(res);
   return res;

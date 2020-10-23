@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 
-import { searchCoffee } from '../../redux/actions/searchAction';
-import OneCoffeeForSearch from '../OneCoffeeForSearch';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useCombobox } from 'downshift';
 import { Input } from '@material-ui/core';
@@ -12,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+import OneCoffeeForSearch from '../OneCoffeeForSearch';
+import { searchCoffeeForUs } from '../../redux/actions/searchAction';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Panel() {
   const dispatch = useDispatch();
   const [input, setInput] = useState('');
-  const [coffeeArr, setCoffeeArr] = useState('');
   const classes = useStyles();
+
+  const cofArr = useSelector((state) => state.search.needCoffee);
 
   async function handleClick() {
     const request = await fetch('/searchCoffee', {
@@ -39,9 +40,9 @@ export default function Panel() {
       }),
     });
     const response = await request.json();
-    console.log(response);
-    setCoffeeArr(response);
-    dispatch(searchCoffee(response));
+    const needCoffee = response.coffeeArr;
+    console.log(needCoffee);
+    dispatch(searchCoffeeForUs(needCoffee));
   }
 
   return (
@@ -66,8 +67,8 @@ export default function Panel() {
       </div>
 
       {
-        coffeeArr.length
-          ? coffeeArr.map((el) => <OneCoffeeForSearch key={el._id} id={el._id} />)
+        cofArr.length
+          ? cofArr.map((el) => <OneCoffeeForSearch key={el._id} id={el._id} />)
           : null
       }
     </>
