@@ -22,6 +22,7 @@ import Home from '../Home/Home'
 import Favorites from '../Favorites/Favorites';
 import MyCoffee from '../MyCoffee/MyCoffee';
 import Wishlist from '../WishList/Wishlist'
+// import NewAuth 
 
 function App() {
   const user = useSelector((state) => state.auth);
@@ -48,6 +49,9 @@ function App() {
 
           <Route exact path="/register">
             <Authorization />
+          </Route>
+          <Route exact path="/authtest">
+            <NewAuth />
           </Route>
           <Route exact path="/signin">
             <SignIn />

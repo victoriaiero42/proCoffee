@@ -77,7 +77,7 @@ app.get('/google/callback',
       req.session.user = req.user;
     }
     console.log('гугл колбэк');
-    res.redirect('https://cocoffee.herokuapp.com/');
+    res.redirect('/');
   });
 
 app.get('/googleLogout', async (req, res) => {
