@@ -1,6 +1,6 @@
 import { SEARCH_COFFEE } from '../actionTypes';
 
-export default function searchReducer(state = null, {
+export default function searchReducer(state = { needCoffee: [] }, {
   type, payload,
 }) {
   console.log(type);
