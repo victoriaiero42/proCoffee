@@ -40,6 +40,7 @@ router.post('/raiting', async (req, res) => {
   const newU = await User.findById(userID);
   newU.raited.push(item);
   item.raiting.push({ userID, numrate });
+  // console.log(item);
   const av = item.raiting.reduce((a, c) => a + c.numrate, 0);
   const sr = av / item.raiting.length;
   item.av = sr.toFixed(1);
@@ -50,8 +51,10 @@ router.post('/raiting', async (req, res) => {
 
 router.get('/user', async (req, res) => {
   const curUser = req.session.user;
+  console.log(curUser, '/////////////////');
   const newU = await User.findById(curUser._id);
-  res.status(200).json(newU);
+  // console.log(newU);
+  res.json(newU);
 });
 
 router.post('/wishlistApi', async (req, res) => {

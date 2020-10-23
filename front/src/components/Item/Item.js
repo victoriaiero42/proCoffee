@@ -56,6 +56,7 @@ export default function RecipeReviewCard({ id }) {
   const {
     title, image, description, process, region, av, raiting,
   } = useSelector((state) => state.top.top.find((x) => x._id === id));
+  console.log(av, raiting);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
