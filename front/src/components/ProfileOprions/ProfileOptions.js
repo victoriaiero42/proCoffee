@@ -1,17 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-// import Collapse from '@material-ui/core/Collapse';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import DraftsIcon from '@material-ui/icons/Drafts';
-// import SendIcon from '@material-ui/icons/Send';
-// import ExpandLess from '@material-ui/icons/ExpandLess';
-// import ExpandMore from '@material-ui/icons/ExpandMore';
-// import StarBorder from '@material-ui/icons/StarBorder';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import StarRateIcon from '@material-ui/icons/StarRate';
@@ -20,8 +12,6 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // width: '100%',
-    // maxWidth: 360,
     backgroundColor: '#d7d0c3',
     margin: '25px auto',
     borderRadius: '25px'
@@ -37,10 +27,6 @@ const useStyles = makeStyles((theme) => ({
 export default function NestedList() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-
-  // const handleClick = () => {
-  //   setOpen(!open);
-  // };
 
   return (
     <Paper className={classes.paper}>
@@ -66,7 +52,6 @@ export default function NestedList() {
             <FreeBreakfastIcon />
           </ListItemIcon>
           <ListItemText primary="Список желаний" />
-          {/* {open ? <ExpandLess /> : <ExpandMore />} */}
         </ListItem>
       </List>
     </Paper>

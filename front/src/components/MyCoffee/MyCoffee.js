@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
 import Item from '../Item/Item';
 import FavTitle from '../FavTitle/FavTitle'
+import Rtitle from '../rTitle/rTitle'
 
 
 function CoffeeList() {
@@ -19,7 +20,7 @@ function CoffeeList() {
 
   return (
     <>
-      <FavTitle />
+      <Rtitle />
       {user ? user.map((el) => {
         return <Item key={el._id} id={el._id} />
       }) : null}
