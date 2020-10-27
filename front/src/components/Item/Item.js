@@ -56,7 +56,7 @@ export default function RecipeReviewCard({ id }) {
   const {
     title, image, description, process, region, av, raiting,
   } = useSelector((state) => state.top.top.find((x) => x._id === id));
-  console.log(av, raiting);
+  // console.log(av, raiting);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -74,11 +74,12 @@ export default function RecipeReviewCard({ id }) {
         id,
       }),
     });
-
-    const resave = await fetch('/user');
-    const res1 = await resave.json();
-    console.log(res1, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    dispatch(startRewriteUser(res1));
+    const userResp = await response.json();
+    console.log(userResp);
+    // const resave = await fetch('/user');
+    // const res1 = await resave.json();
+    // console.log(res1, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    dispatch(startRewriteUser(userResp));
     dispatch(startCoffeeItemsSaga())
   };
 
@@ -95,6 +96,7 @@ export default function RecipeReviewCard({ id }) {
     const resave = await fetch('/user');
     const res1 = await resave.json();
     console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
+    dispatch(startCoffeeItemsSaga())
     dispatch(startRewriteUser(res1));
   };
 
@@ -125,7 +127,7 @@ export default function RecipeReviewCard({ id }) {
             onClick={() => {
               handleClick();
               // setUndone((state) => !state);
-              console.log('g');
+              // console.log('g');
             }}
             className={` ${like ? classes.undone : ""}`}
           />

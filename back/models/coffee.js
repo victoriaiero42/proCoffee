@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const coffeeSchema = new mongoose.Schema({
   title: {
@@ -40,6 +40,14 @@ const coffeeSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  userLiked: {
+    type: Array,
+    default: [],
+  },
+  //  {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'User',
+  // },
 });
 
 export default mongoose.model('Coffee', coffeeSchema);

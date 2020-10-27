@@ -21,15 +21,17 @@ router.get('/topApi', async (req, res) => {
 router.post('/favoriteApi', async (req, res) => {
   const { id } = req.body;
   const userID = req.session.user._id;
-  // console.log(userID, id);
+  // // console.log(userID, id);
   const itemToAdd = await Coffee.findById(id);
-  itemToAdd.like = !itemToAdd.like;
-  await itemToAdd.save();
-  console.log(itemToAdd);
-  const user = await User.findById(userID);
-  user.favorites.push(itemToAdd);
-  await user.save();
-  res.status(200).json(id);
+  itemToAdd.userLiked.push(userID);
+  // itemToAdd.like = !itemToAdd.like;
+  // await itemToAdd.save();
+  // console.log(itemToAdd);
+  // const user = await User.findById(userID);
+  // user.favorites.push(itemToAdd);
+  // await user.save();
+
+  res.status(200);
 });
 
 router.post('/raiting', async (req, res) => {
