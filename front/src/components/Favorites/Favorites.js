@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 // import { makeStyles } from '@material-ui/core/styles';
 // import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
@@ -18,7 +18,6 @@ function CoffeeList() {
     if (el.userLiked.includes(user)) {
       fav.push(el)
     }
-
   })
   console.log(fav);
   // useEffect(() => {
@@ -39,4 +38,4 @@ function CoffeeList() {
   )
 }
 
-export default CoffeeList
+export default memo(CoffeeList)

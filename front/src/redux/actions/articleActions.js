@@ -1,5 +1,5 @@
 import {
-  START_ARTICLES, LOADING_ARTICLES, ERROR_ARTICLES, SET_ARTICLES,
+  START_ARTICLES, SET_ARTICLES,
 } from '../actionTypes';
 
 export function startArticlesSaga(payload) {

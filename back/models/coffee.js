@@ -44,10 +44,10 @@ const coffeeSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-  //  {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  // },
+  wishlist: {
+    type: Array,
+    default: [],
+  },
 });
 
 export default mongoose.model('Coffee', coffeeSchema);

@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
-import CenteredGrid from '../ArticleTitle/ArticleTitles';
+// import CenteredGrid from '../ArticleTitle/ArticleTitles';
 
 
 const useStyles = makeStyles({
