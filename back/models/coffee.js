@@ -36,10 +36,10 @@ const coffeeSchema = new mongoose.Schema({
     default: [],
   },
   av: Number,
-  like: {
-    type: Boolean,
-    default: false,
-  },
+  // like: {
+  //   type: Boolean,
+  //   default: false,
+  // },
   userLiked: {
     type: Array,
     default: [],

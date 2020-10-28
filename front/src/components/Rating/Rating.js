@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { startRatingSaga } from '../../redux/actions/ratingActions';
 import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
 import { startRewriteUser } from '../../redux/actions/authActions';
+import { setChangeStatus } from '../../redux/actions/allItemsActions';
 
 function Raiting({ id }) {
   const [rating, setRaiting] = useState('');
@@ -25,13 +26,13 @@ function Raiting({ id }) {
     });
     const rate = await response.json()
     console.log(rate);
-    dispatch(startCoffeeItemsSaga())
-    const resave1 = await fetch('/user');
-    const res11 = await resave1.json();
-    console.log(123);
+    dispatch(setChangeStatus(rate))
+    // const resave1 = await fetch('/user');
+    // const res11 = await resave1.json();
+    // console.log(123);
 
-    console.log(res11, 'tut');
-    dispatch(startRewriteUser(res11))
+    // console.log(res11, 'tut');
+    // dispatch(startRewriteUser(res11))
 
 
   }

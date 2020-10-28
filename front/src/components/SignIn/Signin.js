@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -44,11 +44,15 @@ export default function SignIn() {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
   const classes = useStyles();
-
+  // const user = useSelector((state) => state.auth)
   async function handleClick(e) {
     e.preventDefault();
-    history.push('/top');
     dispatch(startLoginSaga(formData));
+    // if (user.id.id) {
+    //   history.push('/top');
+    // }
+
+    history.push('/guides');
   }
 
   const handleChange = (e) => {
