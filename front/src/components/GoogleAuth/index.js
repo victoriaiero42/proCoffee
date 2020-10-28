@@ -7,7 +7,7 @@ import './style.css';
 function GoogleAuth() {
 
   async function handleClick() {
-    window.open('http://localhost:3001/google', '_self');
+    window.open('/google', '_self');
   }
 
   return (
