@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-// import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-// import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import Raiting from '../Rating/Rating';
 import { startRewriteUser } from '../../redux/actions/authActions';
-import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
+// import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
+import { setChangeStatus } from '../../redux/actions/allItemsActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,13 +47,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecipeReviewCard({ id }) {
-
+  // console.log('rerend');
+  // const flag = false;
   const dispatch = useDispatch();
-  const { like } = useSelector((state) => state.top.top.find((x) => x._id === id))
-  const {
-    title, image, description, process, region, av, raiting,
-  } = useSelector((state) => state.top.top.find((x) => x._id === id));
-  // console.log(av, raiting);
+  // const { like } = useSelector((state) => state.top.top.find((x) => x._id === id))
+  // {
+  //   title, image, description, process, region, av, raiting,
+  // }
+
+  let user = useSelector((state) => state.auth.id.id)
+  // console.log(user);
+  const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
+
+
+  // if (user) {
+  if (myconst.userLiked.includes(user)) {
+    myconst.flag = true
+  }
+  // } else {
+  //   user = 123
+  //   myconst.flag = false
+
+  // }
+
+  // console.log(myconst.flag)
+  // console.log(myconst);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -74,13 +89,11 @@ export default function RecipeReviewCard({ id }) {
         id,
       }),
     });
-    const userResp = await response.json();
-    console.log(userResp);
-    // const resave = await fetch('/user');
-    // const res1 = await resave.json();
-    // console.log(res1, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    dispatch(startRewriteUser(userResp));
-    dispatch(startCoffeeItemsSaga())
+    const Resp = await response.json();
+    console.log(Resp);
+    dispatch(setChangeStatus(Resp))
+
+    // dispatch(startCoffeeItemsSaga())
   };
 
   const addToWishList = async () => {
@@ -96,41 +109,44 @@ export default function RecipeReviewCard({ id }) {
     const resave = await fetch('/user');
     const res1 = await resave.json();
     console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
-    dispatch(startCoffeeItemsSaga())
+    // dispatch(startCoffeeItemsSaga())
+    // dispatch(setChangeStatus(res1))
     dispatch(startRewriteUser(res1));
   };
 
   return (
-    <Card className={classes.root}>
+    // {
+    //   myconst?
+    <Card className={classes.root} >
       <CardMedia
         className={classes.media}
-        image={`https://cocoffee.herokuapp.com/img/${image}`}
+        image={`https://cocoffee.herokuapp.com/img/${myconst.image}`}
         title="Paella dish"
       />
       <CardContent>
         <Typography variant="body1" component="p">
-          {title}
+          {myconst.title}
         </Typography>
         <Typography variant="body1" component="p">
-          {av}
+          {myconst.av}
         </Typography>
         <Typography style={{ color: 'gray' }} variant="body2" component="p">
           Оценки:
           {' '}
-          {raiting.length}
+          {myconst.raiting.length}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
 
-          <FavoriteIcon
+          {user !== undefined ? <FavoriteIcon
             onClick={() => {
               handleClick();
               // setUndone((state) => !state);
               // console.log('g');
             }}
-            className={` ${like ? classes.undone : ""}`}
-          />
+            className={` ${myconst.flag ? classes.undone : ""}`}
+          /> : ''}
         </IconButton>
         <IconButton>
           <FreeBreakfastIcon onClick={addToWishList} />
@@ -154,17 +170,17 @@ export default function RecipeReviewCard({ id }) {
           <Typography paragraph>
             Регион:
             {' '}
-            {region}
+            {myconst.region}
           </Typography>
           <Typography paragraph>
             Обработка:
             {' '}
-            {process}
+            {myconst.process}
           </Typography>
           <Typography paragraph>
             Описание:
             {' '}
-            {description}
+            {myconst.description}
           </Typography>
         </CardContent>
         <IconButton
@@ -178,7 +194,10 @@ export default function RecipeReviewCard({ id }) {
           <ExpandMoreIcon />
         </IconButton>
       </Collapse>
-    </Card>
+    </Card >
+    //  : 'wait'
+    // }
+    // }
   );
 }
 

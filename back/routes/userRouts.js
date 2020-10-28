@@ -23,7 +23,30 @@ router.post('/favoriteApi', async (req, res) => {
   const userID = req.session.user._id;
   // // console.log(userID, id);
   const itemToAdd = await Coffee.findById(id);
-  itemToAdd.userLiked.push(userID);
+  if (!itemToAdd.userLiked.includes(userID)) {
+    itemToAdd.userLiked.push(userID);
+    // itemToAdd.like = !itemToAdd.like;
+
+    console.log(itemToAdd.userLiked, '1if');
+  } else {
+    itemToAdd.userLiked.find((el, i) => {
+      if (el === userID) {
+        itemToAdd.userLiked.splice(i, 1);
+        // itemToAdd.like = !itemToAdd.like;
+        console.log(itemToAdd.userLiked, 'if2');
+      }
+    });
+    // console.log(itemToAdd.userLiked, 'if2', itemToAdd.like);
+  }
+
+  // console.log(itemToAdd);
+  await itemToAdd.save();
+  // console.log(itemToAdd);
+
+  // itemToAdd.like = !itemToAdd.like;
+
+  // console.log(itemToAdd);
+
   // itemToAdd.like = !itemToAdd.like;
   // await itemToAdd.save();
   // console.log(itemToAdd);
@@ -31,7 +54,7 @@ router.post('/favoriteApi', async (req, res) => {
   // user.favorites.push(itemToAdd);
   // await user.save();
 
-  res.status(200);
+  res.status(200).json(itemToAdd);
 });
 
 router.post('/raiting', async (req, res) => {
@@ -48,14 +71,12 @@ router.post('/raiting', async (req, res) => {
   item.av = sr.toFixed(1);
   await item.save();
   await newU.save();
-  res.status(200).json(newU);
+  res.status(200).json(item);
 });
 
 router.get('/user', async (req, res) => {
   const curUser = req.session.user;
-  console.log(curUser, '/////////////////');
   const newU = await User.findById(curUser._id);
-  // console.log(newU);
   res.json(newU);
 });
 
@@ -66,7 +87,7 @@ router.post('/wishlistApi', async (req, res) => {
   const item = await Coffee.findById(id);
   newU2.wishlist.push(item);
   await newU2.save();
-  res.status(200).json({ res: 'ok' });
+  res.status(200).json(newU2);
 });
 
 export default router;

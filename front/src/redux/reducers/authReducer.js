@@ -2,7 +2,7 @@ import {
   AUTHENTICATE, LOGOUT, LOGIN, AUTHENTICATE_GOOGLE, REWRITE_USER
 } from '../actionTypes';
 
-const initialState = null;
+const initialState = '';
 
 export default function authReducer(state = initialState, {
   type, payload,
