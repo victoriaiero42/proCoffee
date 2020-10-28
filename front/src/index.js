@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
 import App from './components/App';
 import './index.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
+import history from './history';
 import store from './redux/store';
 
 
@@ -25,12 +26,13 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
+      <Router history={history}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </Router>
     </Provider>
   </React.StrictMode >,
   document.getElementById('root'),
