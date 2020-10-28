@@ -21,7 +21,8 @@ import { useSelector } from 'react-redux';
 import Home from '../Home/Home'
 import Favorites from '../Favorites/Favorites';
 import MyCoffee from '../MyCoffee/MyCoffee';
-import Wishlist from '../WishList/Wishlist'
+import Wishlist from '../WishList/Wishlist';
+import PrivetIsGoogla from '../PrivetIsGoogla';
 // import NewAuth 
 
 function App() {
@@ -40,6 +41,10 @@ function App() {
           </Route>
           <Route exact path="/favorites">
             <Favorites />
+            {/* <OneGuide /> */}
+          </Route>
+          <Route exact path="/privetIzGoogla">
+            <PrivetIsGoogla />
             {/* <OneGuide /> */}
           </Route>
           <Route exact path="/wishlist">

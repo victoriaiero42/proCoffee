@@ -2,6 +2,7 @@
 import express from 'express';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import passport from 'passport';
 
@@ -10,6 +11,7 @@ import './misc/db.js';
 import './passportJs/passport-setup.js';
 
 import authRouter from './routes/authRouter.js';
+// import googleAuthRoutes from './routes/googleAuthRouter.js';
 import readTextRouter from './routes/readRouter.js';
 import userRouter from './routes/userRouts.js';
 import searchRouter from './routes/searchRouter.js';
@@ -27,6 +29,7 @@ app.use(express.static('public'));
 app.use(express.static(path.resolve('../front/build/')));
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(session({
   name: app.get('session cookie name'),
@@ -42,23 +45,32 @@ app.use(session({
 }));
 
 app.use(authRouter);
+// app.use(googleAuthRoutes);
 app.use(readTextRouter);
 app.use(searchRouter);
 app.use(userRouter);
 app.use(restoreRouter);
 
 app.use((req, res, next) => {
+  // console.log(req.session.user);
   next();
 });
 
 app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get('/failedGoogle', (req, res) => {
-  res.json({ massege: 'You are failed to login with google.' });
-});
+app.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
+  (req, res) => {
+    if (req.user) {
+      req.session.user = req.user;
+      // console.log(req.session.user);
+    }
+    res.redirect('/privetIzGoogla');
+  });
 
-app.get('/goodGoogle', (req, res) => {
+app.get('/api/goodGoogle', (req, res) => {
+  console.log(req.session.user, 'апи гугл, бэк');
   res.json({
     id: req.session.user._id,
     login: req.session.user.username,
@@ -69,28 +81,6 @@ app.get('/goodGoogle', (req, res) => {
     wishlist: req.session.user.wishlist,
   });
 });
-
-app.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/failedGoogle' }),
-  (req, res) => {
-    if (req.user) {
-      req.session.user = req.user;
-    }
-    console.log('гугл колбэк');
-    res.redirect('/');
-  });
-
-app.get('/googleLogout', async (req, res) => {
-  if (req.session.user) {
-    await req.session.destroy();
-    req.logout();
-    res.clearCookie('user_sid');
-    return res.json('разлогинился ok');
-  }
-  return res.json('разлогинился ne ok');
-});
-
-app.use(authRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('../front/build/index.html'));

@@ -1,18 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
-import { useDispatch } from 'react-redux';
-
-import { startGoogleAuthenticateSaga } from '../../redux/actions/authActions';
 
 import './style.css';
 
 function GoogleAuth() {
-  const dispatch = useDispatch();
 
   async function handleClick() {
-    window.open('/google');
-    dispatch(startGoogleAuthenticateSaga());
+    window.open('http://localhost:3001/google', '_self');
   }
 
   return (
