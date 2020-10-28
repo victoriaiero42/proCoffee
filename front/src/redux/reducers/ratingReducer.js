@@ -1,4 +1,4 @@
-import { SET_RATING, CHANGE_RATING } from '../actionTypes';
+import { SET_RATING } from '../actionTypes';
 
 export default function ratingReducer(state = '', action) {
   // console.log(action);

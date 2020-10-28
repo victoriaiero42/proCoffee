@@ -1,15 +1,26 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, memo } from 'react'
 import { FaStar } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 // import { startRatingSaga } from '../../redux/actions/ratingActions';
-import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
-import { startRewriteUser } from '../../redux/actions/authActions';
+// import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
+// import { startRewriteUser } from '../../redux/actions/authActions';
 import { setChangeStatus } from '../../redux/actions/allItemsActions';
 
 function Raiting({ id }) {
   const [rating, setRaiting] = useState('');
+  let able = false;
   const dispatch = useDispatch()
   const [input] = useState({ id, rating });
+
+  let user = useSelector((state) => state.auth.id.id);
+  const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
+
+  myconst.raiting.map((el) => {
+    if (el.userID === user) {
+      able = !able
+    }
+
+  })
 
   async function handleRaiting(e) {
     const numrate = Number(rating);
@@ -28,7 +39,7 @@ function Raiting({ id }) {
     console.log(rate);
     dispatch(setChangeStatus(rate))
     // const resave1 = await fetch('/user');
-    // const res11 = await resave1.json();
+    // const res11 = await resave1.json(); 
     // console.log(123);
 
     // console.log(res11, 'tut');
@@ -52,7 +63,7 @@ function Raiting({ id }) {
 
         return (
           <label>
-            <input type='radio' name='rating' value={raitingValue} onClick={(e) => { handleRaiting(e) }} />
+            <input type='radio' name='rating' value={raitingValue} onClick={(e) => { handleRaiting(e) }} disabled={able} />
             <FaStar style={{ marginLeft: '10px' }} className='star' color={raitingValue <= rating ? 'gray' : 'darkgray'} />
           </label>)
       })}

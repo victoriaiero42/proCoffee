@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -14,7 +14,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import Raiting from '../Rating/Rating';
-import { startRewriteUser } from '../../redux/actions/authActions';
+// import { startRewriteUser } from '../../redux/actions/authActions';
 // import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
 import { setChangeStatus } from '../../redux/actions/allItemsActions';
 
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function RecipeReviewCard({ id }) {
+function RecipeReviewCard({ id }) {
   // console.log('rerend');
   // const flag = false;
   const dispatch = useDispatch();
@@ -58,7 +58,7 @@ export default function RecipeReviewCard({ id }) {
   let user = useSelector((state) => state.auth.id.id)
   // console.log(user);
   const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
-
+  console.log(myconst);
 
   // if (user) {
   if (myconst.userLiked.includes(user)) {
@@ -111,7 +111,7 @@ export default function RecipeReviewCard({ id }) {
     console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
     // dispatch(startCoffeeItemsSaga())
     // dispatch(setChangeStatus(res1))
-    dispatch(startRewriteUser(res1));
+    // dispatch(startRewriteUser(res1));
   };
 
   return (
@@ -201,3 +201,4 @@ export default function RecipeReviewCard({ id }) {
   );
 }
 
+export default memo(RecipeReviewCard)
