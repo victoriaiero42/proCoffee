@@ -9,9 +9,23 @@ function GuideList() {
   const dispatch = useDispatch();
 
   const articles = useSelector((state) => state.articles.articles);
-  useEffect(() => {
-    dispatch(startArticlesSaga());
-  }, [dispatch]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     dispatch(startArticlesSaga());
+
+  //   };
+
+  //   fetchData();
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(startArticlesSaga());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(startGoogleAuthenticateSaga());
+  // }, [dispatch]);
 
   return (
     <>
