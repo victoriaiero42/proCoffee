@@ -39,9 +39,6 @@ function Authorization() {
   console.log(user);
   const history = useHistory();
 
-  if (user) {
-    history.push('/top');
-  }
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({});
 
