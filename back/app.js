@@ -67,7 +67,7 @@ app.use(restoreRouter);
 app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app..get('/google/callback',
+app.get('/google/callback',
 passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
 (req, res) => {
   if (req.user) {
