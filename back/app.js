@@ -29,12 +29,12 @@ app.use(passport.session());
 app.use(express.static('public'));
 app.use(express.static(path.resolve('../front/build/')));
 
-const corsOptions = {
-  origin: 'https://cocoffee.herokuapp.com/privetIzGoogla',
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: 'https://cocoffee.herokuapp.com/privetIzGoogla',
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());
