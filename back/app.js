@@ -32,8 +32,9 @@ app.use(express.static(path.resolve('../front/build/')));
 const corsOptions = {
   origin: 'https://cocoffee.herokuapp.com/privetIzGoogla',
   credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -76,7 +77,7 @@ app.get('/google/callback',
     res.redirect('/privetIzGoogla');
   });
 
-app.get('/api/goodGoogle', cors(corsOptions), (req, res) => {
+app.get('/api/goodGoogle', (req, res) => {
   console.log(req.session.user, 'апи гугл, бэк');
   res.json({
     id: req.session.user._id,
