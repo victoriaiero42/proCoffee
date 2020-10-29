@@ -12,7 +12,7 @@ import './misc/db.js';
 import './passportJs/passport-setup.js';
 
 import authRouter from './routes/authRouter.js';
-import googleAuthRoutes from './routes/googleAuthRouter.js';
+// import googleAuthRoutes from './routes/googleAuthRouter.js';
 import readTextRouter from './routes/readRouter.js';
 import userRouter from './routes/userRouts.js';
 import searchRouter from './routes/searchRouter.js';
@@ -53,44 +53,46 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-  // console.log(req.session.user);
+  console.log(req.session.user);
   next();
 });
 
 app.use(authRouter);
-app.use(googleAuthRoutes);
+// app.use(googleAuthRoutes);
 app.use(readTextRouter);
 app.use(searchRouter);
 app.use(userRouter);
 app.use(restoreRouter);
 
-// app.get('/google',
-//   passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-// app.get('/google/callback',
-//   passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
-//   (req, res) => {
-//     if (req.user) {
-//       req.session.user = req.user;
-//       res.locals.user = req.user;
-//       // console.log(req.session.user);
-//     }
-//     res.redirect('http://localhost:3000/privetIzGoogla');
-//   });
+app.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
+  (req, res) => {
+    if (req.user) {
+      req.session.user = req.user;
+      res.locals.user = req.user;
+      // console.log(req.session.user);
+    }
+    res.redirect('http://localhost:3000/privetIzGoogla');
+  });
 
-// app.get('/api/goodGoogle', (req, res) => {
-//   console.log(req.session.user, 'апи гугл, бэк');
-//   // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
-//   res.json({
-//     id: req.session.user._id,
-//     login: req.session.user.username,
-//     email: req.session.user.email,
-//     status: 'ok',
-//     favorites: req.session.user.favorites,
-//     raited: req.session.user.raited,
-//     wishlist: req.session.user.wishlist,
-//   });
-// });
+app.get('/api/goodGoogle', (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
+  res.set('Access-Control-Allow-Credentials', 'true');
+  console.log(req.session.user, 'апи гугл, бэк');
+  // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
+  res.json({
+    id: req.session.user._id,
+    login: req.session.user.username,
+    email: req.session.user.email,
+    status: 'ok',
+    favorites: req.session.user.favorites,
+    raited: req.session.user.raited,
+    wishlist: req.session.user.wishlist,
+  });
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('../front/build/index.html'));
