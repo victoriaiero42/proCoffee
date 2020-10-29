@@ -79,8 +79,8 @@ passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' 
 });
 
 app.get('/api/goodGoogle', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
-  res.set('Access-Control-Allow-Credentials', 'true');
+  // res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
+  // res.set('Access-Control-Allow-Credentials', 'true');
   console.log(req.session.user, 'апи гугл, бэк');
   // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
   res.json({
