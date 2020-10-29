@@ -78,15 +78,15 @@ app.get('/google/callback',
   });
 
 app.get('/api/goodGoogle', (req, res) => {
-  console.log(req.session.user, 'апи гугл, бэк');
+  console.log(req.user, 'апи гугл, бэк');
   res.json({
-    id: req.session.user._id,
-    login: req.session.user.username,
-    email: req.session.user.email,
+    // id: req.user._id,
+    // login: req.user.username,
+    // email: req.user.email,
     status: 'ok',
-    favorites: req.session.user.favorites,
-    raited: req.session.user.raited,
-    wishlist: req.session.user.wishlist,
+    // favorites: req.user.favorites,
+    // raited: req.user.raited,
+    // wishlist: req.user.wishlist,
   });
 });
 
