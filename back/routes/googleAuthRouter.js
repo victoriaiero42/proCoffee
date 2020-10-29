@@ -11,7 +11,7 @@ router.get('/google/callback',
   (req, res) => {
     if (req.user) {
       req.session.user = req.user;
-      res.locals.user = req.user;
+      // res.locals.user = req.user;
       console.log(req.session.user, 'гугль кольбэк!');
     }
     res.redirect('/read');
