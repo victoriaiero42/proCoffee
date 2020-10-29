@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 // import { Provider } from 'react-redux';
+import history from '../../history';
 import Menu from '../Menu/Menu';
 // import DragAndDrop from '../DragAndDrop';
 import Panel from '../Panel';
