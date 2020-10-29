@@ -4,6 +4,7 @@ import session from 'express-session';
 import sessionFileStore from 'session-file-store';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import cors from 'cors';
 import passport from 'passport';
 
 import './misc/env.js';
@@ -29,6 +30,7 @@ app.use(express.static('public'));
 app.use(express.static(path.resolve('../front/build/')));
 
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
 
 app.use(session({
