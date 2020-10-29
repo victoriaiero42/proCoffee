@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 // import { Provider } from 'react-redux';
-import history from '../../history';
 import Menu from '../Menu/Menu';
 // import DragAndDrop from '../DragAndDrop';
 import Panel from '../Panel';
@@ -23,7 +22,6 @@ import Home from '../Home/Home'
 import Favorites from '../Favorites/Favorites';
 import MyCoffee from '../MyCoffee/MyCoffee';
 import Wishlist from '../WishList/Wishlist';
-import PrivetIsGoogla from '../PrivetIsGoogla';
 // import NewAuth 
 
 function App() {
@@ -42,10 +40,6 @@ function App() {
           </Route>
           <Route exact path="/favorites">
             <Favorites />
-            {/* <OneGuide /> */}
-          </Route>
-          <Route exact path="/privetIzGoogla">
-            <PrivetIsGoogla />
             {/* <OneGuide /> */}
           </Route>
           <Route exact path="/wishlist">

@@ -1,9 +1,12 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { startArticlesSaga } from '../../redux/actions/articleActions';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -19,7 +22,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CenteredGrid() {
+  const dispatch = useDispatch();
   const classes = useStyles();
+
+  useEffect(() => {
+    const fetchData = () => {
+      dispatch(startArticlesSaga());
+    };
+    fetchData();
+  }, [dispatch]);
 
   return (
     <div className={classes.root}>

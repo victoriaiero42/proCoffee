@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { createWorker } from 'tesseract.js';
 import { Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +11,8 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import { startGoogleAuthenticateSaga } from '../../redux/actions/authActions';
 
 const useStyles = makeStyles((theme) => ({
   roots: {
@@ -43,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ReadText() {
+  const dispatch = useDispatch();
   const [resultFetch, setResultFetch] = useState('');
   const [loading, setLoading] = useState(false);
   const classes = useStyles();
@@ -51,9 +55,17 @@ export default function ReadText() {
     logger: (data) => console.log(data),
   });
 
+  // useEffect(() => {
+  //   setLoading((state) => !state);
+  // }, [resultFetch]);
+
   useEffect(() => {
-    setLoading((state) => !state);
-  }, [resultFetch]);
+    const fetchData = () => {
+      dispatch(startGoogleAuthenticateSaga());
+      setLoading((state) => !state);
+    };
+    fetchData();
+  }, [dispatch, resultFetch]);
 
   async function recognize(file, lang, worker) {
     await worker.load();

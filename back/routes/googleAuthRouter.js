@@ -12,9 +12,9 @@ router.get('/google/callback',
     if (req.user) {
       req.session.user = req.user;
       res.locals.user = req.user;
-      // console.log(req.session.user);
+      console.log(req.session.user, 'гугль кольбэк!');
     }
-    res.redirect('http://localhost:3000/privetIzGoogla');
+    res.redirect('/read');
   });
 
 router.get('/api/goodGoogle', (req, res) => {
