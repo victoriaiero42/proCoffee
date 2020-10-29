@@ -133,9 +133,7 @@ function RecipeReviewCard({ id }) {
         <IconButton>
           <FreeBreakfastIcon onClick={addToWishList} />
         </IconButton>
-        {/* <IconButton > */}
         <Raiting id={id} />
-        {/* </IconButton> */}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
