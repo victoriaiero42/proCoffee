@@ -21,6 +21,10 @@ passport.use(new GoogleStrategy({
   callbackURL: process.env.CALLBACKURL_HEROKU,
 },
 ((accessToken, refreshToken, profile, done) => {
+  console.log(profile, 'гугль стратегия в пасспорт-сетап');
   User.findOrCreate({ username: profile.displayName, email: profile._json.email, googleId: profile.id },
-    (err, user) => done(err, user));
+    (err, user) => {
+      console.log(user, 'гугль пасспорт ложим юзера');
+      done(err, user);
+    });
 })));
