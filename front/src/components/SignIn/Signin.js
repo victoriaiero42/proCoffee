@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GoogleAuth from '../GoogleAuth';
 import { startLoginSaga } from '../../redux/actions/authActions';
-import Forgot from '../Forgot';
+// import Forgot from '../Forgot';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
