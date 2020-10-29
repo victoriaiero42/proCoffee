@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 
@@ -7,13 +7,17 @@ import { startGoogleAuthenticateSaga } from '../../redux/actions/authActions';
 function PrivetIsGoogla() {
   const dispatch = useDispatch();
 
-  function handleClick() {
-    dispatch(startGoogleAuthenticateSaga());
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(startGoogleAuthenticateSaga());
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
-      <button type="button" onClick={handleClick}>Сделай меня маленькой модалкой!</button>
+      <button type="button">Сделай меня маленькой модалкой!</button>
     </>
   );
 }
