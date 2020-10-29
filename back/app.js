@@ -67,16 +67,16 @@ app.use(restoreRouter);
 app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-app.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
-  (req, res) => {
-    if (req.user) {
-      req.session.user = req.user;
-      res.locals.user = req.user;
-      // console.log(req.session.user);
-    }
-    res.redirect('http://localhost:3000/privetIzGoogla');
-  });
+app..get('/google/callback',
+passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
+(req, res) => {
+  if (req.user) {
+    req.session.user = req.user;
+    // res.locals.user = req.user;
+    console.log(req.session.user, 'гугль кольбэк!');
+  }
+  res.redirect('/read');
+});
 
 app.get('/api/goodGoogle', (req, res) => {
   res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
