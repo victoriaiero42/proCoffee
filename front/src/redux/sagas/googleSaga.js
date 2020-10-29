@@ -10,7 +10,7 @@ import { authenticateGoogleUser } from '../actions/authActions';
 async function fetchGoogle() {
   console.log('фетч ту гугл начало');
   const request = await fetch('/api/goodGoogle', {
-    // credentials: 'include',
+    credentials: 'include',
   });
   console.log(request, 'запрос на бэк');
   const response = await request.json();
