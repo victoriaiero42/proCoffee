@@ -9,7 +9,7 @@ async function fetchGoogle() {
   console.log('фетч ту гугл начало');
   const request = await fetch('/api/goodGoogle', {
     method: 'GET',
-    credentials: 'include',
+    withCredentials: true,
   });
   console.log(request, 'запрос на бэк');
   const response = await request.json();
