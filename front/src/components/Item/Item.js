@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -88,9 +88,9 @@ function RecipeReviewCard({ id }) {
         id,
       }),
     });
-    const resave = await fetch('/user');
-    const res1 = await resave.json();
-    console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
+    // const resave = await fetch('/user');
+    // const res1 = await resave.json();
+    // console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
     // dispatch(startCoffeeItemsSaga())
     // dispatch(setChangeStatus(res1))
     // dispatch(startRewriteUser(res1));

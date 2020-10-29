@@ -25,7 +25,7 @@ import Wishlist from '../WishList/Wishlist'
 // import NewAuth 
 
 function App() {
-  const user = useSelector((state) => state.auth);
+  // const user = useSelector((state) => state.auth);
   return (
     <div className="App">
       <>

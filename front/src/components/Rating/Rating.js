@@ -12,18 +12,20 @@ function Raiting({ id }) {
   const dispatch = useDispatch()
   const [input] = useState({ id, rating });
 
-  let user = useSelector((state) => state.auth.id.id);
+  let user = useSelector((state) => state.auth);
   const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
 
-  myconst.raiting.map((el) => {
-    if (el.userID === user) {
-      able = !able
-    }
+  if (user && myconst) {
+    myconst.raiting.map((el) => {
+      if (el.userID === user.id.id) {
+        able = !able
+      }
 
-  })
+    })
+  }
+
 
   async function handleRaiting(e) {
-    const numrate = Number(rating);
     setRaiting(e.target.value)
     const response = await fetch("/raiting", {
       method: "POST",

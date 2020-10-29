@@ -5,7 +5,7 @@ import { setRatingSaga } from '../actions/ratingActions';
 async function fetchItems(payload) {
   console.log(payload);
 
-  const { rating, id } = payload;
+  const { rating } = payload;
   const numrate = Number(rating);
   console.log(numrate);
 
