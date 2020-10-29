@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -47,31 +47,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function RecipeReviewCard({ id }) {
-  // console.log('rerend');
-  // const flag = false;
   const dispatch = useDispatch();
-  // const { like } = useSelector((state) => state.top.top.find((x) => x._id === id))
-  // {
-  //   title, image, description, process, region, av, raiting,
-  // }
-
-  let user = useSelector((state) => state.auth.id.id)
-  // console.log(user);
+  const user = useSelector((state) => state.auth)
   const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
-  console.log(myconst);
 
-  // if (user) {
-  if (myconst.userLiked.includes(user)) {
+  if (user && myconst.userLiked.includes(user.id.id)) {
     myconst.flag = true
   }
-  // } else {
-  //   user = 123
-  //   myconst.flag = false
-
-  // }
-
-  // console.log(myconst.flag)
-  // console.log(myconst);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

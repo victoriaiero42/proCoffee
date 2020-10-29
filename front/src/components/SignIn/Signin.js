@@ -52,7 +52,7 @@ export default function SignIn() {
     //   history.push('/top');
     // }
 
-    history.push('/guides');
+    history.push('/top');
   }
 
   const handleChange = (e) => {

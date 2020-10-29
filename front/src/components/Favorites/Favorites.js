@@ -11,10 +11,10 @@ function CoffeeList() {
 
   const user = useSelector((state) => state.auth.id.id)
   const userF = useSelector((state) => state.top.top)
-  console.log(user);
+  // console.log(user);
   // console.log(userF);
   const fav = [];
-  userF.map((el) => {
+  userF && userF.map((el) => {
     if (el.userLiked.includes(user)) {
       fav.push(el)
     }
