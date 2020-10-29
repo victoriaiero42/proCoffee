@@ -10,7 +10,7 @@ function Home() {
   if (!user) {
     history.push('/signin');
   } else {
-    history.push('/guides');
+    history.push('/top');
   }
   return (
     <div style={{ display: 'none' }}>home</div>
