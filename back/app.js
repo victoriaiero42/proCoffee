@@ -2,7 +2,7 @@
 import express from 'express';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
-// import cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
 import path from 'path';
 import cors from 'cors';
 import passport from 'passport';
@@ -37,7 +37,7 @@ app.use(express.static(path.resolve('../front/build/')));
 // app.use(cors(corsOptions));
 
 app.use(express.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 
 app.use(session({
   name: app.get('session cookie name'),
@@ -53,7 +53,7 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-  console.log(req.session.user);
+  console.log(req.session.user, 'пользователь в сессии');
   next();
 });
 
@@ -68,19 +68,18 @@ app.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/google/callback',
-passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
-(req, res) => {
-  if (req.user) {
-    req.session.user = req.user;
-    // res.locals.user = req.user;
-    console.log(req.session.user, 'гугль кольбэк!');
-  }
-  res.redirect('/read');
-});
+  passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
+  (req, res) => {
+    if (req.user) {
+      req.session.user = req.user;
+      console.log(req.session.user, 'гугль кольбэк!');
+    }
+    res.redirect('/read');
+  });
 
 app.get('/api/goodGoogle', (req, res) => {
-  // res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
-  // res.set('Access-Control-Allow-Credentials', 'true');
+  res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
+  res.set('Access-Control-Allow-Credentials', 'true');
   console.log(req.session.user, 'апи гугл, бэк');
   // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
   res.json({
