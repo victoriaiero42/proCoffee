@@ -13,6 +13,7 @@ function Raiting({ id }) {
   const [input] = useState({ id, rating });
 
   let user = useSelector((state) => state.auth);
+  // console.log(!!user);
   const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
 
   if (user && myconst) {
@@ -22,6 +23,8 @@ function Raiting({ id }) {
       }
 
     })
+  } else if (!!user === false) {
+    able = !able
   }
 
 
@@ -38,7 +41,7 @@ function Raiting({ id }) {
       })
     });
     const rate = await response.json()
-    console.log(rate);
+    // console.log(rate);
     dispatch(setChangeStatus(rate))
     // const resave1 = await fetch('/user');
     // const res11 = await resave1.json(); 

@@ -39,8 +39,8 @@ function App() {
             <OneGuide />
           </Route>
           <Route exact path="/favorites">
-            <Favorites />
-            {/* <OneGuide /> */}
+            {/* <Favorites /> */}
+            <ListItem />
           </Route>
           <Route exact path="/wishlist">
             <Wishlist />
