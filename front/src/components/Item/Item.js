@@ -72,7 +72,7 @@ function RecipeReviewCard({ id }) {
       }),
     });
     const Resp = await response.json();
-    console.log(Resp);
+    // console.log(Resp);
     dispatch(setChangeStatus(Resp))
 
     // dispatch(startCoffeeItemsSaga())
@@ -88,6 +88,8 @@ function RecipeReviewCard({ id }) {
         id,
       }),
     });
+    const resp = response.json()
+    dispatch(setChangeStatus(resp))
     // const resave = await fetch('/user');
     // const res1 = await resave.json();
     // console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
@@ -97,8 +99,6 @@ function RecipeReviewCard({ id }) {
   };
 
   return (
-    // {
-    //   myconst?
     <Card className={classes.root} >
       <CardMedia
         className={classes.media}
@@ -121,7 +121,7 @@ function RecipeReviewCard({ id }) {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
 
-          {user !== undefined ? <FavoriteIcon
+          {user && user !== undefined ? <FavoriteIcon
             onClick={() => {
               handleClick();
               // setUndone((state) => !state);
@@ -131,7 +131,7 @@ function RecipeReviewCard({ id }) {
           /> : ''}
         </IconButton>
         <IconButton>
-          <FreeBreakfastIcon onClick={addToWishList} />
+          {user && user !== undefined ? <FreeBreakfastIcon onClick={addToWishList} /> : ''}
         </IconButton>
         <Raiting id={id} />
         <IconButton
@@ -175,9 +175,6 @@ function RecipeReviewCard({ id }) {
         </IconButton>
       </Collapse>
     </Card >
-    //  : 'wait'
-    // }
-    // }
   );
 }
 

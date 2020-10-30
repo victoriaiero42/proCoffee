@@ -20,15 +20,14 @@ router.get('/topApi', async (req, res) => {
 router.post('/favoriteApi', async (req, res) => {
   const { id } = req.body;
   const userID = req.session.user._id;
+  console.log(userID);
   const itemToAdd = await Coffee.findById(id);
   if (!itemToAdd.userLiked.includes(userID)) {
     itemToAdd.userLiked.push(userID);
-    console.log(itemToAdd.userLiked, '1if');
   } else {
     itemToAdd.userLiked.find((el, i) => {
       if (el === userID) {
         itemToAdd.userLiked.splice(i, 1);
-        console.log(itemToAdd.userLiked, 'if2');
       }
     });
   }
@@ -61,12 +60,19 @@ router.get('/user', async (req, res) => {
 
 router.post('/wishlistApi', async (req, res) => {
   const { id } = req.body;
-  const curUser = req.session.user;
-  const newU2 = await User.findById(curUser._id);
+  const userid = req.session.user._id;
   const item = await Coffee.findById(id);
-  newU2.wishlist.push(item);
-  await newU2.save();
-  res.status(200).json(newU2);
+  if (!item.wishlist.includes(userid)) {
+    item.wishlist.push(userid);
+  } else {
+    item.wishlist.map((el, i) => {
+      if (el === userid) {
+        item.wishlist.splice(i, 1);
+      }
+    });
+  }
+  await item.save();
+  res.status(200).json(item);
 });
 
 export default router;
