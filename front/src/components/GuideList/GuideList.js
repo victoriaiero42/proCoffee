@@ -19,9 +19,9 @@ function GuideList() {
   //   fetchData();
   // }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(startArticlesSaga());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(startArticlesSaga());
+  }, [dispatch]);
 
   // useEffect(() => {
   //   dispatch(startGoogleAuthenticateSaga());
