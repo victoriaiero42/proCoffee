@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setChangeStatus } from '../../redux/actions/allItemsActions';
 
 function Raiting({ id }) {
+  const dispatch = useDispatch();
   const [rating, setRaiting] = useState('');
   let able = false;
-  const dispatch = useDispatch();
   const [input] = useState({ id, rating });
 
   const user = useSelector((state) => state.auth);
-  const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
+  const myconst = useSelector((state) => state.top && state.top.top.find((x) => x._id === id));
 
   if (user && myconst) {
     myconst.raiting.map((el) => {
