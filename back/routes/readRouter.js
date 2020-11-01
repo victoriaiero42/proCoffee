@@ -10,7 +10,7 @@ router.post('/readText', async (req, res) => {
   const newText = splitText.split('\n');
   const newArray = [];
   const base = await Coffee.find();
-  const newBase = base.map((el) => {
+  base.map((el) => {
     newText.map((elem) => {
       if (elem.includes(el.uniq)) {
         newArray.push(el);

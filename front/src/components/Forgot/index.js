@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -20,12 +20,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Forgot() {
   const history = useHistory();
+  const [targetText, setTargetText] = useState('');
 
   async function allText(event) {
     event.preventDefault();
-    const targetText = event.target.input.value;
-    console.log(targetText);
-    const resp = await fetch('/restoreApi', {
+    const resp = await fetch('http://localhost:3001/restoreApi', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -34,6 +33,7 @@ export default function Forgot() {
     });
     const response = await resp.json();
     console.log(response);
+    history.push('/signin');
   }
 
   const classes = useStyles();
@@ -48,14 +48,14 @@ export default function Forgot() {
           <Grid item xs={12}>
             <Typography variant="body2">
               <Paper className={classes.paper}>
-                <form onSubmit={allText}>
+                <form onChange={(e) => setTargetText(e.target.value)}>
                   <Input
                     name="input"
                     placeholder="Введите Вашу почту"
                     enterbutton="email"
                     size="large"
                   />
-                  <Button type="submit" onClick={redirect} style={{ margin: '8px' }}> find</Button>
+                  <Button type="button" onClick={allText} style={{ margin: '8px' }}>find</Button>
                 </form>
               </Paper>
             </Typography>

@@ -13,20 +13,14 @@ router.post('/restoreApi', async (req, res) => {
     length: process.env.LENGTH_GENERATED_PASSWORD,
     numbers: true,
   });
-
-  console.log('новый пароль', newPassword);
-
   const hashedPassword = await bcrypt.hash(newPassword, 10);
-  
-  console.log('захэшированный пароль', hashedPassword);
-
   const { targetText } = req.body;
   const restoreUser = await User.findOneAndUpdate(
     { email: targetText }, { $set: { password: hashedPassword } }, { new: true }, (err, doc) => {
       if (err) {
         console.log('Не удалось обновить пароль пользователю', err);
       }
-      console.log(doc, 'папроль пользователя успешно обновлен');
+      console.log(doc, 'пароль пользователя успешно обновлен');
     },
   );
   const mail = restoreUser.email;
@@ -43,8 +37,7 @@ router.post('/restoreApi', async (req, res) => {
     to: mail,
     subject: 'Восстановление пароля',
     text: `Здравствуйте, ${restoreUser.username}! 
-    Ваш пароль можно обновить по ссылке:...
-    Это шутка, вот ваш пароль:    ${newPassword}
+    Ваш новый пароль:    ${newPassword}
     Обновление по ссылке допилим чуть позже.
     Хорошего дня, мистер любитель хорошего кофе!`,
   };

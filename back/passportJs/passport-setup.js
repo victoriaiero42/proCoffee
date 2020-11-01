@@ -18,13 +18,15 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.CALLBACKURL_HEROKU,
+  callbackURL: process.env.CALLBACKURL,
 },
 ((accessToken, refreshToken, profile, done) => {
-  console.log(profile, 'гугль стратегия в пасспорт-сетап');
-  User.findOrCreate({ username: profile.displayName, email: profile._json.email, googleId: profile.id },
-    (err, user) => {
-      console.log(user, 'гугль пасспорт ложим юзера');
-      done(err, user);
-    });
+  User.findOrCreate({
+    username: profile.displayName,
+    email: profile._json.email,
+    googleId: profile.id,
+  },
+  (err, user) => {
+    done(err, user);
+  });
 })));
