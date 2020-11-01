@@ -3,7 +3,6 @@ import SearchPanel from '../SearchPanel';
 import SearchList from '../SearchList';
 
 export default function SearchPage(props) {
-  // console.log('>>>>>>>>>>>', props);
   const [input, setInput] = useState('');
   const [searchListDefault, setSearchListDefault] = useState();
   const [searchList, setSearchList] = useState();
@@ -16,7 +15,6 @@ export default function SearchPage(props) {
     });
 
   const updateInput = async (input) => {
-    // eslint-disable-next-line max-len
     const filtered = searchListDefault.filter((search) => search.name.toLowerCase().includes(input.toLowerCase()));
     setInput(input);
     setSearchList(filtered);

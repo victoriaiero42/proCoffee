@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux';
+
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,11 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
-import Raiting from '../Rating/Rating';
-// import { startRewriteUser } from '../../redux/actions/authActions';
-// import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
+
+import Raiting from '../Rating';
 import { setChangeStatus } from '../../redux/actions/allItemsActions';
 
 const useStyles = makeStyles((theme) => ({
@@ -43,16 +43,16 @@ const useStyles = makeStyles((theme) => ({
   },
   undone: {
     color: 'tomato',
-  }
+  },
 }));
 
 function RecipeReviewCard({ id }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth)
+  const user = useSelector((state) => state.auth);
   const myconst = useSelector((state) => state.top.top.find((x) => x._id === id));
 
   if (user && myconst.userLiked.includes(user.id.id)) {
-    myconst.flag = true
+    myconst.flag = true;
   }
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -72,14 +72,11 @@ function RecipeReviewCard({ id }) {
       }),
     });
     const Resp = await response.json();
-    // console.log(Resp);
-    dispatch(setChangeStatus(Resp))
-
-    // dispatch(startCoffeeItemsSaga())
+    dispatch(setChangeStatus(Resp));
   };
 
   const addToWishList = async () => {
-    const response = await fetch('/wishlistApi', {
+    await fetch('/wishlistApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -88,18 +85,10 @@ function RecipeReviewCard({ id }) {
         id,
       }),
     });
-    const resp = response.json()
-    dispatch(setChangeStatus(resp))
-    // const resave = await fetch('/user');
-    // const res1 = await resave.json();
-    // console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
-    // dispatch(startCoffeeItemsSaga())
-    // dispatch(setChangeStatus(res1))
-    // dispatch(startRewriteUser(res1));
   };
 
   return (
-    <Card className={classes.root} >
+    <Card className={classes.root}>
       <CardMedia
         className={classes.media}
         image={`https://cocoffee.herokuapp.com/img/${myconst.image}`}
@@ -121,14 +110,14 @@ function RecipeReviewCard({ id }) {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
 
-          {user && user !== undefined ? <FavoriteIcon
-            onClick={() => {
-              handleClick();
-              // setUndone((state) => !state);
-              // console.log('g');
-            }}
-            className={` ${myconst.flag ? classes.undone : ""}`}
-          /> : ''}
+          {user !== undefined ? (
+            <FavoriteIcon
+              onClick={() => {
+                handleClick();
+              }}
+              className={` ${myconst.flag ? classes.undone : ''}`}
+            />
+          ) : ''}
         </IconButton>
         <IconButton>
           {user && user !== undefined ? <FreeBreakfastIcon onClick={addToWishList} /> : ''}
@@ -174,8 +163,8 @@ function RecipeReviewCard({ id }) {
           <ExpandMoreIcon />
         </IconButton>
       </Collapse>
-    </Card >
+    </Card>
   );
 }
 
-export default memo(RecipeReviewCard)
+export default memo(RecipeReviewCard);

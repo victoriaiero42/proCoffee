@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { startAuthenticateUserSaga } from '../../redux/actions/authActions';
-import User from '../SignIn/Signin';
+import User from '../SignIn';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -60,7 +60,6 @@ function Authorization() {
       { user
         ? <User />
         : (
-
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>

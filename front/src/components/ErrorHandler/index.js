@@ -2,12 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Alert } from '@material-ui/lab';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
     '& > * + *': {
-      // marginTop: theme.spacing(2),
-      marginTop: "30px"
+      marginTop: '30px',
     },
   },
 }));

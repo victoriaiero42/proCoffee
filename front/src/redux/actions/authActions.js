@@ -1,5 +1,12 @@
 import {
-  AUTHENTICATE, LOGOUT, LOGIN, START_AUTH, START_GOOGLE, START_LOGIN, AUTHENTICATE_GOOGLE, START_LOGOUT, REWRITE_USER
+  AUTHENTICATE,
+  LOGOUT, LOGIN,
+  START_AUTH,
+  START_GOOGLE,
+  START_LOGIN,
+  AUTHENTICATE_GOOGLE,
+  START_LOGOUT,
+  REWRITE_USER,
 } from '../actionTypes';
 
 export function logoutUser(message) {
@@ -80,7 +87,6 @@ export function authenticateUser(id, login, email, favorites, raited, wishlist) 
     },
   };
 }
-
 
 export function startRewriteUser(id, login, email, favorites, raited, wishlist) {
   return {

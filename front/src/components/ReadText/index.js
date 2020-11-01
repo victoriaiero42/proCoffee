@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createWorker } from 'tesseract.js';
+
 import { Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -55,10 +56,6 @@ export default function ReadText() {
     logger: (data) => console.log(data),
   });
 
-  // useEffect(() => {
-  //   setLoading((state) => !state);
-  // }, [resultFetch]);
-
   useEffect(() => {
     const fetchData = () => {
       dispatch(startGoogleAuthenticateSaga());
@@ -112,7 +109,6 @@ export default function ReadText() {
       <div>
         {!loading ? (
           <div className={classes.roots}>
-
             <CircularProgress className={classes.roots} color="secondary" />
           </div>
         ) : ''}

@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -6,15 +9,13 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { useSelector } from 'react-redux';
-import CenteredGrid from '../ArticleTitle/ArticleTitles';
-import { useParams } from 'react-router-dom'
+
+import CenteredGrid from '../ArticleTitle';
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: '#d7d0c3',
     margin: '10px',
-
   },
   media: {
     height: 140,
@@ -23,8 +24,6 @@ const useStyles = makeStyles({
 
 export default function MediaCard() {
   const { id } = useParams();
-  // const articles = useSelector((state) => state.articles.articles);
-  // const actualArticle = articles.find((a) => a._id === id);
   const { title, img, body } = useSelector((state) => {
     return state.articles.articles.find((x) => x._id === id);
   });

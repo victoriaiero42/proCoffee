@@ -16,5 +16,4 @@ export const START_RATING = 'START_RATING';
 export const SET_RATING = 'SET_RATING';
 export const CHANGE_STATUS = 'CHANGE_STATUS';
 export const REWRITE_USER = 'REWRITE_USER';
-
 export const SEARCH_COFFEE = 'SEARCH_COFFEE';

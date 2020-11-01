@@ -8,7 +8,6 @@ import logoutSaga from './logoutSaga';
 import allItemsSaga from './coffeeItemsSaga';
 import ratingSaga from './ratingSaga';
 
-
 export default function* () {
   yield all([
     authSaga(),

@@ -20,7 +20,6 @@ router.get('/topApi', async (req, res) => {
 router.post('/favoriteApi', async (req, res) => {
   const { id } = req.body;
   const userID = req.session.user._id;
-  console.log(userID);
   const itemToAdd = await Coffee.findById(id);
   if (!itemToAdd.userLiked.includes(userID)) {
     itemToAdd.userLiked.push(userID);

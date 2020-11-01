@@ -4,7 +4,7 @@ import { START_LOGOUT } from '../actionTypes';
 
 import { logoutUser } from '../actions/authActions';
 
-async function fetchLogout(formData) {
+async function fetchLogout() {
   const request = await fetch('/logout');
   const response = await request.json();
   return response;

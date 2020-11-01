@@ -13,31 +13,23 @@ const theme = createMuiTheme({
       main: '#A9A9A9',
     },
     background: {
-      default: "#f4e9d7"
+      default: '#f4e9d7',
     },
     button: {
-      fontFamily: "Comic Sans",
-    }
+      fontFamily: 'Comic Sans',
+    },
   },
 });
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <Router history={history}> */}
-        <BrowserRouter>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>
-      {/* </Router> */}
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
     </Provider>
-  </React.StrictMode >,
+  </React.StrictMode>,
   document.getElementById('root'),
 );
-
-// kxzhcklgc
-// // If you want your app to work offline and load faster, you can change
-// // unregister() to register() below. Note this comes with some pitfalls.
-// // Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();

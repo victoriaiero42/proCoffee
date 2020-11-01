@@ -1,6 +1,6 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -25,7 +25,7 @@ export default function CenteredGrid() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="body2">
-            <Paper className={classes.paper}> Список желаний</Paper>
+            <Paper className={classes.paper}> Оценки</Paper>
           </Typography>
         </Grid>
       </Grid>
