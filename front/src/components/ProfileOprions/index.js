@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,25 +10,23 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import Paper from '@material-ui/core/Paper';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#d7d0c3',
     margin: '25px auto',
-    borderRadius: '25px'
+    borderRadius: '25px',
   },
   nested: {
     paddingLeft: theme.spacing(4),
   },
   paper: {
     backgroundColor: '#d7d0c3',
-  }
+  },
 }));
 
 export default function NestedList() {
   const classes = useStyles();
-  // const [open, setOpen] = React.useState(true);
 
   return (
     <Paper className={classes.paper}>

@@ -1,7 +1,6 @@
 import { SET_RATING } from '../actionTypes';
 
 export default function ratingReducer(state = '', action) {
-  // console.log(action);
 
   switch (action.type) {
     case SET_RATING:

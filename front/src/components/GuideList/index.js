@@ -1,31 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import MediaCard from '../Guides/Guides';
+
+import MediaCard from '../Guides';
 import { startArticlesSaga } from '../../redux/actions/articleActions';
-import CenteredGrid from '../ArticleTitle/ArticleTitles';
+import CenteredGrid from '../ArticleTitle';
 
 function GuideList() {
   const dispatch = useDispatch();
 
   const articles = useSelector((state) => state.articles.articles);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     dispatch(startArticlesSaga());
-
-  //   };
-
-  //   fetchData();
-  // }, [dispatch]);
-
   useEffect(() => {
     dispatch(startArticlesSaga());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(startGoogleAuthenticateSaga());
-  // }, [dispatch]);
 
   return (
     <>

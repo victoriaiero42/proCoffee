@@ -1,6 +1,6 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -10,11 +10,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
-    // marginTop: '10px',
     marginLeft: '10px',
     marginRight: '10px',
     fontSize: '1rem',
-
   },
 }));
 

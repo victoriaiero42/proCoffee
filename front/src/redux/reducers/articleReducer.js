@@ -6,8 +6,6 @@ export default function articlereducer(state = '', action) {
       return {
         ...state,
         articles: action.payload.articles,
-        // loading: false,
-        // error: '',
       };
     case LOADING_ARTICLES:
       return {

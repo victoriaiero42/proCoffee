@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -7,7 +9,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
-import { useSelector } from 'react-redux';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import BarChartIcon from '@material-ui/icons/BarChart';
 
@@ -16,8 +17,6 @@ const useStyles = makeStyles({
     width: '100%',
     position: 'fixed',
     bottom: '0px',
-    // padding: '10px 50px',
-    // backgroundColor: "#424242",
     backgroundColor: '#d7d0c3',
     boxSizing: 'content-box',
   },
@@ -26,7 +25,6 @@ const useStyles = makeStyles({
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const user = useSelector((state) => state.auth);
-  // const [value, setValue] = React.useState(0);
 
   return (
     <BottomNavigation

@@ -1,5 +1,5 @@
 import {
-  AUTHENTICATE, LOGOUT, LOGIN, AUTHENTICATE_GOOGLE, REWRITE_USER
+  AUTHENTICATE, LOGOUT, LOGIN, AUTHENTICATE_GOOGLE, REWRITE_USER,
 } from '../actionTypes';
 
 const initialState = '';
@@ -43,7 +43,7 @@ export default function authReducer(state = initialState, {
         favorites: payload.favorites,
         raited: payload.raited,
         wishlist: payload.wishlist,
-      }
+      };
     case LOGOUT:
       return null;
     default:

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { useCombobox } from 'downshift';
 import { Input } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+
 import OneCoffeeForSearch from '../OneCoffeeForSearch';
 import { searchCoffeeForUs } from '../../redux/actions/searchAction';
 
@@ -18,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     textAlign: 'center',
     backgroundColor: '#d7d0c3',
-
   },
 }));
 

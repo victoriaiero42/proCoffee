@@ -1,12 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import ProfileOptions from '../ProfileOprions/ProfileOptions';
-// import Avatar from '@material-ui/core/Avatar';
-import { useSelector } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import Logout from '../LogoutButton/index'
+
+import ProfileOptions from '../ProfileOprions';
+import Logout from '../LogoutButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CenteredGrid() {
   const classes = useStyles();
-  const user = useSelector((state) => state.auth)
+  const user = useSelector((state) => state.auth);
 
   return (
     <div className={classes.root}>
@@ -33,10 +34,15 @@ export default function CenteredGrid() {
         <Grid item xs={12}>
 
           <Paper className={classes.paper}>
-            {/* <Logout /> */}
-            {user ? <Typography variant="body1" component="p">
-              Привет, {user.id.login} ☕
-        </Typography> : ''}
+            {user ? (
+              <Typography variant="body1" component="p">
+                Привет,
+                {' '}
+                {user.id.login}
+                {' '}
+                ☕
+              </Typography>
+            ) : ''}
           </Paper>
         </Grid>
       </Grid>

@@ -1,6 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch, useSelector } from 'react-redux';
+
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,17 +13,16 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { useDispatch, useSelector } from 'react-redux';
 import FreeBreakfastIcon from '@material-ui/icons/FreeBreakfast';
-import Raiting from '../Rating/Rating';
+
 import { startRewriteUser } from '../../redux/actions/authActions';
 import { startCoffeeItemsSaga } from '../../redux/actions/allItemsActions';
+import Raiting from '../Rating';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: '10px',
     backgroundColor: '#d7d0c3',
-
   },
   media: {
     height: 0,
@@ -48,9 +49,7 @@ export default function OneCoffeeForSearch({ id }) {
   const searchArr = useSelector((state) => state.search);
 
   console.log(searchArr);
-  const picArr = searchArr.needCoffee.find((x) => {
-    return x._id === id;
-  });
+  const picArr = searchArr.needCoffee.find((x) => x._id === id);
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -60,7 +59,7 @@ export default function OneCoffeeForSearch({ id }) {
   };
 
   const handleClick = async () => {
-    const response = await fetch('/favoriteApi', {
+    await fetch('/favoriteApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,11 +73,11 @@ export default function OneCoffeeForSearch({ id }) {
     const res1 = await resave.json();
     console.log(res1);
     dispatch(startRewriteUser(res1));
-    dispatch(startCoffeeItemsSaga())
+    dispatch(startCoffeeItemsSaga());
   };
 
   const addToWishList = async () => {
-    const response = await fetch('/wishlistApi', {
+    await fetch('/wishlistApi', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,13 +88,12 @@ export default function OneCoffeeForSearch({ id }) {
     });
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    console.log(res1);
     dispatch(startRewriteUser(res1));
   };
 
   return (
-      <>
-        {
+    <>
+      {
         picArr
           ? (
             <Card className={classes.root}>
@@ -124,9 +122,7 @@ export default function OneCoffeeForSearch({ id }) {
                 <IconButton>
                   <FreeBreakfastIcon onClick={addToWishList} />
                 </IconButton>
-                {/* <IconButton > */}
                 <Raiting id={id} />
-                {/* </IconButton> */}
                 <IconButton
                   className={clsx(classes.expand, {
                     [classes.expandOpen]: expanded,
@@ -171,6 +167,6 @@ export default function OneCoffeeForSearch({ id }) {
           )
           : ''
   }
-      </>
+    </>
   );
 }

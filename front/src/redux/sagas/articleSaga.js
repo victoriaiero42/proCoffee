@@ -1,12 +1,10 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import { START_ARTICLES } from '../actionTypes';
 import { setArticles } from '../actions/articleActions';
-// import watcher from './authSaga';
 
 async function fetchArticles() {
   const resp = await fetch('/articles');
   const res = await resp.json();
-  // console.log(res);
   return res;
 }
 function* worker(action) {
