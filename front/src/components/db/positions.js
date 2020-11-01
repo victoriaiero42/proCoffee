@@ -1,5 +1,4 @@
 import theImg from './imgs/java.png'
-console.log(theImg);
 const pos = [
   {
     title: "Ява Золотая",

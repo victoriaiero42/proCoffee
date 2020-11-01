@@ -36,7 +36,6 @@ function Authorization() {
   const classes = useStyles();
 
   const user = useSelector((state) => state.auth);
-  console.log(user);
   const history = useHistory();
 
   const dispatch = useDispatch();
