@@ -12,7 +12,6 @@ router.post('/registration', async (req, res) => {
     email,
     password,
   } = req.body.formData;
-  console.log(req.body.formData);
   let newUser;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);

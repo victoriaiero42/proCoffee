@@ -23,12 +23,10 @@ router.post('/favoriteApi', async (req, res) => {
   const itemToAdd = await Coffee.findById(id);
   if (!itemToAdd.userLiked.includes(userID)) {
     itemToAdd.userLiked.push(userID);
-    console.log(itemToAdd.userLiked, '1if');
   } else {
     itemToAdd.userLiked.find((el, i) => {
       if (el === userID) {
         itemToAdd.userLiked.splice(i, 1);
-        console.log(itemToAdd.userLiked, 'if2');
       }
     });
   }

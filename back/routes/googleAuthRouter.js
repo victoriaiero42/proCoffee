@@ -11,16 +11,13 @@ router.get('/google/callback',
   (req, res) => {
     if (req.user) {
       req.session.user = req.user;
-      // res.locals.user = req.user;
-      console.log(req.session.user, 'гугль кольбэк!');
     }
-    res.redirect('/read');
+    res.redirect('http://localhost:3000/read');
   });
 
 router.get('/api/goodGoogle', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000/read');
   res.set('Access-Control-Allow-Credentials', 'true');
-  console.log(req.session.user, 'апи гугл, бэк');
   // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
   res.json({
     id: req.session.user._id,

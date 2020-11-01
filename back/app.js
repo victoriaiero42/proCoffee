@@ -12,7 +12,7 @@ import './misc/db.js';
 import './passportJs/passport-setup.js';
 
 import authRouter from './routes/authRouter.js';
-// import googleAuthRoutes from './routes/googleAuthRouter.js';
+import googleAuthRoutes from './routes/googleAuthRouter.js';
 import readTextRouter from './routes/readRouter.js';
 import userRouter from './routes/userRouts.js';
 import searchRouter from './routes/searchRouter.js';
@@ -34,7 +34,7 @@ app.use(express.static(path.resolve('../front/build/')));
 //   optionsSuccessStatus: 200,
 // };
 
-// app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());
@@ -53,45 +53,16 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-  console.log(req.session.user, 'пользователь в сессии');
+  // console.log(req.session.user, 'пользователь в сессии');
   next();
 });
 
 app.use(authRouter);
-// app.use(googleAuthRoutes);
+app.use(googleAuthRoutes);
 app.use(readTextRouter);
 app.use(searchRouter);
 app.use(userRouter);
 app.use(restoreRouter);
-
-app.get('/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-app.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://xn--80askzj.com.ua/' }),
-  (req, res) => {
-    if (req.user) {
-      req.session.user = req.user;
-      console.log(req.session.user, 'гугль кольбэк!');
-    }
-    res.redirect('/read');
-  });
-
-app.get('/api/goodGoogle', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://cocoffee.herokuapp.com/read');
-  res.set('Access-Control-Allow-Credentials', 'true');
-  console.log(req.session.user, 'апи гугл, бэк');
-  // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
-  res.json({
-    id: req.session.user._id,
-    login: req.session.user.username,
-    email: req.session.user.email,
-    status: 'ok',
-    favorites: req.session.user.favorites,
-    raited: req.session.user.raited,
-    wishlist: req.session.user.wishlist,
-  });
-});
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('../front/build/index.html'));
@@ -99,4 +70,4 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, () => { console.log(port); });
+app.listen(port, () => { console.log(`Port ${port} is alive!`); });
