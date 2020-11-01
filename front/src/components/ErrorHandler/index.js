@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
     '& > * + *': {
-      marginTop: "30px"
+      marginTop: '30px',
     },
   },
 }));

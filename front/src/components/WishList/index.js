@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Item from '../Item';
-import WishTitle from '../WishTitle/WishTitle';
+import WishTitle from '../WishTitle';
 
 function CoffeeList() {
 

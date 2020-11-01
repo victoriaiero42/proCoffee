@@ -29,6 +29,7 @@ function App() {
           </Route>
           <Route exact path="/favorites">
             <Favorites />
+            <ListItem />
           </Route>
           <Route exact path="/wishlist">
             <Wishlist />

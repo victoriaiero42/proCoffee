@@ -72,7 +72,6 @@ function RecipeReviewCard({ id }) {
       }),
     });
     const Resp = await response.json();
-    console.log(Resp);
     dispatch(setChangeStatus(Resp));
   };
 
@@ -121,7 +120,7 @@ function RecipeReviewCard({ id }) {
           ) : ''}
         </IconButton>
         <IconButton>
-          <FreeBreakfastIcon onClick={addToWishList} />
+          {user && user !== undefined ? <FreeBreakfastIcon onClick={addToWishList} /> : ''}
         </IconButton>
         <Raiting id={id} />
         <IconButton

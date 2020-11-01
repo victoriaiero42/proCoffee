@@ -59,12 +59,19 @@ router.get('/user', async (req, res) => {
 
 router.post('/wishlistApi', async (req, res) => {
   const { id } = req.body;
-  const curUser = req.session.user;
-  const newU2 = await User.findById(curUser._id);
+  const userid = req.session.user._id;
   const item = await Coffee.findById(id);
-  newU2.wishlist.push(item);
-  await newU2.save();
-  res.status(200).json(newU2);
+  if (!item.wishlist.includes(userid)) {
+    item.wishlist.push(userid);
+  } else {
+    item.wishlist.map((el, i) => {
+      if (el === userid) {
+        item.wishlist.splice(i, 1);
+      }
+    });
+  }
+  await item.save();
+  res.status(200).json(item);
 });
 
 export default router;
