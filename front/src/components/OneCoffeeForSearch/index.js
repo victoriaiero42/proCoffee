@@ -47,7 +47,6 @@ export default function OneCoffeeForSearch({ id }) {
 
   const searchArr = useSelector((state) => state.search);
 
-  console.log(searchArr);
   const picArr = searchArr.needCoffee.find((x) => {
     return x._id === id;
   });
@@ -72,7 +71,6 @@ export default function OneCoffeeForSearch({ id }) {
 
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    console.log(res1);
     dispatch(startRewriteUser(res1));
     dispatch(startCoffeeItemsSaga())
   };
@@ -89,7 +87,6 @@ export default function OneCoffeeForSearch({ id }) {
     });
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    console.log(res1);
     dispatch(startRewriteUser(res1));
   };
 

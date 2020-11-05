@@ -14,18 +14,15 @@ router.get('/topApi', async (req, res) => {
   const top = await Coffee.find();
   const sorted = top.sort((a, b) => b.av - a.av);
   const spliced = sorted.splice(0, 10);
-  // console.log(spliced);
   res.status(200).json(spliced);
 });
 
 router.post('/favoriteApi', async (req, res) => {
   const { id } = req.body;
   const userID = req.session.user._id;
-  // console.log(userID, id);
   const itemToAdd = await Coffee.findById(id);
   itemToAdd.like = !itemToAdd.like;
   await itemToAdd.save();
-  console.log(itemToAdd);
   const user = await User.findById(userID);
   user.favorites.push(itemToAdd);
   await user.save();
@@ -40,7 +37,6 @@ router.post('/raiting', async (req, res) => {
   const newU = await User.findById(userID);
   newU.raited.push(item);
   item.raiting.push({ userID, numrate });
-  // console.log(item);
   const av = item.raiting.reduce((a, c) => a + c.numrate, 0);
   const sr = av / item.raiting.length;
   item.av = sr.toFixed(1);
@@ -51,9 +47,7 @@ router.post('/raiting', async (req, res) => {
 
 router.get('/user', async (req, res) => {
   const curUser = req.session.user;
-  console.log(curUser, '/////////////////');
   const newU = await User.findById(curUser._id);
-  // console.log(newU);
   res.json(newU);
 });
 

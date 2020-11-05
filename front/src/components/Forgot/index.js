@@ -24,7 +24,6 @@ export default function Forgot() {
   async function allText(event) {
     event.preventDefault();
     const targetText = event.target.input.value;
-    console.log(targetText);
     const resp = await fetch('/restoreApi', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -33,7 +32,6 @@ export default function Forgot() {
       }),
     });
     const response = await resp.json();
-    console.log(response);
   }
 
   const classes = useStyles();

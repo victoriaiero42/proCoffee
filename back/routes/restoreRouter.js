@@ -13,13 +13,7 @@ router.post('/restoreApi', async (req, res) => {
     length: process.env.LENGTH_GENERATED_PASSWORD,
     numbers: true,
   });
-
-  console.log('новый пароль', newPassword);
-
   const hashedPassword = await bcrypt.hash(newPassword, 10);
-  
-  console.log('захэшированный пароль', hashedPassword);
-
   const { targetText } = req.body;
   const restoreUser = await User.findOneAndUpdate(
     { email: targetText }, { $set: { password: hashedPassword } }, { new: true }, (err, doc) => {

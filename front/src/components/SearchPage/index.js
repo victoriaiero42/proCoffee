@@ -3,7 +3,6 @@ import SearchPanel from '../SearchPanel';
 import SearchList from '../SearchList';
 
 export default function SearchPage(props) {
-  // console.log('>>>>>>>>>>>', props);
   const [input, setInput] = useState('');
   const [searchListDefault, setSearchListDefault] = useState();
   const [searchList, setSearchList] = useState();

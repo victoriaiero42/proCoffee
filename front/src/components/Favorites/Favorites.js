@@ -10,7 +10,6 @@ function CoffeeList() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.id.favorites)
-  // console.log(user);
   // useEffect(() => {
 
 

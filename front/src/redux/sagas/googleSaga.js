@@ -7,7 +7,6 @@ import { authenticateGoogleUser } from '../actions/authActions';
 async function fetchGoogle() {
   const request = await fetch('/goodGoogle');
   const response = await request.json();
-  console.log(response);
   return response;
 }
 

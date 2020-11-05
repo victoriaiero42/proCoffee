@@ -56,7 +56,6 @@ export default function RecipeReviewCard({ id }) {
   const {
     title, image, description, process, region, av, raiting,
   } = useSelector((state) => state.top.top.find((x) => x._id === id));
-  console.log(av, raiting);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -77,7 +76,6 @@ export default function RecipeReviewCard({ id }) {
 
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    console.log(res1, '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
     dispatch(startRewriteUser(res1));
     dispatch(startCoffeeItemsSaga())
   };
@@ -94,7 +92,6 @@ export default function RecipeReviewCard({ id }) {
     });
     const resave = await fetch('/user');
     const res1 = await resave.json();
-    console.log(res1, '+++++++++++++++++++++++++++++++++++++++++++');
     dispatch(startRewriteUser(res1));
   };
 
@@ -123,9 +120,7 @@ export default function RecipeReviewCard({ id }) {
 
           <FavoriteIcon
             onClick={() => {
-              handleClick();
-              // setUndone((state) => !state);
-              console.log('g');
+              handleClick();;
             }}
             className={` ${like ? classes.undone : ""}`}
           />

@@ -60,7 +60,6 @@ export default function ReadText() {
     await worker.loadLanguage(lang);
     await worker.initialize(lang);
     const { data: { text } } = await worker.recognize(file);
-    console.log(text);
     await worker.terminate();
     const resp = await fetch('/readText', {
       method: 'POST',

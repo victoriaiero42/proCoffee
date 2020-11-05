@@ -3,12 +3,8 @@ import { START_RATING } from '../actionTypes';
 import { setRatingSaga } from '../actions/ratingActions';
 
 async function fetchItems(payload) {
-  console.log(payload);
-
   const { rating, id } = payload;
   const numrate = Number(rating);
-  console.log(numrate);
-
   // const response = await fetch("/raiting", {
   //   method: "POST",
   //   headers: {

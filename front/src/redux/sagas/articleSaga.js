@@ -6,7 +6,6 @@ import { setArticles } from '../actions/articleActions';
 async function fetchArticles() {
   const resp = await fetch('/articles');
   const res = await resp.json();
-  // console.log(res);
   return res;
 }
 function* worker(action) {

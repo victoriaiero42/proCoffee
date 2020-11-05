@@ -76,7 +76,6 @@ app.get('/google/callback',
     if (req.user) {
       req.session.user = req.user;
     }
-    console.log('гугл колбэк');
     res.redirect('/');
   });
 
