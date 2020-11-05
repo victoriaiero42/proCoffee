@@ -2703,7 +2703,7 @@
                     value: null,
                     date: locationData
                 };
-                console.log(locationData);
+            
                 city_header.suggestions().setSuggestion(sgt);
                 city_header.val(cityToString(locationData));
                 city_header.suggestions().fixData();
@@ -2760,7 +2760,7 @@
                     elements = $('.article-text-content > p'),
                     positionNumber = Math.round(elements.length / 2);
 
-                // console.log(post, elements.length, positionNumber);
+              
                 if (positionNumber > 1) {
                     post.appendTo(elements.eq(positionNumber));
                 }
